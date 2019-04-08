@@ -4,9 +4,9 @@ public class User {
 	
 	private String userid;
 	private String username;
-	private String userpwd;
-	private String useragend;
-	private String usermobile;
+	private String pwd;
+	private String agend;
+	private String mobile;
 	private Role role;
 	private College college;
 	private Class classid;
@@ -16,14 +16,14 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String userid, String username, String userpwd,
-			String useragend, String usermobile, Role role, College college,Class classid) {
+	public User(String userid, String username, String pwd,
+			String agend, String mobile, Role role, College college,Class classid) {
 		super();
 		this.userid = userid;
 		this.username = username;
-		this.userpwd = userpwd;
-		this.useragend = useragend;
-		this.usermobile = usermobile;
+		this.pwd = pwd;
+		this.agend = agend;
+		this.mobile = mobile;
 		this.role = role;
 		this.college = college;
 		this.classid = classid;
@@ -41,23 +41,23 @@ public class User {
 	public void setusername(String username) {
 		this.username = username;
 	}
-	public String getuserpwd() {
-		return userpwd;
+	public String getpwd() {
+		return pwd;
 	}
-	public void setuserpwd(String userpwd) {
-		this.userpwd = userpwd;
+	public void setpwd(String pwd) {
+		this.pwd = pwd;
 	}
-	public String getuseragend() {
-		return useragend;
+	public String getagend() {
+		return agend;
 	}
-	public void setuseragend(String useragend) {
-		this.useragend = useragend;
+	public void setagend(String agend) {
+		this.agend = agend;
 	}
-	public String getusermobile() {
-		return usermobile;
+	public String getmobile() {
+		return mobile;
 	}
-	public void setusermobile(String usermobile) {
-		this.usermobile = usermobile;
+	public void setmobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public Role getrole() {
 		return role;
