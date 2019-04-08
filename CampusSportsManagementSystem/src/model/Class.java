@@ -4,18 +4,18 @@ public class Class {
 	
 	private int classid;
 	private String classname;
-	private Teacher teacher;
+	private Major major;
 	
 	public Class() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Class(int classid, String classname, Teacher teacher) {
+	public Class(int classid, String classname, Major major) {
 		super();
 		this.classid = classid;
 		this.classname = classname;
-		this.teacher = teacher;
+		this.major = major;
 	}
 	
 	public int getClassid() {
@@ -30,10 +30,10 @@ public class Class {
 	public void setClassname(String classname) {
 		this.classname = classname;
 	}
-	public Teacher getteacher() {
-		return teacher;
+	public Major getMajor() {
+		return major;
 	}
-	public void setteacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setMajor(Major major) {
+		this.major = major;
 	}
 }

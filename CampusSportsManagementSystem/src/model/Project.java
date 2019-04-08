@@ -4,10 +4,9 @@ public class Project {
 
 	private int proid;
 	private String proname;
-	private String starttime;
-	private String endtime;
-	private String addr;
-	private int limit;
+	private int scenelimit;
+	private int collegelimit;
+	private int totallimit;
 	private int protype;
 	
 	public Project() {
@@ -15,15 +14,14 @@ public class Project {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Project(int proid, String proname, String starttime, String endtime,
-			String addr, int limit, int protype) {
+	public Project(int proid, String proname, int scenelimit, int collegelimit,
+			int totallimit, int protype) {
 		super();
 		this.proid = proid;
 		this.proname = proname;
-		this.starttime = starttime;
-		this.endtime = endtime;
-		this.addr = addr;
-		this.limit = limit;
+		this.scenelimit = scenelimit;
+		this.collegelimit = collegelimit;
+		this.totallimit = totallimit;
 		this.protype = protype;
 	}
 
@@ -43,38 +41,30 @@ public class Project {
 		this.proname = proname;
 	}
 
-	public String getStarttime() {
-		return starttime;
+	public int getScenelimit() {
+		return scenelimit;
 	}
 
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
+	public void setScenelimit(int scenelimit) {
+		this.scenelimit = scenelimit;
 	}
 
-	public String getEndtime() {
-		return endtime;
+	public int getCollegelimit() {
+		return collegelimit;
 	}
 
-	public void setEndtime(String endtime) {
-		this.endtime = endtime;
+	public void setCollegelimit(int collegelimit) {
+		this.collegelimit = collegelimit;
 	}
 
-	public String getAddr() {
-		return addr;
+	public int getTotallimit() {
+		return totallimit;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	
-	public int getLimit() {
-		return limit;
+	public void setTotallimit(int totallimit) {
+		this.totallimit = totallimit;
 	}
 
-	public void setLimit(int limit) {
-		this.limit = limit;
-	}
-	
 	public int getProtype() {
 		return protype;
 	}

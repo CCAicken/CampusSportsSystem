@@ -4,18 +4,18 @@ public class Match {
 
 	private int matchid;
 	private Project project;
-	private String stuname;
+	private User user;
 	
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Match(int matchid, Project project, String stuname) {
+	public Match(int matchid, Project project, User user) {
 		super();
 		this.matchid = matchid;
 		this.project = project;
-		this.stuname = stuname;
+		this.user = user;
 	}
 
 	public int getMatchid() {
@@ -34,11 +34,11 @@ public class Match {
 		this.project = project;
 	}
 
-	public String getStuname() {
-		return stuname;
+	public User getuser() {
+		return user;
 	}
 
-	public void setStuname(String stuname) {
-		this.stuname = stuname;
+	public void setuser(User user) {
+		this.user = user;
 	}
 }
