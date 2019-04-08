@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 成绩实体类
+ * @author Administrator
+ *
+ */
 public class Score {
 
 	private int scoreid;

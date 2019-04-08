@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 比赛项目实体类
+ * @author Administrator
+ *
+ */
 public class Project {
 
 	private int proid;

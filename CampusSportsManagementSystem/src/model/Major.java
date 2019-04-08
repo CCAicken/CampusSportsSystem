@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 专业实体类
+ * @author Administrator
+ *
+ */
 public class Major {
 
 	private int majorid;

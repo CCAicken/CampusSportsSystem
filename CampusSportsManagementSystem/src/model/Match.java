@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 比赛报名实体类
+ * @author Administrator
+ *
+ */
 public class Match {
 
 	private int matchid;

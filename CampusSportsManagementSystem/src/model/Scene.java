@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 场次信息实体类
+ * @author Administrator
+ *
+ */
 public class Scene {
 	private int sceneid;
 	private Arrange arrange;

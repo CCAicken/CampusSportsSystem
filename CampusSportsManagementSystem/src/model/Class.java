@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 班级实体类
+ * @author Administrator
+ *
+ */
 public class Class {
 	
 	private int classid;

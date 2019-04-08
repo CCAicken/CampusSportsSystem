@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * ≈‰÷√ µÃÂ¿‡
+ * @author Administrator
+ *
+ */
 public class Config {
 
 	private int configid;

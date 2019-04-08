@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 场次安排实体类
+ * @author Administrator
+ *
+ */
 public class Arrange {
 	private int arrid;
 	private String arrname;

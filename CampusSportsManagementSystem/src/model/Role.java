@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 角色实体类
+ * @author Administrator
+ *
+ */
 public class Role {
 
 	private int roleid;

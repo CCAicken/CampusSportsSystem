@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 学院实体类
+ * @author Administrator
+ *
+ */
 public class College {
 	
 	private int collegeid;
