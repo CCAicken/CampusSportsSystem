@@ -47,6 +47,17 @@
                             </tr>
                             <tr>
                                 <td id="regLable">
+                                    <label class="control-label">班级:</label>
+                                </td>
+                                <td>
+                                    <select class="form-control input-sm select-drop" id="profession">
+                                        <option value="">--请选择班级--</option>
+                                    </select>
+                                    <span id="validatePro"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="regLable">
                                     <label class="control-label">账号:</label>
                                 </td>
                                 <td>
