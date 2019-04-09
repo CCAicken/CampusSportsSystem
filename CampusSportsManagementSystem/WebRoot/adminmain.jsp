@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +39,7 @@
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li role="presentation" id="myCenter">
-                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="<%=url %>">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="#">
                                         <b class="iconfont icon-smile"></b>
                                         <span>个人中心</span>
                                     </a>
@@ -71,32 +73,65 @@
                     <ul class="nav nav-list nav-stacked">
                         <!-- 学生 -->
                         <li role="presentation">
+                            <a href="#ccccc" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-remind"></i>
+                                <span>用户管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list sidebarclick" id="ccccc">
+                                <li role="presentation">
+                                    <a href="../newsList.aspx" class="sidebarclick">
+                                        <span>学生管理</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="../newsList.aspx" class="sidebarclick">
+                                        <span>教师管理</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="../newsList.aspx" class="sidebarclick">
+                                        <span>管理员管理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation">
                             <a href="#setting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-set"></i>
-                                <span>校运会时间</span>
+                                <span>校运会管理</span>
+                                <i class="iconfont icon-more"></i>
                             </a>
+                            <ul class="collapse nav nav-list" id="setting">
+                                <li role="presentation" id="selectTitle">
+                                    <a href="../paperList.aspx" class="sidebarclick">
+                                        <span>时间管理</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li role="presentation">
                             <a href="#reportStu" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
-                                <span>比赛报名</span>
+                                <span>比赛管理</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
                             <ul class="collapse nav nav-list" id="reportStu">
                                 <li role="presentation" id="openReport">
                                     <a href="../openingReport.aspx" class="sidebarclick">
-                                        <span>比赛项目查看</span>
+                                        <span>比赛安排管理</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
                                     <a href="../thesisSubmit.aspx" class="sidebarclick">
-                                        <span>比赛时间安排</span>
+                                        <span>比赛项目管理</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="mediiumQuality">
                                     <a href="../mediiumQuality.aspx" class="sidebarclick">
-                                        <span>查看我的项目</span>
+                                        <span>学生比赛管理</span>
                                     </a>
                                 </li>
                             </ul>
@@ -110,17 +145,12 @@
                             <ul class="collapse nav nav-list" id="datasetting">
                                 <li role="presentation">
                                     <a href="#">
-                                        <span>个人成绩</span>
+                                        <span>学生成绩管理</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
                                     <a href="#">
-                                        <span>班级成绩</span>
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#">
-                                        <span>学院成绩</span>
+                                        <span>学生个人成绩管理</span>
                                     </a>
                                 </li>
                             </ul>
