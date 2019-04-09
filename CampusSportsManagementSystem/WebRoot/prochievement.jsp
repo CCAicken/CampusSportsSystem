@@ -1,24 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<base href="<%=basePath%>">
-
-<title>成绩查看页面</title>
-
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>专业成绩查看页面</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/ml.css" />
 <link rel="stylesheet" href="css/lgd.css" />
@@ -36,7 +34,7 @@
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">
-			<h2>学生信息管理列表</h2>
+			<h2>专业成绩查看页面</h2>
 		</div>
 		<div class="panel-body" id="panelbody">
 			<div class="container-fluid big-box">
@@ -46,15 +44,11 @@
 							<select class="selectpicker selectcollegeId" data-width="auto"
 								id="selectcollegeId">
 								<option value="0">-查询所有分院-</option>
-							</select> &nbsp <select class="selectpicker" id="chooseStuPro">
-
-								<option value="0" selected="selected">-查询全部专业-</option>
-
-								<option value="0">-查询全部专业-</option>
-
-							</select> <input type="text" class="form-control" placeholder="请输入查询条件"
+							</select>
+							<input type="text" class="form-control" placeholder="请输入查询条件"
 								id="inputsearch" value="" /> <span class="input-group-btn">
-								<button class="btn btn-info" type="button" id="btn-search" style="height:34px">
+								<button class="btn btn-info" type="button" id="btn-search"
+									style="height:34px">
 									<span class="glyphicon glyphicon-search" id="search">查询</span>
 								</button>
 							</span>
@@ -69,7 +63,6 @@
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
 							<th class="text-center"><nobr>专业名称</nobr></th>
-							<th class="text-center"><nobr>班级名称</nobr></th>
 							<th class="text-center"><nobr>分数</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
@@ -78,11 +71,11 @@
 								<td class="text-center"><input type="checkbox" /></td>
 								<td class="text-center"><nobr>1</nobr></td>
 								<td class="text-center"><nobr>信息工程学院</nobr></td>
-								<td class="text-center"><nobr>计算机科学与技术</nobr></td>
-								<td class="text-center"><nobr>计算机科学与技术一班</nobr></td>
+									<td class="text-center"><nobr>计算机科学与技术</nobr></td>
 								<td class="text-center"><nobr>88</nobr></td>
 								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning" style="height:28px">
+									<button class="btn btn-default btn-sm btn-warning"
+										style="height:28px">
 										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
 									</button>
 								</td>
