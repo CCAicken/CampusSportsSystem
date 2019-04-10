@@ -1,11 +1,19 @@
 package servlet.control;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import common.properties.RoleType;
+
+import model.Classes;
+import model.College;
+import model.Role;
+import model.User;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -26,11 +34,25 @@ public class RegisterServlet extends HttpServlet {
 			String username = request.getParameter("username");
 			String agend = request.getParameter("agend");
 			String pwd = request.getParameter("pwd");
-			String confirmpwd = request.getParameter("confirmpwd");
 			String mobile = request.getParameter("mobile");
-			String college = request.getParameter("college");
-			String major = request.getParameter("major");
+			String collegeid = request.getParameter("collegeid");
 			String classid = request.getParameter("classid");
+			User user = new User();
+			user.setUserid(userid);
+			user.setUsername(username);
+			user.setPwd(pwd);
+			user.setAgend(agend);
+			user.setMobile(mobile);
+			College college = new College();
+			college.setCollegeid(Integer.parseInt(collegeid));
+			user.setCollege(college);
+			Classes classes = new Classes();
+			classes.setClassid(Integer.parseInt(classid));
+			user.setClasses(classes);
+			Role role = new Role();
+			role.setRoleid(RoleType.Student);
+			user.setRole(role);
+			
 		}
 	}
 

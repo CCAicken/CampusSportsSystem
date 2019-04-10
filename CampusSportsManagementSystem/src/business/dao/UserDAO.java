@@ -17,11 +17,18 @@ public interface UserDAO {
 	public User login(String userid,String pwd);
 	//public boolean insert(String userid,String username,String pwd,String agend,String mobile,Classes classes,College college,Role role);
 	/**
-	 * 添加用户对象
+	 * 添加学生用户对象
 	 * @param user 用户对象
 	 * @return 添加结果，true为成功，false为失败
 	 */
-	public boolean insert(User user);
+	public boolean insertStu(User user);
+	
+	/**
+	 * 添加教师用户对象
+	 * @param user 用户对象
+	 * @return 添加结果，true为成功，false为失败
+	 */
+	public boolean insertTea(User user);
 	
 	/**
 	 * 更新用户对象

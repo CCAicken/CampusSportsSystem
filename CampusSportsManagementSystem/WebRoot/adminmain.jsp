@@ -161,7 +161,7 @@
             <!-- 右侧内容区 -->
             <div class="page-right-content col-sm-10 col-md-10 col-lg-11" id="content">
                 <article class="">
-                    <iframe id="iframe" style="margin-top: 20px;" frameborder="0" scrolling="auto" src="../newsList.aspx" width="100%"></iframe>
+                    <iframe id="iframe" style="margin-top: 20px;" frameborder="0" scrolling="auto" src="allpersonalachievement.jsp" width="100%"></iframe>
                 </article>
             </div>
         </div>

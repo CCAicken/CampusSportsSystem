@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.properties.RoleType;
+
 /**
  * 用户实体类
  * @author Administrator
@@ -86,6 +88,45 @@ public class User {
 	public void setClasses(Classes classes) {
 		this.classes = classes;
 	}
+	
+	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public User(ResultSet rs){
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.userid = rs.getString("userid");
+				this.username = rs.getString("username");
+				this.pwd = rs.getString("pwd");
+				this.agend = rs.getString("agend");
+				this.mobile = rs.getString("mobile");
+				Role role = new Role();
+				role.setRoleid(rs.getInt("roleid"));
+				role.setRolename(rs.getString("rolename"));
+				this.role = role;
+				College college = new College();
+				college.setCollegeid(rs.getInt("collegeid"));
+				college.setCollegename(rs.getString("collegename"));
+				this.college = college;
+				//TODO 判断用户角色是否是学生
+				if(rs.getInt("roleid")==RoleType.Student){
+					Classes classes = new Classes();
+					classes.setClassid(rs.getInt("classid"));
+					classes.setClassname(rs.getString("classname"));
+					Major major = new Major();
+					major.setMajorid(rs.getInt("majorid"));
+					major.setMajorname(rs.getString("majorname"));
+					classes.setMajor(major);
+					this.classes = classes;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
