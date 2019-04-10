@@ -111,12 +111,35 @@ public class UserDaoImpl implements UserDAO {
 	}
 	@Override
 	public List<User> selectByMajor(String majorid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_User where majorid=?";
+		Object[] param = {majorid};
+		ResultSet rs = bdao.select(sql, param);
+		List<User> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				list = User.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
 	}
+	
 	@Override
 	public List<User> selectByClass(String classid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_User where classid=?";
+		Object[] param = {classid};
+		ResultSet rs = bdao.select(sql, param);
+		List<User> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				list = User.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
 	}
 }

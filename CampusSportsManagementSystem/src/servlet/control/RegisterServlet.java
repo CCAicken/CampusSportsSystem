@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import business.dao.UserDAO;
+import business.impl.UserDaoImpl;
 import common.properties.RoleType;
-
 import model.Classes;
 import model.College;
 import model.Role;
@@ -52,7 +53,11 @@ public class RegisterServlet extends HttpServlet {
 			Role role = new Role();
 			role.setRoleid(RoleType.Student);
 			user.setRole(role);
-			
+			UserDAO udao = new UserDaoImpl();
+			boolean flag = udao.insertStu(user);
+			if(flag){
+				response.encodeRedirectUrl("login.jsp");
+			}
 		}
 	}
 

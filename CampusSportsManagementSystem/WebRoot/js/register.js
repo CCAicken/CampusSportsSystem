@@ -18,7 +18,7 @@ $(document).ready(function () {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(pubKey);
 
-        var college = $("#college").val();
+        var collegeid = $("#college").val();
         var major = $("#major").val();
         var classid = $("#classid").val();
         var userid = $("#userid").val();
@@ -29,12 +29,12 @@ $(document).ready(function () {
         var mobile = $("#mobile").val();
         //var code = $("#regCode").val();
         //alert(collegeId+":"+profession+":"+account+":"+name+":"+sex+":"+pwd+":"+confirmPwd+":"+email+":"+telNum+":"+code)
-        if (college === "") {
+        if (collegeid === "0") {
             $("#validateColl").html("请选择学院！").css({ "color": "red", "font-size": "14px"});
-        } else if (major === "") {
+        } else if (major === "0") {
             $("#validateColl").html("");
             $("#validatePro").html("请选择专业！").css({ "color": "red", "font-size": "14px" });
-        } else if (classid === "") {
+        } else if (classid === "0") {
             $("#validateColl").html("");
             $("#validatePro").html("请选择班级！").css({ "color": "red", "font-size": "14px" });
         } else if (userid === "") {
@@ -79,12 +79,11 @@ $(document).ready(function () {
                 type: 'Post',
                 url: 'register.do',
                 data: {
-                	college: college,
-                	major: major,
+                	collegeid: collegeid,
                 	classid: classid,
                     userid: userid,
                     username: username,
-                    agend: sex,
+                    agend: agend,
                     pwd: pwd,
                     mobile: mobile,
                     op: "add"

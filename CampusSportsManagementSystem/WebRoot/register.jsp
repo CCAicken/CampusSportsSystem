@@ -135,6 +135,6 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/xcConfirm.js"></script>
-<script src="js/reg.js"></script>
+<script src="js/register.js"></script>
 <script src="js/jsencrypt.min.js"></script>
 </html>
