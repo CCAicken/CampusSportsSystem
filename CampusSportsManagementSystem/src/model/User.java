@@ -13,7 +13,7 @@ public class User {
 	private String mobile;
 	private Role role;
 	private College college;
-	private Class classid;
+	private Classes classes;
 	
 	public User() {
 		super();
@@ -21,7 +21,7 @@ public class User {
 	}
 	
 	public User(String userid, String username, String pwd,
-			String agend, String mobile, Role role, College college,Class classid) {
+			String agend, String mobile, Role role, College college,Classes classes) {
 		super();
 		this.userid = userid;
 		this.username = username;
@@ -30,7 +30,7 @@ public class User {
 		this.mobile = mobile;
 		this.role = role;
 		this.college = college;
-		this.classid = classid;
+		this.classes = classes;
 	}
 	
 	public String getuserid() {
@@ -75,10 +75,10 @@ public class User {
 	public void setcollege(College college) {
 		this.college = college;
 	}
-	public Class getclassid() {
-		return classid;
+	public Classes getclasses() {
+		return classes;
 	}
-	public void setcollege(Class classid) {
-		this.classid = classid;
+	public void setcollege(Classes classes) {
+		this.classes = classes;
 	}
 }

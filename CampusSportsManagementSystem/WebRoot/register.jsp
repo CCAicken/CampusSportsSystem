@@ -29,7 +29,7 @@
                                 </td>
                                 <td>
                                     <select class="form-control input-sm select-drop" id="college">
-                                        <option value="">--请选择学院--</option>
+                                        <option value="0">--请选择学院--</option>
                                     </select>
                                     <span id="validateColl"></span>
                                 </td>
@@ -39,8 +39,8 @@
                                     <label class="control-label">专业:</label>
                                 </td>
                                 <td>
-                                    <select class="form-control input-sm select-drop" id="profession">
-                                        <option value="">--请选择专业--</option>
+                                    <select class="form-control input-sm select-drop" id="major">
+                                        <option value="0">--请选择专业--</option>
                                     </select>
                                     <span id="validatePro"></span>
                                 </td>
@@ -50,8 +50,8 @@
                                     <label class="control-label">班级:</label>
                                 </td>
                                 <td>
-                                    <select class="form-control input-sm select-drop" id="profession">
-                                        <option value="">--请选择班级--</option>
+                                    <select class="form-control input-sm select-drop" id="classid">
+                                        <option value="0">--请选择班级--</option>
                                     </select>
                                     <span id="validatePro"></span>
                                 </td>
@@ -61,7 +61,7 @@
                                     <label class="control-label">账号:</label>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control input-sm input" id="account" name="usercount" placeholder="请输入学号" />
+                                    <input type="text" class="form-control input-sm input" id="userid" name="usercount" placeholder="请输入学号" />
                                     <span id="validateAccount"></span>
                                 </td>
                             </tr>
@@ -70,7 +70,7 @@
                                     <label class="control-label">姓名:</label>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control input-sm input" id="name" name="username" placeholder="请输入姓名" />
+                                    <input type="text" class="form-control input-sm input" id="username" name="username" placeholder="请输入姓名" />
                                     <span id="validateName"></span>
                                 </td>
                             </tr>
@@ -80,11 +80,11 @@
                                 </td>
                                 <td>
                                     <label>
-                                        <input type="radio" name="sex" value="男" checked="checked" />
+                                        <input type="radio" name="agend" value="男" checked="checked" />
                                         男
                                     </label>
                                     <label>
-                                        <input type="radio" name="sex" value="女" checked="checked" />
+                                        <input type="radio" name="agend" value="女" />
                                         女
                                     </label>
                                     <span id="validateSex"></span>
@@ -95,21 +95,21 @@
                                     <label class="control-label">密码:</label>
                                 </td>
                                 <td>
-                                    <input type="password" class="form-control input-sm input" id="regPwd" name="regPwd" placeholder="请输入密码" />
+                                    <input type="password" class="form-control input-sm input" id="pwd" name="regPwd" placeholder="请输入密码" />
                                     <span id="validatePwd"></span></td>
                             </tr>
                             <tr>
                                 <td id="regLable">
                                     <label class="control-label">确认密码:</label></td>
                                 <td>
-                                    <input type="password" class="form-control input-sm input" id="confirmPwd" name="confirmPwd" placeholder="请再次输入密码" />
+                                    <input type="password" class="form-control input-sm input" id="confirmpwd" name="confirmPwd" placeholder="请再次输入密码" />
                                     <span id="validateConfirmPwd"></span></td>
                             </tr>
                             <tr>
                                 <td id="regLable">
                                     <label class="control-label">联系电话:</label></td>
                                 <td>
-                                    <input type="text" class="form-control input-sm input" id="telNum" name="usertel" placeholder="请输入电话号码" />
+                                    <input type="text" class="form-control input-sm input" id="mobile" name="usertel" placeholder="请输入电话号码" />
                                     <span id="validateTelNum"></span></td>
                             </tr>
                             <!--<tr>

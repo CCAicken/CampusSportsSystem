@@ -4,18 +4,18 @@ package model;
  * @author Administrator
  *
  */
-public class Class {
+public class Classes {
 	
 	private int classid;
 	private String classname;
 	private Major major;
 	
-	public Class() {
+	public Classes() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Class(int classid, String classname, Major major) {
+	public Classes(int classid, String classname, Major major) {
 		super();
 		this.classid = classid;
 		this.classname = classname;
