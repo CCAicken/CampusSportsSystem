@@ -31,4 +31,11 @@ public interface MajorDAO {
 	 * @return 专业对象列表
 	 */
 	public List<Major> select();
+	
+	/**
+	 * 获取所有专业对象列表
+	 * @param collegeid 学院id
+	 * @return 专业对象列表
+	 */
+	public List<Major> selectByColl(int collegeid);
 }

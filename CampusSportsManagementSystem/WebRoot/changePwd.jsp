@@ -23,13 +23,13 @@
                     <div class="form-group">
                         <label for="firstname" class="col-sm-2  col-sm-offset-3 control-label">当前账号:</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control input-sm" id="usercount" placeholder="账号" readonly="true" value="" />
+                            <input type="text" class="form-control input-sm" id="userid" placeholder="账号" readonly="true" value="${loginuser.userid }" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="lastname" class="col-sm-2  col-sm-offset-3 control-label">原密码:</label>
                         <div class="col-sm-3">
-                            <input type="password" class="form-control input-sm" id="quondampwd" name="quondampwd" placeholder="请输入原密码" />
+                            <input type="password" class="form-control input-sm" id="oldpwd" name="quondampwd" placeholder="请输入原密码" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <div class="text-center">
-                            <button type="button" class="btn btn-success" id="postPwd">提交</button>
+                            <button type="button" class="btn btn-success" id="btnSumbit">提交</button>
                             <button class="btn btn-primary navbar-btn" id="allNaws_btnBack" onclick="javascript:window.history.back(-1)">返回</button>
                         </div>
                     </div>
@@ -63,4 +63,5 @@
 <script src="js/xcConfirm.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/jsencrypt.min.js"></script>
+<script src="js/changePwd.js"></script>
 </html>

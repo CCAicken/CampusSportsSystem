@@ -31,4 +31,11 @@ public interface ClassesDAO {
 	 * @return 班级对象列表
 	 */
 	public List<Classes> select();
+
+	/**
+	 * 获取所有班级对象列表
+	 * @param majorid 专业id
+	 * @return 班级对象列表
+	 */
+	public List<Classes> selectByMajor(int majorid);
 }

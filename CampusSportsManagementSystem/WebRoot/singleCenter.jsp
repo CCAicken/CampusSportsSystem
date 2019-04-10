@@ -23,37 +23,39 @@
                         <tr>
                             <td class="centerLable">账号：</td>
                             <td></td>
-                            <td id="ID">131312231</td>
+                            <td id="ID">${loginuser.userid }</td>
                         </tr>
                         <tr>
                             <td class="centerLable">姓名：</td>
                             <td></td>
-                            <td id="name">张三</td>
+                            <td id="name">${loginuser.username }</td>
                         </tr>
                         <tr>
                             <td class="centerLable">性别：</td>
                             <td></td>
-                            <td id="gender">男</td>
+                            <td id="gender">${loginuser.agend }</td>
                         </tr>
                         <tr>
                             <td class="centerLable">学院：</td>
                             <td></td>
-                            <td id="college">信息工程学院</td>
+                            <td id="college">${loginuser.collegename }</td>
                         </tr>
+                        
                         <tr>
                             <td class="centerLable">专业：</td>
                             <td></td>
-                            <td id="profession">计算机科学与技术</td>
+                            <td id="profession">${loginuser.majorname }</td>
                         </tr>
                         <tr>
                             <td class="centerLable">班级：</td>
                             <td></td>
-                            <td id="profession">2016计算机科学与技术1班</td>
+                            <td id="profession">${loginuser.classname }</td>
                         </tr>
+                        
                         <tr>
                             <td class="centerLable">联系电话：</td>
                             <td></td>
-                            <td id="telNum">15263748643</td>
+                            <td id="telNum">${loginuser.mobile }</td>
                         </tr>
                         <tr>
 	                        <td></td>

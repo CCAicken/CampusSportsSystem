@@ -49,7 +49,7 @@
                             教师
                         </label>
                     <label>
-                            <input type="radio" name="user" value="student" checked="" />
+                            <input type="radio" name="user" value="student" checked="checked" />
                             学生
                         </label>
                 </div>
@@ -65,8 +65,9 @@
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/zwh.js"></script>
 <script src="js/xcConfirm.js"></script>
 <script src="js/jsencrypt.min.js"></script>
+<script src="js/zwh.js"></script>
+<script src="js/login.js"></script>
 
 </html>

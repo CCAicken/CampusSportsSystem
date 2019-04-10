@@ -1,6 +1,9 @@
 package servlet.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import util.sendDispatcher;
+import business.dao.ClassesDAO;
+import business.dao.CollegeDAO;
+import business.dao.MajorDAO;
 import business.dao.UserDAO;
+import business.impl.ClassesDaoImpl;
+import business.impl.CollegeDaoImpl;
+import business.impl.MajorDaoImpl;
 import business.impl.UserDaoImpl;
 import common.properties.RoleType;
 import model.Classes;
@@ -28,10 +37,49 @@ public class RegisterServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/plan;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		//获取所有学院信息列表
+		CollegeDAO colldao = new CollegeDaoImpl();
+		List<College> collegelist = colldao.select();
+		if(collegelist==null||collegelist.size()<=0){
+			request.setAttribute("collegelist", new ArrayList<College>());
+		}else{
+			request.setAttribute("collegelist", collegelist);
+		}
 		String op = request.getParameter("op");
-		if(op == "major"){
-			String college = request.getParameter("collegeId");
-		}else if(op == "add"){
+		if(op == "college"){
+			//学院下拉框改变事件，获取学院相对应的专业信息列表
+			String collegeid = request.getParameter("collegeid");
+			if(collegeid!=null&&collegeid!="0"&&collegeid!=""){
+				MajorDAO mdao = new MajorDaoImpl();
+				List<Major> majorlist = mdao.selectByColl(Integer.parseInt(collegeid));
+				if(majorlist==null||majorlist.size()<=0){
+					request.setAttribute("majorlist", new ArrayList<Major>());
+				}else{
+					request.setAttribute("majorlist", majorlist);
+				}
+			}else{
+				request.setAttribute("majorlist", new ArrayList<Major>());
+			}
+		}else if(op == "major"){
+			//专业下拉框改变事件，获取专业相对应的班级信息列表
+			String majorid = request.getParameter("majorid");
+			if(majorid!=null&&majorid!=""&&majorid!="0"){
+				ClassesDAO classdao = new ClassesDaoImpl();
+				List<Classes> classlist = classdao.selectByMajor(Integer.parseInt(majorid));
+				if(classlist==null||classlist.size()<=0){
+					request.setAttribute("classlist", new ArrayList<Classes>());
+				}else{
+					request.setAttribute("classlist", classlist);
+				}
+			}else{
+				request.setAttribute("classlist", new ArrayList<Classes>());
+			}
+		}
+		else if(op == "add"){
+			//提交注册
 			String userid = request.getParameter("userid");
 			String username = request.getParameter("username");
 			String agend = request.getParameter("agend");
@@ -52,7 +100,7 @@ public class RegisterServlet extends HttpServlet {
 			if(flag){
 				sendDispatcher.sendUrl("login.jsp", request, response);
 			}else{
-				request.setAttribute("Error","注册失败请重试");
+				out.print("注册失败");
 			}
 		}
 	}

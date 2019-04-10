@@ -50,7 +50,7 @@
                                     <label class="control-label">班级:</label>
                                 </td>
                                 <td>
-                                    <select class="form-control input-sm select-drop" id="classid">
+                                    <select class="form-control input-sm select-drop" id="classes">
                                         <option value="0">--请选择班级--</option>
                                     </select>
                                     <span id="validatePro"></span>

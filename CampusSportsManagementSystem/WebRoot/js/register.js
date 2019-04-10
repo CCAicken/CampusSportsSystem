@@ -8,19 +8,46 @@ $(document).ready(function () {
     var TelNum = /^1[3,5,4,7,8]\d{9}$/; //联系电话的正则表达式
     var txtPwd = /^[0-9a-zA-Z_]{1,}$/; //数字、英文、下划线的正则表达式
     var flag = false;
+    //学院下拉框改变事件
     $("#college").change(function () {
         var collegeId = $("#college").val();
-        window.location.href = "register.do?collegeId=" + collegeId + "&op=major";
+        //window.location.href = "register.do?collegeid=" + collegeId + "&op=college";
+        $.ajax({
+            type: 'Post',
+            url: 'register.do',
+            data: {
+            	collegeid: collegeId,
+                op: "college"
+            },
+            dataType: 'text',
+            success: function (succ) {
+            }
+        });
     });
-
+    //专业下拉框改变事件
+    $("#majorid").change(function () {
+        var majorid = $("#majorid").val();
+        //window.location.href = "register.do?majorid=" + majorid + "&op=major";
+        $.ajax({
+            type: 'Post',
+            url: 'register.do',
+            data: {
+            	majorid: majorid,
+                op: "major"
+            },
+            dataType: 'text',
+            success: function (succ) {
+            }
+        });
+    });
     $("#btnAdd").click(function () {
         var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(pubKey);
 
         var collegeid = $("#college").val();
-        var major = $("#major").val();
-        var classid = $("#classid").val();
+        var majorid = $("#major").val();
+        var classid = $("#classes").val();
         var userid = $("#userid").val();
         var username = $("#username").val();
         var agend = $('input:radio:checked').val();
@@ -31,7 +58,7 @@ $(document).ready(function () {
         //alert(collegeId+":"+profession+":"+account+":"+name+":"+sex+":"+pwd+":"+confirmPwd+":"+email+":"+telNum+":"+code)
         if (collegeid === "0") {
             $("#validateColl").html("请选择学院！").css({ "color": "red", "font-size": "14px"});
-        } else if (major === "0") {
+        } else if (majorid === "0") {
             $("#validateColl").html("");
             $("#validatePro").html("请选择专业！").css({ "color": "red", "font-size": "14px" });
         } else if (classid === "0") {
@@ -90,16 +117,10 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ === "注册成功") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-                            onOk: function (v) {
-                                window.location.href = "login.jsp";
-                            }
-                        });
-                    } else {
+                    if (succ === "注册失败") {
                         window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
-                                //window.location.href = "login.aspx";
+                                window.location.reload();
                             }
                         });
                     }
