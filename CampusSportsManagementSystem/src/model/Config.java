@@ -14,17 +14,21 @@ public class Config {
 	private int configid;
 	private String starttime;
 	private String endtime;
+	private String reportstart;
+	private String reportend;
 	
 	public Config() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Config(int configid, String starttime, String endtime) {
+	public Config(int configid, String starttime, String endtime,String reportstart,String reportend) {
 		super();
 		this.configid = configid;
 		this.starttime = starttime;
 		this.endtime = endtime;
+		this.reportstart = reportstart;
+		this.reportend = reportend;
 	}
 	
 	public int getConfigid() {
@@ -45,6 +49,18 @@ public class Config {
 	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
+	public String getReportstart() {
+		return reportstart;
+	}
+	public void setReportstart(String reportstart) {
+		this.reportstart = reportstart;
+	}
+	public String getReportend() {
+		return reportend;
+	}
+	public void setReportend(String reportend) {
+		this.reportend = reportend;
+	}
 	
 	/**
 	 * 初始化ResultSet中的第一条数据
@@ -57,6 +73,8 @@ public class Config {
 				this.configid = rs.getInt("configid");
 				this.starttime = rs.getString("starttime");
 				this.endtime = rs.getString("endtime");
+				this.reportstart = rs.getString("reportstart");
+				this.reportend = rs.getString("reportend");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -78,6 +96,8 @@ public class Config {
 					config.setConfigid((rs.getInt("configid")));
 					config.setStarttime((rs.getString("starttime")));
 					config.setEndtime((rs.getString("endtime")));
+					config.setReportstart((rs.getString("reportstart")));
+					config.setReportend((rs.getString("reportend")));
 					list.add(config);
 				}
 			}catch(Exception e){
