@@ -3,7 +3,6 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import common.properties.ProjectType;
 import common.properties.RoleType;
 

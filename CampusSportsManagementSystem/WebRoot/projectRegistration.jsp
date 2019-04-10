@@ -54,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th class="text-center"><input type="checkbox"
 								class="js-checkbox-all" /></th>
 							<th class="text-center"><nobr>序号</nobr></th>
+<<<<<<< HEAD
 							<th class="text-center"><nobr>姓名</nobr></th>
 							<th class="text-center"><nobr>学号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
@@ -76,6 +77,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<button class="btn btn-default btn-sm btn-warning"
 										style="height:28px">
 										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+=======
+							<th class="text-center"><nobr>项目名称</nobr></th>
+							<th class="text-center"><nobr>当前报名人数</nobr></th>
+							<th class="text-center"><nobr>人数限制</nobr></th>
+							<th class="text-center"><nobr>操作</nobr></th>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center"><input type="checkbox" /></td>
+								<td class="text-center"><nobr>1</nobr></td>
+							<td class="text-center"><nobr>10000M</nobr></td>
+							<td class="text-center"><nobr>4</nobr></td>
+								<td class="text-center"><nobr>10</nobr></td>
+								<td class="text-center">
+									<button class="btn btn-default btn-sm btn-warning"
+										style="height:28px">
+										<span class="glyphicon glyphicon-search" id="search">确认报名</span>
+>>>>>>> branch 'master' of https://github.com/KzlDeng/CampusSportsSystem.git
 									</button>
 								</td>
 							</tr>
