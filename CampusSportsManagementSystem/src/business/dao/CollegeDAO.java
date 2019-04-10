@@ -31,4 +31,10 @@ public interface CollegeDAO {
 	 * @return 学院对象列表
 	 */
 	public List<College> select();
+	
+	/**
+	 * 分页查询数据
+	 * @return
+	 */
+	public List<College> selectByPage();
 }
