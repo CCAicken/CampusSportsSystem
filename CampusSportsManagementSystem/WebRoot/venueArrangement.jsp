@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning"
 										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">编辑22</span>
+										<span class="glyphicon glyphicon-search" id="search">编辑</span>
 									</button>
 								</td>
 							</tr>
