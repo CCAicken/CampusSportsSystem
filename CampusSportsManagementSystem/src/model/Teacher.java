@@ -9,7 +9,7 @@ import common.properties.RoleType;
  * @author Administrator
  *
  */
-public class User {
+public class Teacher {
 	
 	private String userid;
 	private String username;
@@ -18,15 +18,14 @@ public class User {
 	private String mobile;
 	private Role role;
 	private College college;
-	private Classes classes;
 	
-	public User() {
+	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String userid, String username, String pwd,
-			String agend, String mobile, Role role, College college,Classes classes) {
+	public Teacher(String userid, String username, String pwd,
+			String agend, String mobile, Role role, College college) {
 		super();
 		this.userid = userid;
 		this.username = username;
@@ -35,7 +34,6 @@ public class User {
 		this.mobile = mobile;
 		this.role = role;
 		this.college = college;
-		this.classes = classes;
 	}
 	
 	public String getUserid() {
@@ -80,18 +78,12 @@ public class User {
 	public void setCollege(College college) {
 		this.college = college;
 	}
-	public Classes getClasses() {
-		return classes;
-	}
-	public void setClasses(Classes classes) {
-		this.classes = classes;
-	}
 	
 	/**
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */
-	public User(ResultSet rs){
+	public Teacher(ResultSet rs){
 		//rs中只会初始化第一条记录的数据
 		try{
 			if(rs != null && rs.next()){//必须一一对应
@@ -104,11 +96,6 @@ public class User {
 				this.role = role;
 				College college = new College(rs);
 				this.college = college;
-				//TODO 判断用户角色是否是学生
-				if(rs.getInt("roleid")==RoleType.Student){
-					Classes classes = new Classes(rs);
-					this.classes = classes;
-				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -122,11 +109,11 @@ public class User {
 	 */
 	public static List toList(ResultSet rs){
 		//静态方法，用于将0~N的VUser视图数据交换到List数组中来
-		List<User> list = new ArrayList<User>();
+		List<Teacher> list = new ArrayList<Teacher>();
 		if(rs != null){
 			try{
 				while(rs.next()){
-					User user = new User();
+					Teacher user = new Teacher();
 					user.setUserid(rs.getString("userid"));
 					user.setAgend(rs.getString("agend"));
 					user.setUsername(rs.getString("username"));
@@ -138,9 +125,6 @@ public class User {
 					College college = new College();
 					college.setCollegeid(rs.getInt("collegeid"));
 					user.setCollege(college);
-					Classes classes = new Classes();
-					classes.setClassid(rs.getInt("classid"));
-					user.setClasses(classes);
 					list.add(user);
 				}
 			}catch(Exception e){

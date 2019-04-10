@@ -13,14 +13,14 @@ public class Match {
 
 	private int matchid;
 	private Project project;
-	private User user;
+	private Student user;
 	
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Match(int matchid, Project project, User user) {
+	public Match(int matchid, Project project, Student user) {
 		super();
 		this.matchid = matchid;
 		this.project = project;
@@ -43,11 +43,11 @@ public class Match {
 		this.project = project;
 	}
 
-	public User getUser() {
+	public Student getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Student user) {
 		this.user = user;
 	}
 	
@@ -62,7 +62,7 @@ public class Match {
 				this.matchid = rs.getInt("matchid");
 				Project project = new Project(rs);
 				this.project = project;
-				User user = new User(rs);
+				Student user = new Student(rs);
 				this.user = user;
 			}
 		}catch(Exception e){
@@ -86,7 +86,7 @@ public class Match {
 					Project project = new Project();
 					project.setProid(rs.getInt("proid"));
 					match.setproject(project);
-					User user = new User();
+					Student user = new Student();
 					user.setUserid(rs.getString("userid"));
 					match.setUser(user);;
 					list.add(match);

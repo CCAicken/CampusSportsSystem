@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.User;
+import common.properties.RoleType;
+import model.Student;
+import model.Teacher;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
 import business.dao.UserDAO;
@@ -15,24 +17,40 @@ public class UserDaoImpl implements UserDAO {
 		bdao = new BaseDaoImpl();
 	}
 	@Override
-	public User login(String userid, String pwd) {
-		String sql = "select * from V_User where userid=? and pwd=?";
+	public Student loginStu(String userid, String pwd) {
+		String sql = "select * from V_Student where userid=? and pwd=?";
 		Object[] param = {userid,pwd};
 		ResultSet rs = bdao.select(sql,param);
 		
-		User user = new User(rs);
+		Student student = new Student(rs);
 		bdao.close();
-		if(user.getUserid()==null || user.getUserid().equals("")){
+		if(student.getUserid()==null || student.getUserid().equals("")){
 			return null;
 		}else{
-			return user;
+			return student;
 		}
+		
 	}
 
 	@Override
-	public boolean insertStu(User user) {
-		String sql = "insert into T_User(userid,userbame,pwd,agend,mobile,classid,collegeid,roleid) values(?,?,?,?,?,?,?,?)";
-		Object[] param = {user.getUserid(),user.getUsername(),user.getPwd(),user.getAgend(),user.getMobile(),user.getClasses().getClassid(),user.getCollege().getCollegeid(),user.getRole().getRoleid()};
+	public Teacher loginTea(String userid, String pwd) {
+		String sql = "select * from V_Teacher where userid=? and pwd=?";
+		Object[] param = {userid,pwd};
+		ResultSet rs = bdao.select(sql,param);
+		
+		Teacher teacher = new Teacher(rs);
+		bdao.close();
+		if(teacher.getUserid()==null || teacher.getUserid().equals("")){
+			return null;
+		}else{
+			return teacher;
+		}
+	}
+	
+	@Override
+	public boolean insertStu(Student user) {
+		String sql = "insert into T_User(userid,userbame,pwd,agend,mobile,classid,roleid) values(?,?,?,?,?,?,?)";
+		Object[] param = {user.getUserid(),user.getUsername(),user.getPwd(),user.getAgend(),user.getMobile(),user.getClasses().getClassid(),user.getRole().getRoleid()};
 		int row = bdao.insert(sql, param);
 		if(row>0){
 			return true;
@@ -42,7 +60,7 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean insertTea(User user) {
+	public boolean insertTea(Teacher user) {
 		String sql = "insert into T_User(userid,userbame,pwd,agend,mobile,collegeid,roleid) values(?,?,?,?,?,?,?)";
 		Object[] param = {user.getUserid(),user.getUsername(),user.getPwd(),user.getAgend(),user.getMobile(),user.getCollege().getCollegeid(),user.getRole().getRoleid()};
 		int row = bdao.insert(sql, param);
@@ -53,8 +71,19 @@ public class UserDaoImpl implements UserDAO {
 		}
 	}
 	@Override
-	public boolean updatePwd(String userid,String pwd) {
-		String sql = "update T_User set pwd=? where userid=?";
+	public boolean updateStuPwd(String userid,String pwd) {
+		String sql = "update T_Student set pwd=? where userid=?";
+		Object[] param = {pwd,userid};
+		int row = bdao.update(sql, param);
+		if(row>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	@Override
+	public boolean updateTeaPwd(String userid,String pwd) {
+		String sql = "update T_Teacher set pwd=? where userid=?";
 		Object[] param = {pwd,userid};
 		int row = bdao.update(sql, param);
 		if(row>0){
@@ -65,8 +94,8 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean delete(String userid) {
-		String sql = "delete from T_User where userid=?";
+	public boolean deleteStu(String userid) {
+		String sql = "delete from T_Student where userid=?";
 		Object[] param = {userid};
 		int row = bdao.update(sql, param);
 		if(row>0){
@@ -77,14 +106,14 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public User getUser(String userid) {
-		String sql = "select * from V_User where userid=?";
+	public Student getStudent(String userid) {
+		String sql = "select * from V_Student where userid=?";
 		Object[] param = {userid};
 		ResultSet rs = bdao.select(sql, param);
-		User user = null;
+		Student user = null;
 		try {
 			if(rs!=null&&rs.next()){
-				user = new User(rs);
+				user = new Student(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,14 +123,14 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public List<User> selectByColl(String collegeid) {
-		String sql = "select * from V_User where collegeid=?";
+	public List<Student> selectStuByColl(String collegeid) {
+		String sql = "select * from V_Student where collegeid=?";
 		Object[] param = {collegeid};
 		ResultSet rs = bdao.select(sql, param);
-		List<User> list = null;
+		List<Student> list = null;
 		try {
 			if(rs!=null&&rs.next()){
-				list = User.toList(rs);
+				list = Student.toList(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,14 +139,14 @@ public class UserDaoImpl implements UserDAO {
 		}
 	}
 	@Override
-	public List<User> selectByMajor(String majorid) {
-		String sql = "select * from V_User where majorid=?";
+	public List<Student> selectStuByMajor(String majorid) {
+		String sql = "select * from V_Student where majorid=?";
 		Object[] param = {majorid};
 		ResultSet rs = bdao.select(sql, param);
-		List<User> list = null;
+		List<Student> list = null;
 		try {
 			if(rs!=null&&rs.next()){
-				list = User.toList(rs);
+				list = Student.toList(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,14 +156,57 @@ public class UserDaoImpl implements UserDAO {
 	}
 	
 	@Override
-	public List<User> selectByClass(String classid) {
-		String sql = "select * from V_User where classid=?";
+	public List<Student> selectStuByClass(String classid) {
+		String sql = "select * from V_Student where classid=?";
 		Object[] param = {classid};
 		ResultSet rs = bdao.select(sql, param);
-		List<User> list = null;
+		List<Student> list = null;
 		try {
 			if(rs!=null&&rs.next()){
-				list = User.toList(rs);
+				list = Student.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
+	}
+	@Override
+	public boolean deleteTea(String userid) {
+		String sql = "delete from T_Teacher where userid=?";
+		Object[] param = {userid};
+		int row = bdao.update(sql, param);
+		if(row>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	@Override
+	public Teacher getTeacher(String userid) {
+		String sql = "select * from V_Teacher where userid=?";
+		Object[] param = {userid};
+		ResultSet rs = bdao.select(sql, param);
+		Teacher user = null;
+		try {
+			if(rs!=null&&rs.next()){
+				user = new Teacher(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return user;
+		}
+	}
+	@Override
+	public List<Teacher> selectTeaByColl(String collegeid) {
+		String sql = "select * from V_Teacher where collegeid=?";
+		Object[] param = {collegeid};
+		ResultSet rs = bdao.select(sql, param);
+		List<Teacher> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				list = Teacher.toList(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

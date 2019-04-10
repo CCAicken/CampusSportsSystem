@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.sendDispatcher;
 import business.dao.UserDAO;
 import business.impl.UserDaoImpl;
 import common.properties.RoleType;
 import model.Classes;
 import model.College;
+import model.Major;
 import model.Role;
-import model.User;
+import model.Student;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -27,36 +29,30 @@ public class RegisterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		if(op == "load"){
+		if(op == "major"){
 			String college = request.getParameter("collegeId");
-			
 		}else if(op == "add"){
 			String userid = request.getParameter("userid");
 			String username = request.getParameter("username");
 			String agend = request.getParameter("agend");
 			String pwd = request.getParameter("pwd");
 			String mobile = request.getParameter("mobile");
-			String collegeid = request.getParameter("collegeid");
 			String classid = request.getParameter("classid");
-			User user = new User();
+			Student user = new Student();
 			user.setUserid(userid);
 			user.setUsername(username);
 			user.setPwd(pwd);
 			user.setAgend(agend);
 			user.setMobile(mobile);
-			College college = new College();
-			college.setCollegeid(Integer.parseInt(collegeid));
-			user.setCollege(college);
 			Classes classes = new Classes();
 			classes.setClassid(Integer.parseInt(classid));
 			user.setClasses(classes);
-			Role role = new Role();
-			role.setRoleid(RoleType.Student);
-			user.setRole(role);
 			UserDAO udao = new UserDaoImpl();
 			boolean flag = udao.insertStu(user);
 			if(flag){
-				response.encodeRedirectUrl("login.jsp");
+				sendDispatcher.sendUrl("login.jsp", request, response);
+			}else{
+				request.setAttribute("Error","◊¢≤· ß∞‹«Î÷ÿ ‘");
 			}
 		}
 	}

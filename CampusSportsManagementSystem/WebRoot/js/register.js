@@ -10,7 +10,7 @@ $(document).ready(function () {
     var flag = false;
     $("#college").change(function () {
         var collegeId = $("#college").val();
-        window.location.href = "register.do?collegeId=" + collegeId + "&op=load";
+        window.location.href = "register.do?collegeId=" + collegeId + "&op=major";
     });
 
     $("#btnAdd").click(function () {
