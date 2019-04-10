@@ -80,7 +80,7 @@
                         </li>
 
                         <li role="presentation">
-                            <a href="#datasetting" class="collapsed" data-toggle="collapse">
+                            <a href="#reportStu" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
                                 <span>比赛报名</span>
                                 <i class="iconfont icon-more"></i>
