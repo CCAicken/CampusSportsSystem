@@ -1,4 +1,9 @@
 package model;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 角色实体类
  * @author Administrator
@@ -31,5 +36,29 @@ public class Role {
 	}
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
+	}
+	/**
+	 * ResultSet结果集转List
+	 * @param rs ResultSet结果集
+	 * @return list
+	 */
+	public static List toList(ResultSet rs){
+		//静态方法，用于将0~N的VUser视图数据交换到List数组中来
+		List<Role> list = new ArrayList<Role>();
+		if(rs != null){
+			try{
+				while(rs.next()){
+					Role role = new Role();
+					role.setRoleid((rs.getInt("roleid")));
+					role.setRolename((rs.getString("rolename")));
+					list.add(role);
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else{
+			return null;
+		}
+		return list;
 	}
 }
