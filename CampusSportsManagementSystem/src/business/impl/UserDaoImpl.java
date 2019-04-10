@@ -1,6 +1,7 @@
 package business.impl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.User;
@@ -65,7 +66,7 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public boolean delete(String userid) {
-		String sql = "delete T_User where userid=?";
+		String sql = "delete from T_User where userid=?";
 		Object[] param = {userid};
 		int row = bdao.update(sql, param);
 		if(row>0){
@@ -77,14 +78,36 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User getUser(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_User where userid=?";
+		Object[] param = {userid};
+		ResultSet rs = bdao.select(sql, param);
+		User user = null;
+		try {
+			if(rs!=null&&rs.next()){
+				user = new User(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return user;
+		}
 	}
 
 	@Override
 	public List<User> selectByColl(String collegeid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_User where collegeid=?";
+		Object[] param = {collegeid};
+		ResultSet rs = bdao.select(sql, param);
+		List<User> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				list = User.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
 	}
 
 	@Override
