@@ -39,6 +39,22 @@ public class College {
 	}
 	
 	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public College(ResultSet rs) {
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.collegeid = rs.getInt("collegeid");
+				this.collegename = rs.getString("collegename");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
 	 * @return list

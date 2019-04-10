@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.properties.RoleType;
+
 /**
  * 角色实体类
  * @author Administrator
@@ -37,6 +39,23 @@ public class Role {
 	public void setRolename(String rolename) {
 		this.rolename = rolename;
 	}
+	
+	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public Role(ResultSet rs) {
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.roleid = rs.getInt("roleid");
+				this.rolename = rs.getString("rolename");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集

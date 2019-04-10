@@ -52,15 +52,27 @@ public class UserDaoImpl implements UserDAO {
 		}
 	}
 	@Override
-	public boolean update(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updatePwd(String userid,String pwd) {
+		String sql = "update T_User set pwd=? where userid=?";
+		Object[] param = {pwd,userid};
+		int row = bdao.update(sql, param);
+		if(row>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
 	public boolean delete(String userid) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "delete T_User where userid=?";
+		Object[] param = {userid};
+		int row = bdao.update(sql, param);
+		if(row>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override

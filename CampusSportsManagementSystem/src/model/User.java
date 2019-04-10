@@ -102,23 +102,13 @@ public class User {
 				this.pwd = rs.getString("pwd");
 				this.agend = rs.getString("agend");
 				this.mobile = rs.getString("mobile");
-				Role role = new Role();
-				role.setRoleid(rs.getInt("roleid"));
-				role.setRolename(rs.getString("rolename"));
+				Role role = new Role(rs);
 				this.role = role;
-				College college = new College();
-				college.setCollegeid(rs.getInt("collegeid"));
-				college.setCollegename(rs.getString("collegename"));
+				College college = new College(rs);
 				this.college = college;
 				//TODO 判断用户角色是否是学生
 				if(rs.getInt("roleid")==RoleType.Student){
-					Classes classes = new Classes();
-					classes.setClassid(rs.getInt("classid"));
-					classes.setClassname(rs.getString("classname"));
-					Major major = new Major();
-					major.setMajorid(rs.getInt("majorid"));
-					major.setMajorname(rs.getString("majorname"));
-					classes.setMajor(major);
+					Classes classes = new Classes(rs);
 					this.classes = classes;
 				}
 			}

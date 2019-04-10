@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.properties.ProjectType;
+import common.properties.RoleType;
+
 /**
  * 成绩实体类
  * @author Administrator
@@ -50,6 +53,26 @@ public class Score {
 	public void setScorenumber(double scorenumber) {
 		this.scorenumber = scorenumber;
 	}
+	
+	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public Score(ResultSet rs){
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.scoreid = rs.getInt("scoreid");
+				this.scorenumber = rs.getDouble("scorenumber");
+				Match match = new Match(rs);
+				this.match = match;
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集

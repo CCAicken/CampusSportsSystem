@@ -83,6 +83,26 @@ public class Project {
 	}
 	
 	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public Project(ResultSet rs) {
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.proid = rs.getInt("proid");
+				this.proname = rs.getString("proname");
+				this.protype = rs.getInt("protype");
+				this.collegelimit = rs.getInt("collegelimit");
+				this.scenelimit = rs.getInt("scenelimit");
+				this.totallimit = rs.getInt("totallimit");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
 	 * @return list

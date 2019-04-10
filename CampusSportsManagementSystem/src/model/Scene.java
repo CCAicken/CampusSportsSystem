@@ -49,6 +49,26 @@ public class Scene {
 	public void setMatch(Match match) {
 		this.match = match;
 	}
+	
+	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public Scene(ResultSet rs) {
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.sceneid = rs.getInt("matchid");
+				Arrange arrange = new Arrange(rs);
+				this.arrange = arrange;
+				Match match = new Match(rs);
+				this.match = match;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集

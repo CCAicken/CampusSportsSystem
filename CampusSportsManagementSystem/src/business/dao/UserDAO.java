@@ -31,11 +31,12 @@ public interface UserDAO {
 	public boolean insertTea(User user);
 	
 	/**
-	 * 更新用户对象
-	 * @param user 用户对象
+	 * 修改密码
+	 * @param userid 用户id
+	 * @param pwd 新密码
 	 * @return 更新结果，true为成功，false为失败
 	 */
-	public boolean update(User user);
+	public boolean updatePwd(String userid,String pwd);
 	
 	/**
 	 * 删除用户对象

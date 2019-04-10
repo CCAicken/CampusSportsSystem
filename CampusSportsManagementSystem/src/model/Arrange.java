@@ -100,6 +100,30 @@ public class Arrange {
 	public void setState(int state) {
 		this.state = state;
 	}
+	
+	/**
+	 * 初始化ResultSet中的第一条数据
+	 * @param rs ResultSet结果集
+	 */
+	public Arrange(ResultSet rs) {
+		//rs中只会初始化第一条记录的数据
+		try{
+			if(rs != null && rs.next()){//必须一一对应
+				this.arrid = rs.getInt("arrid");
+				this.arrname = rs.getString("arrname");
+				this.addr = rs.getString("addr");
+				this.starttime = rs.getString("starttime");
+				this.endtime = rs.getString("endtime");
+				this.leveltype = rs.getInt("leveltype");
+				this.state = rs.getInt("state");
+				Project project = new Project(rs);
+				this.project = project;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
