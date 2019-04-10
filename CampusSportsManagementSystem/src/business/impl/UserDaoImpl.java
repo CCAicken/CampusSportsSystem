@@ -109,17 +109,14 @@ public class UserDaoImpl implements UserDAO {
 			return list;
 		}
 	}
-
 	@Override
 	public List<User> selectByMajor(String majorid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public List<User> selectByClass(String classid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
