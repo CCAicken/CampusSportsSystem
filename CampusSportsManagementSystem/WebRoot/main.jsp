@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,14 +39,14 @@
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li role="presentation" id="myCenter">
-                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="<%=url %>">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="singleCenter.jsp">
                                         <b class="iconfont icon-smile"></b>
                                         <span>个人中心</span>
                                     </a>
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="changePwd.aspx">
+                                    <a role="menuitem" tabindex="-1" class="sidebarclick" href="changePwd.jsp">
                                         <b class="iconfont icon-password"></b>
                                         <span>修改密码</span>
                                     </a>
@@ -78,24 +80,24 @@
                         </li>
 
                         <li role="presentation">
-                            <a href="#reportStu" class="collapsed" data-toggle="collapse">
+                            <a href="#datasetting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
                                 <span>比赛报名</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
                             <ul class="collapse nav nav-list" id="reportStu">
                                 <li role="presentation" id="openReport">
-                                    <a href="../openingReport.aspx" class="sidebarclick">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
                                         <span>比赛项目查看</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
-                                    <a href="../thesisSubmit.aspx" class="sidebarclick">
+                                    <a href="venueArrangement.jsp" class="sidebarclick">
                                         <span>比赛时间安排</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="mediiumQuality">
-                                    <a href="../mediiumQuality.aspx" class="sidebarclick">
+                                    <a href="myProject.jsp" class="sidebarclick">
                                         <span>查看我的项目</span>
                                     </a>
                                 </li>
@@ -109,17 +111,17 @@
                             </a>
                             <ul class="collapse nav nav-list" id="datasetting">
                                 <li role="presentation">
-                                    <a href="#">
+                                    <a href="allpersonalachievement.jsp">
                                         <span>个人成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#">
+                                    <a href="classachievement.jsp">
                                         <span>班级成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#">
+                                    <a href="collegechievement.jsp">
                                         <span>学院成绩</span>
                                     </a>
                                 </li>

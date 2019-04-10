@@ -72,6 +72,22 @@
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
                         <!-- 学生 -->
+
+                        <li role="presentation">
+                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-set"></i>
+                                <span>校运会管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="setting">
+                                <li role="presentation" id="selectTitle">
+                                    <a href="../paperList.aspx" class="sidebarclick">
+                                        <span>时间管理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li role="presentation">
                             <a href="#ccccc" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-remind"></i>
@@ -96,22 +112,6 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
-                                <i class="iconfont icon-set"></i>
-                                <span>校运会管理</span>
-                                <i class="iconfont icon-more"></i>
-                            </a>
-                            <ul class="collapse nav nav-list" id="setting">
-                                <li role="presentation" id="selectTitle">
-                                    <a href="../paperList.aspx" class="sidebarclick">
-                                        <span>时间管理</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
                         <li role="presentation">
                             <a href="#reportStu" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
@@ -131,7 +131,7 @@
                                 </li>
                                 <li role="presentation" id="mediiumQuality">
                                     <a href="../mediiumQuality.aspx" class="sidebarclick">
-                                        <span>学生比赛管理</span>
+                                        <span>运动员管理</span>
                                     </a>
                                 </li>
                             </ul>
@@ -145,12 +145,22 @@
                             <ul class="collapse nav nav-list" id="datasetting">
                                 <li role="presentation">
                                     <a href="#">
-                                        <span>学生成绩管理</span>
+                                        <span>成绩管理</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
                                     <a href="#">
-                                        <span>学生个人成绩管理</span>
+                                        <span>个人成绩</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#">
+                                        <span>班级成绩</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#">
+                                        <span>学院成绩</span>
                                     </a>
                                 </li>
                             </ul>
