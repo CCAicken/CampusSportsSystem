@@ -91,7 +91,7 @@ public class Config {
 		List<Config> list = new ArrayList<Config>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Config config = new Config();
 					config.setConfigid((rs.getInt("configid")));
 					config.setStarttime((rs.getString("starttime")));
@@ -99,7 +99,7 @@ public class Config {
 					config.setReportstart((rs.getString("reportstart")));
 					config.setReportend((rs.getString("reportend")));
 					list.add(config);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

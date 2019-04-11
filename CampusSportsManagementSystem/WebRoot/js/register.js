@@ -11,34 +11,36 @@ $(document).ready(function () {
     //学院下拉框改变事件
     $("#college").change(function () {
         var collegeId = $("#college").val();
-        //window.location.href = "register.do?collegeid=" + collegeId + "&op=college";
-        $.ajax({
-            type: 'Post',
-            url: 'register.do',
-            data: {
-            	collegeid: collegeId,
-                op: "college"
-            },
-            dataType: 'text',
-            success: function (succ) {
-            }
-        });
+        window.location.href = "register.do?collegeid=" + collegeId + "&op=college";
+//        $.ajax({
+//            type: 'Post',
+//            url: 'register.do',
+//            data: {
+//            	collegeid: collegeId,
+//                op: "college"
+//            },
+//            dataType: 'text',
+//            success: function (succ) {
+//            	//window.location.reload();
+//            }
+//        });
     });
     //专业下拉框改变事件
-    $("#majorid").change(function () {
-        var majorid = $("#majorid").val();
-        //window.location.href = "register.do?majorid=" + majorid + "&op=major";
-        $.ajax({
-            type: 'Post',
-            url: 'register.do',
-            data: {
-            	majorid: majorid,
-                op: "major"
-            },
-            dataType: 'text',
-            success: function (succ) {
-            }
-        });
+    $("#major").change(function () {
+        var majorid = $("#major").val();
+        window.location.href = "register.do?majorid=" + majorid + "&op=major";
+//        $.ajax({
+//            type: 'Post',
+//            url: 'register.do',
+//            data: {
+//            	majorid: majorid,
+//                op: "major"
+//            },
+//            dataType: 'text',
+//            success: function (succ) {
+//            	//window.location.reload();
+//            }
+//        });
     });
     $("#btnAdd").click(function () {
         var pubKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAnNXR7lHTpPH/97QOxIp+UusK9/RH5elvEPv6ssL37xGo8vQHh7CCsOonUWWVdi1iVegi7fRCkWeUVlta61EuX141+eKnZcdJe81NeUZ1h3N77JbzElbhhi8Wln6U27xpfkskKASLhQ4dS9DqoJQN/YUhBaBpER287Wjf3X6WmQIDAQAB";

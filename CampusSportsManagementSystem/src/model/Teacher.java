@@ -112,7 +112,7 @@ public class Teacher {
 		List<Teacher> list = new ArrayList<Teacher>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Teacher user = new Teacher();
 					user.setUserid(rs.getString("userid"));
 					user.setAgend(rs.getString("agend"));
@@ -126,7 +126,7 @@ public class Teacher {
 					college.setCollegeid(rs.getInt("collegeid"));
 					user.setCollege(college);
 					list.add(user);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

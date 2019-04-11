@@ -80,7 +80,7 @@ public class Match {
 		List<Match> list = new ArrayList<Match>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Match match = new Match();
 					match.setMatchid((rs.getInt("matchid")));
 					Project project = new Project();
@@ -90,7 +90,7 @@ public class Match {
 					user.setUserid(rs.getString("userid"));
 					match.setUser(user);;
 					list.add(match);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

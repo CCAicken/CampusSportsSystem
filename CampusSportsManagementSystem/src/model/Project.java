@@ -83,7 +83,6 @@ public class Project {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */
@@ -104,8 +103,6 @@ public class Project {
 	}
 	
 	/**
-=======
->>>>>>> branch 'master' of https://github.com/KzlDeng/CampusSportsSystem.git
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
 	 * @return list

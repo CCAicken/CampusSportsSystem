@@ -65,12 +65,12 @@ public class Role {
 		List<Role> list = new ArrayList<Role>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Role role = new Role();
 					role.setRoleid((rs.getInt("roleid")));
 					role.setRolename((rs.getString("rolename")));
 					list.add(role);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}
