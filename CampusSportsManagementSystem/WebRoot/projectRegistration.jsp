@@ -56,15 +56,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th class="text-center"><nobr>项目名称</nobr></th>
 							<th class="text-center"><nobr>当前报名人数</nobr></th>
 							<th class="text-center"><nobr>人数限制</nobr></th>
+							<th class="text-center"><nobr>项目类型</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
+						<c:forEach items="${projectList }" var="proList">
+							<tr>
+								<td class="text-center"><nobr></nobr></td>
+								<td class="text-center"><nobr>${proList.proname }</nobr></td>
+								
+								<td class="text-center"><nobr></nobr></td>
+								<td class="text-center"><nobr>${proList.scenelimit }</nobr></td>
+								<td class="text-center"><nobr>${proList.collegelimit }</nobr></td>
+								<td class="text-center">
+									<button class="btn btn-default btn-sm btn-warning"
+										style="height:28px">
+										<span class="glyphicon glyphicon-search" id="search">确认报名</span>
+									</button>
+								</td>
+							</tr>
+						</c:forEach>
 							<tr>
 								<!--  <td class="text-center"><input type="checkbox" /></td>-->
 								<td class="text-center"><nobr>1</nobr></td>
 								<td class="text-center"><nobr>10000M</nobr></td>
 								<td class="text-center"><nobr>4</nobr></td>
 								<td class="text-center"><nobr>10</nobr></td>
+								<td class="text-center"><nobr>个人赛</nobr></td>
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning"
 										style="height:28px">
