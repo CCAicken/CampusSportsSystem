@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.properties.RoleType;
-
 import util.sendDispatcher;
 import model.Student;
 import model.Teacher;
 import business.dao.UserDAO;
+import business.factory.DAOFactory;
 import business.impl.UserDaoImpl;
 
 /**
@@ -33,28 +33,35 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		String op = request.getParameter("op");
-		if(op == "login"){
+		String sRand = (String)session.getAttribute("rand");
+		if(op.equals("login")){
 			String userid = request.getParameter("userName");
 			String pwd = request.getParameter("pwd");
 			String usertype = request.getParameter("usertype");
-			UserDAO udao = new UserDaoImpl();
-			if(usertype == "student"){
-				Student user = udao.loginStu(userid, pwd);
-				if(user!=null&&!user.getUserid().equals("")){
-					session.setAttribute("loginuser", user);
-					session.setAttribute("usertype", RoleType.Student);
-					sendDispatcher.sendUrl("main.jsp", request, response);
-				}else{
-					out.print("µÇÂ¼Ê§°Ü");
-				}
+			String captcha = request.getParameter("captcha");
+			if(!captcha.toLowerCase().equals(sRand.toLowerCase())){
+				out.print("ÑéÖ¤Âë´íÎó");
 			}else{
-				Teacher user = udao.loginTea(userid, pwd);
-				if(user!=null&&!user.getUserid().equals("")){
-					session.setAttribute("loginuser", user);
-					session.setAttribute("usertype", RoleType.Teacher);
-					sendDispatcher.sendUrl("main.jsp", request, response);
+				UserDAO udao = DAOFactory.getUserDAO();
+				if(usertype.equals("student")){
+					Student user = udao.loginStu(userid, pwd);
+					if(user!=null&&!user.getUserid().equals("")){
+						session.setAttribute("loginuser", user);
+						session.setAttribute("usertype", RoleType.Student);
+						out.print("µÇÂ¼³É¹¦");
+						//sendDispatcher.sendUrl("main.jsp", request, response);
+					}else{
+						out.print("µÇÂ¼Ê§°Ü");
+					}
 				}else{
-					out.print("µÇÂ¼Ê§°Ü");
+					Teacher user = udao.loginTea(userid, pwd);
+					if(user!=null&&!user.getUserid().equals("")){
+						session.setAttribute("loginuser", user);
+						session.setAttribute("usertype", RoleType.Teacher);
+						out.print("µÇÂ¼³É¹¦");
+					}else{
+						out.print("µÇÂ¼Ê§°Ü");
+					}
 				}
 			}
 		}

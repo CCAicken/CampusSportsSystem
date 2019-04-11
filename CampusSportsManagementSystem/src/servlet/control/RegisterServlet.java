@@ -49,10 +49,12 @@ public class RegisterServlet extends HttpServlet {
 			request.setAttribute("collegelist", collegelist);
 		}
 		String op = request.getParameter("op");
-		if(op == "college"){
+		if(op == null){
+			sendDispatcher.sendUrl("register.jsp", request, response);
+		}else if(op.equals("college")){
 			//学院下拉框改变事件，获取学院相对应的专业信息列表
 			String collegeid = request.getParameter("collegeid");
-			if(collegeid!=null&&collegeid!="0"&&collegeid!=""){
+			if(collegeid!=null&&!collegeid.equals("0")&&!collegeid.equals("")){
 				MajorDAO mdao = new MajorDaoImpl();
 				List<Major> majorlist = mdao.selectByColl(Integer.parseInt(collegeid));
 				if(majorlist==null||majorlist.size()<=0){
@@ -63,7 +65,8 @@ public class RegisterServlet extends HttpServlet {
 			}else{
 				request.setAttribute("majorlist", new ArrayList<Major>());
 			}
-		}else if(op == "major"){
+			sendDispatcher.sendUrl("register.jsp", request, response);
+		}else if(op.equals("major")){
 			//专业下拉框改变事件，获取专业相对应的班级信息列表
 			String majorid = request.getParameter("majorid");
 			if(majorid!=null&&majorid!=""&&majorid!="0"){
@@ -77,8 +80,9 @@ public class RegisterServlet extends HttpServlet {
 			}else{
 				request.setAttribute("classlist", new ArrayList<Classes>());
 			}
+			sendDispatcher.sendUrl("register.jsp", request, response);
 		}
-		else if(op == "add"){
+		else if(op.equals("add")){
 			//提交注册
 			String userid = request.getParameter("userid");
 			String username = request.getParameter("username");
@@ -98,7 +102,7 @@ public class RegisterServlet extends HttpServlet {
 			UserDAO udao = new UserDaoImpl();
 			boolean flag = udao.insertStu(user);
 			if(flag){
-				sendDispatcher.sendUrl("login.jsp", request, response);
+				out.print("注册成功");
 			}else{
 				out.print("注册失败");
 			}

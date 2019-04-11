@@ -1,7 +1,11 @@
 $(document).ready(function () {
+	$("#safecode").click(function(){
+		var myDate = new Date();
+		$("img").attr("src", "safecode.do?"+myDate.getMilliseconds())
+	})
 	$("#btnSubmit").click(function(){
-		var userName = $("#").val();
-		var pwd = request.getParameter("pwd");
+		var userName = $("#userName").val();
+		var pwd = $("#pwd").val();
 		var captcha = $("#captcha").val();
 		var usertype = $('input:radio:checked').val();
 		if(userName == ""){
@@ -10,8 +14,6 @@ $(document).ready(function () {
 			window.wxc.xcConfirm("密码不能为空", window.wxc.xcConfirm.typeEnum.error)
 		}else if(captcha == ""){
 			window.wxc.xcConfirm("验证码不能为空", window.wxc.xcConfirm.typeEnum.error)
-		}else if(captcha == ""){
-			window.wxc.xcConfirm("验证码不正确", window.wxc.xcConfirm.typeEnum.error)
 		}else{
 			$.ajax({
                 type: 'Post',
@@ -20,17 +22,24 @@ $(document).ready(function () {
                 	userName: userName,
                 	pwd: pwd,
                 	usertype: usertype,
+                	captcha:captcha,
                     op: "login"
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ === "登录失败") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
-                            onOk: function (v) {
-                                window.location.reload();
-                            }
-                        });
-                    }
+                	if(succ == "登录成功"){
+                		window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+	                        onOk: function (v) {
+	                            window.location.href="main.jsp";
+	                        }
+	                    });
+                	}else{
+	                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+	                        onOk: function (v) {
+	                            window.location.reload();
+	                        }
+	                    });
+                	}
                 }
             });
 		}
