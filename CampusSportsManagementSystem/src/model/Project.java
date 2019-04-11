@@ -17,6 +17,7 @@ public class Project {
 	private int collegelimit;
 	private int totallimit;
 	private int protype;
+	private int currentnum;
 	
 	public Project() {
 		super();
@@ -24,7 +25,7 @@ public class Project {
 	}
 
 	public Project(int proid, String proname, int scenelimit, int collegelimit,
-			int totallimit, int protype) {
+			int totallimit, int protype ,int currentnum) {
 		super();
 		this.proid = proid;
 		this.proname = proname;
@@ -32,6 +33,7 @@ public class Project {
 		this.collegelimit = collegelimit;
 		this.totallimit = totallimit;
 		this.protype = protype;
+		this.currentnum = currentnum;
 	}
 
 	public int getProid() {
@@ -82,7 +84,16 @@ public class Project {
 		this.protype = protype;
 	}
 	
+	public int getCurrentnum(){
+		return currentnum;
+	}
+	
+	public void setCurrentnum(int currentnum){
+		this.currentnum = currentnum;
+	}
+	
 	/**
+<<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */

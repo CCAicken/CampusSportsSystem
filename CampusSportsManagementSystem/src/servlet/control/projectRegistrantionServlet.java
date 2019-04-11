@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import util.sendDispatcher;
 import model.Project;
+import model.Student;
+import model.Teacher;
+import business.basic.BaseDao;
+import business.basic.BaseDaoImpl;
+import business.dao.MatchDAO;
 import business.dao.ProjectDAO;
 import business.factory.DAOFactory;
 
@@ -38,21 +43,44 @@ public class projectRegistrantionServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/plan;charset=utf-8");
 		HttpSession session = request.getSession();
+		Student stu = null;
+		Teacher tea = null;
 		//int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
 		int usertype = 1;
 		
 		ProjectDAO pdao = DAOFactory.getProjectDAO();
+		
 		List<Project> projectList = null;
 		if(usertype==1 || usertype==2){
 			projectList = pdao.selectByType(usertype);//教师和学生只能查看自己能报名的项目
+			if(usertype==1){
+				stu = (Student)session.getAttribute("loginuser");
+			}else{
+				tea = (Teacher)session.getAttribute("loginuser");
+			}
 		}
 		else{
 			projectList = pdao.select();//组委会可以查看所有报名项目
 		}
 		request.setAttribute("projectList", projectList);
 		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
-		
-		
+
+		String op = request.getParameter("op");
+		if(op=="add"){
+			int proid;
+			int userid;
+			String pid = request.getParameter("proid");
+			if(pid!=null&&!pid.equals("")){
+				proid = Integer.parseInt(pid);
+			}
+			if(usertype==1){
+				userid = Integer.parseInt(stu.getUserid());
+			}
+			else{
+				userid = Integer.parseInt(tea.getUserid());
+			}
+			
+		}
 	}
 
 	/**
