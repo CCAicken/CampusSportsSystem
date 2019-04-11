@@ -17,6 +17,7 @@ public class Project {
 	private int collegelimit;
 	private int totallimit;
 	private int protype;
+	private int currentnum;
 	
 	public Project() {
 		super();
@@ -24,7 +25,7 @@ public class Project {
 	}
 
 	public Project(int proid, String proname, int scenelimit, int collegelimit,
-			int totallimit, int protype) {
+			int totallimit, int protype ,int currentnum) {
 		super();
 		this.proid = proid;
 		this.proname = proname;
@@ -32,6 +33,7 @@ public class Project {
 		this.collegelimit = collegelimit;
 		this.totallimit = totallimit;
 		this.protype = protype;
+		this.currentnum = currentnum;
 	}
 
 	public int getProid() {
@@ -82,6 +84,14 @@ public class Project {
 		this.protype = protype;
 	}
 	
+	public int getCurrentnum(){
+		return currentnum;
+	}
+	
+	public void setCurrentnum(int currentnum){
+		this.currentnum = currentnum;
+	}
+	
 	/**
 <<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
@@ -97,6 +107,7 @@ public class Project {
 				this.collegelimit = rs.getInt("collegelimit");
 				this.scenelimit = rs.getInt("scenelimit");
 				this.totallimit = rs.getInt("totallimit");
+				this.currentnum = rs.getInt("currentnum");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -123,6 +134,7 @@ public class Project {
 					project.setCollegelimit((rs.getInt("collegelimit")));
 					project.setScenelimit((rs.getInt("scenelimit")));
 					project.setTotallimit((rs.getInt("totallimit")));
+					project.setCurrentnum(rs.getInt("currentnum"));
 					list.add(project);
 				}
 			}catch(Exception e){
