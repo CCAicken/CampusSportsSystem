@@ -117,8 +117,14 @@ $(document).ready(function () {
                 },
                 dataType: 'text',
                 success: function (succ) {
-                    if (succ === "注册失败") {
-                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
+                    if (succ === "注册成功") {
+                        window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+                            onOk: function (v) {
+                                window.location.href="login.jsp";
+                            }
+                        });
+                    }else{
+                    	window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
                             onOk: function (v) {
                                 window.location.reload();
                             }

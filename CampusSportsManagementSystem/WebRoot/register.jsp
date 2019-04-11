@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,6 +31,9 @@
                                 <td>
                                     <select class="form-control input-sm select-drop" id="college">
                                         <option value="0">--请选择学院--</option>
+                                        <c:forEach items="${collegelist }" var="obj">
+                                        	<option value="${obj.collegeid }">${obj.collegename }</option>
+                                        </c:forEach>
                                     </select>
                                     <span id="validateColl"></span>
                                 </td>

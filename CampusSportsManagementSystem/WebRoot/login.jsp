@@ -24,23 +24,28 @@
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-user"></span>
                 </span>
-                <input type="text" class="form-control ordinaryUser" name="userName" id="userName" placeholder="用户名" autofocus="autofocus" />
-                <span></span>
+                <input type="text" class="form-control ordinaryUser" id="userName" placeholder="用户名" autofocus="autofocus" />
             </div>
 
             <div class="input-group" id="content">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-lock"></span>
                 </span>
-                <input type="password" class="form-control ordinaryUserPwd" id="pwd" name="pwd" placeholder="密码" />
+                <input type="password" class="form-control ordinaryUserPwd" id="pwd" placeholder="密码" />
             </div>
 
             <div class="input-group" id="content">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-briefcase"></span>
                 </span>
-                <input type="text" class="form-control" name="captcha" id="captcha" placeholder="验证码" />
+                <input type="text" class="form-control" id="captcha" placeholder="验证码" />
                 <!-- <img src="checkCode.aspx" id="code" onclick="refreshCode()" />-->
+                <div class="row">
+<!--                 <div id="photo"><img src="images/varify.png" width="22px" height="22px"/></div> -->
+                <span id="varify"> 
+                <img id="safecode" src="safecode.do" style="width:120px; height:33px;margin-left:10px;"/>
+                </span>
+                </div>
             </div>
             <div class="form-group">
                 <div class="radio">
@@ -55,11 +60,14 @@
                 </div>
                 <div id="btn">
                     <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
-                    <button type="button" id="dl" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" onclick="stuMsg()" id="btnSubmit">
+                    <button type="button" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" id="btnSubmit">
                             登录
                         </button>
                 </div>
             </div>
+        </div>
+        <div class="panel-heading text-right" id="heading">
+            <span><a href="register.do">注册>></a></span>
         </div>
     </div>
 </body>
