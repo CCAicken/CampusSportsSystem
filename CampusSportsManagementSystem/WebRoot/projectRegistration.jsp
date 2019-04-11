@@ -46,7 +46,7 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<!--  <th class="text-center"><input type="checkbox" class="js-checkbox-all" /></th>-->
-							<th class="text-center"><nobr>序号</nobr></th>
+							<th class="text-center"><nobr>项目编号</nobr></th>
 							<th class="text-center"><nobr>项目名称</nobr></th>
 							<th class="text-center"><nobr>当前报名人数</nobr></th>
 							<th class="text-center"><nobr>人数限制</nobr></th>
@@ -56,15 +56,26 @@
 						<tbody>
 						<c:forEach items="${projectList }" var="proList">
 							<tr>
-								<td class="text-center"><nobr></nobr></td>
+								<td class="text-center"><nobr>${proList.proid}</nobr></td>
 								<td class="text-center"><nobr>${proList.proname }</nobr></td>
-								<td class="text-center"><nobr></nobr></td>
+								<td class="text-center"><nobr>${proList.currentnum }</nobr></td>
 								<td class="text-center"><nobr>${proList.scenelimit }</nobr></td>
-								<td class="text-center"><nobr>${proList.protype }</nobr></td>
+								<c:if test="${proList.protype==1 }">
+								<td class="text-center"><nobr>学生个人赛<br></td>
+								</c:if>
+								<c:if test="${proList.protype==2 }">
+								<td class="text-center"><nobr>学生团体赛<br></td>
+								</c:if>
+								<c:if test="${proList.protype==3 }">
+								<td class="text-center"><nobr>教师个人赛<br></td>
+								</c:if>
+								<c:if test="${proList.protype==4 }">
+								<td class="text-center"><nobr>教师团体赛<br></td>
+								</c:if>
 								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
+									<button class="btn btn-default btn-sm btn-warning sure"
 										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">确认报名</span>
+										<span class="glyphicon glyphicon-search">确认报名</span>
 									</button>
 								</td>
 							</tr>
@@ -119,5 +130,23 @@
 			});
 		}
 	});
+
+	
+	$(".sure").click(function() {
+		 var proid = $(this).parents("tr").find("td").eq(0).text().trim();
+		 alert(proid);
+		$.ajax({
+			url : "projectregistrantionservlet.do",
+			type : "POST",
+			dataType : "text",
+			data : {
+				proid:proid,
+				op : "add"
+			},
+			success : function(result) {
+				alert(result);
+			}
+		})
+	})
 </script>
 </html>

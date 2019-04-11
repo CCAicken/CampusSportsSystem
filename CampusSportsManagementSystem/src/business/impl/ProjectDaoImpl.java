@@ -71,48 +71,27 @@ public class ProjectDaoImpl implements ProjectDAO {
 	@Override
 	public List<Project> selectByType(int type) {
 		List<Project> list = null;
-		if(type==1){
+		if (type == 1) {
 			String sql = "select * from T_Project where protype=1 or protype=2";
 			ResultSet rs = bdao.select(sql);
-			try{
-				if(rs!=null&&rs.next()){
-					list = Project.toList(rs);
-				}
-			}catch(SQLException ex){
-				ex.printStackTrace();
-			}finally{
-				return list;
+			if (rs != null) {
+				list = Project.toList(rs);
 			}
-		}
-		else if(type==2){
+		} else if (type == 2) {
 			String sql = "select * from T_Project where protype=3 or protype=4";
 			ResultSet rs = bdao.select(sql);
-			try{
-				if(rs!=null&&rs.next()){
-					list = Project.toList(rs);
-				}
-			}catch(SQLException ex){
-				ex.printStackTrace();
-			}finally{
-				return list;
+			if (rs != null) {
+				list = Project.toList(rs);
 			}
 		}
+		bdao.close();
 		return list;
 	}
 	
 //	public static void main(String[] args){
 //		ProjectDAO dao = new ProjectDaoImpl();
-//		List<Project> list = dao.selectByType(2);
-//		for(Project project : list){
-//			System.out.println(project.getProname());
-//		}
+//		List<Project> list = dao.selectByType(1);
+//		System.out.println(list.size());
 //	}
 
-	@Override
-	public Integer currentNum(int proid){
-		String sql = "select * from T_Match where proid=?";
-		Object[] para = {proid};
-		int row = bdao.selectCount(sql,para);
-		return row;
-	}
 }

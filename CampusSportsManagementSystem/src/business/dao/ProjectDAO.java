@@ -41,10 +41,4 @@ public interface ProjectDAO {
 	 * @return 项目对象列表
 	 */
 	public List<Project> selectByType(int type);
-	/**
-	 * 获取当前项目报名人数
-	 * @param proid 项目id
-	 * @return 返回当前报名人数
-	 */
-	public Integer currentNum(int proid);
 }
