@@ -111,17 +111,17 @@
                             </a>
                             <ul class="collapse nav nav-list" id="datasetting">
                                 <li role="presentation">
-                                    <a href="allpersonalachievement.jsp">
+                                    <a href="allpersonalachievement.jsp" class="sidebarclick">
                                         <span>个人成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="classachievement.jsp">
+                                    <a href="classachievement.jsp" class="sidebarclick">
                                         <span>班级成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="collegechievement.jsp">
+                                    <a href="collegechievement.jsp" class="sidebarclick">
                                         <span>学院成绩</span>
                                     </a>
                                 </li>
