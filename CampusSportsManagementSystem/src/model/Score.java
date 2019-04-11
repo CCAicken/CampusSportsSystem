@@ -82,7 +82,7 @@ public class Score {
 		List<Score> list = new ArrayList<Score>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Score score = new Score();
 					score.setScoreid(rs.getInt("scoreid"));
 					score.setScorenumber(rs.getDouble("scorenumber"));
@@ -90,7 +90,7 @@ public class Score {
 					match.setMatchid(rs.getInt("matchid"));
 					score.setMatch(match);;
 					list.add(score);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

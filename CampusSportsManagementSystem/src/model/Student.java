@@ -112,7 +112,7 @@ public class Student {
 		List<Student> list = new ArrayList<Student>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Student user = new Student();
 					user.setUserid(rs.getString("userid"));
 					user.setAgend(rs.getString("agend"));
@@ -126,7 +126,7 @@ public class Student {
 					role.setRoleid(rs.getInt("roleid"));
 					user.setRole(role);
 					list.add(user);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -78,15 +78,15 @@ public class Major {
 		List<Major> list = new ArrayList<Major>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Major major = new Major();
 					major.setMajorid((rs.getInt("majorid")));
 					major.setMajorname((rs.getString("majorname")));
 					College college = new College();
-					college.setCollegeid(rs.getInt("college"));
+					college.setCollegeid(rs.getInt("collegeid"));
 					major.setCollege(college);
 					list.add(major);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -79,7 +79,7 @@ public class Scene {
 		List<Scene> list = new ArrayList<Scene>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Scene scene = new Scene();
 					scene.setSceneid(rs.getInt("sceneid"));
 					Arrange arrange = new Arrange();
@@ -89,7 +89,7 @@ public class Scene {
 					match.setMatchid(rs.getInt("matchid"));
 					scene.setMatch(match);
 					list.add(scene);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -93,7 +93,6 @@ public class Project {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */
@@ -107,7 +106,6 @@ public class Project {
 				this.collegelimit = rs.getInt("collegelimit");
 				this.scenelimit = rs.getInt("scenelimit");
 				this.totallimit = rs.getInt("totallimit");
-				this.currentnum = rs.getInt("currentnum");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -115,8 +113,6 @@ public class Project {
 	}
 	
 	/**
-=======
->>>>>>> branch 'master' of https://github.com/KzlDeng/CampusSportsSystem.git
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
 	 * @return list
@@ -126,7 +122,7 @@ public class Project {
 		List<Project> list = new ArrayList<Project>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Project project = new Project();
 					project.setProid((rs.getInt("proid")));
 					project.setProname((rs.getString("proname")));
@@ -134,9 +130,8 @@ public class Project {
 					project.setCollegelimit((rs.getInt("collegelimit")));
 					project.setScenelimit((rs.getInt("scenelimit")));
 					project.setTotallimit((rs.getInt("totallimit")));
-					project.setCurrentnum(rs.getInt("currentnum"));
 					list.add(project);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

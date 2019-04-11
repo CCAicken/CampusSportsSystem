@@ -74,7 +74,7 @@ public class Classes {
 		List<Classes> list = new ArrayList<Classes>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Classes classes = new Classes();
 					classes.setClassid((rs.getInt("classid")));
 					classes.setClassname((rs.getString("classname")));
@@ -82,7 +82,7 @@ public class Classes {
 					major.setMajorid(rs.getInt("majorid"));
 					classes.setMajor(major);
 					list.add(classes);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

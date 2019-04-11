@@ -56,8 +56,6 @@ public class College {
 	}
 	
 	/**
-=======
->>>>>>> branch 'master' of https://github.com/KzlDeng/CampusSportsSystem.git
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集
 	 * @return list
@@ -67,12 +65,12 @@ public class College {
 		List<College> list = new ArrayList<College>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					College college = new College();
 					college.setCollegeid((rs.getInt("collegeid")));
 					college.setCollegename((rs.getString("collegename")));
 					list.add(college);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

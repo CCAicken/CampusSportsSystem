@@ -134,7 +134,7 @@ public class Arrange {
 		List<Arrange> list = new ArrayList<Arrange>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Arrange arrange = new Arrange();
 					arrange.setArrid((rs.getInt("arrid")));
 					arrange.setArrname((rs.getString("arrname")));
@@ -147,7 +147,7 @@ public class Arrange {
 					arrange.setStarttime((rs.getString("starttime")));
 					arrange.setEndtime((rs.getString("endtime")));
 					list.add(arrange);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -57,13 +57,16 @@ public class RegisterServlet extends HttpServlet {
 			if(collegeid!=null&&!collegeid.equals("0")&&!collegeid.equals("")){
 				MajorDAO mdao = new MajorDaoImpl();
 				List<Major> majorlist = mdao.selectByColl(Integer.parseInt(collegeid));
+				request.setAttribute("collegeid", collegeid);
 				if(majorlist==null||majorlist.size()<=0){
 					request.setAttribute("majorlist", new ArrayList<Major>());
 				}else{
+					int row = majorlist.size();
 					request.setAttribute("majorlist", majorlist);
 				}
 			}else{
 				request.setAttribute("majorlist", new ArrayList<Major>());
+				request.setAttribute("collegeid", null);
 			}
 			sendDispatcher.sendUrl("register.jsp", request, response);
 		}else if(op.equals("major")){
@@ -72,6 +75,7 @@ public class RegisterServlet extends HttpServlet {
 			if(majorid!=null&&majorid!=""&&majorid!="0"){
 				ClassesDAO classdao = new ClassesDaoImpl();
 				List<Classes> classlist = classdao.selectByMajor(Integer.parseInt(majorid));
+				request.setAttribute("majorid", majorid);
 				if(classlist==null||classlist.size()<=0){
 					request.setAttribute("classlist", new ArrayList<Classes>());
 				}else{
@@ -79,6 +83,7 @@ public class RegisterServlet extends HttpServlet {
 				}
 			}else{
 				request.setAttribute("classlist", new ArrayList<Classes>());
+				request.setAttribute("majorid", null);
 			}
 			sendDispatcher.sendUrl("register.jsp", request, response);
 		}
