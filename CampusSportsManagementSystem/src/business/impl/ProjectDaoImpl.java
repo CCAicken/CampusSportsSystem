@@ -99,6 +99,14 @@ public class ProjectDaoImpl implements ProjectDAO {
 		}
 		return list;
 	}
+	
+//	public static void main(String[] args){
+//		ProjectDAO dao = new ProjectDaoImpl();
+//		List<Project> list = dao.selectByType(2);
+//		for(Project project : list){
+//			System.out.println(project.getProname());
+//		}
+//	}
 
 	@Override
 	public Integer currentNum(int proid){

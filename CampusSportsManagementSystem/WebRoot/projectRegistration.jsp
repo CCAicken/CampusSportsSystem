@@ -1,13 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     
     <title>比赛项目</title>
     
@@ -44,7 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<button class="btn btn-info" type="button" id="btn-search" style="height:34px">
 								<span class="glyphicon glyphicon-search" id="search">查询</span>
 							</button>
-							<!-- selectpicker"  -->
 						</div>
 					</div>
 				</div>
@@ -64,10 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 								<td class="text-center"><nobr></nobr></td>
 								<td class="text-center"><nobr>${proList.proname }</nobr></td>
-								
 								<td class="text-center"><nobr></nobr></td>
 								<td class="text-center"><nobr>${proList.scenelimit }</nobr></td>
-								<td class="text-center"><nobr>${proList.collegelimit }</nobr></td>
+								<td class="text-center"><nobr>${proList.protype }</nobr></td>
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning"
 										style="height:28px">
@@ -76,20 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</td>
 							</tr>
 						</c:forEach>
-							<tr>
-								<!--  <td class="text-center"><input type="checkbox" /></td>-->
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>10000M</nobr></td>
-								<td class="text-center"><nobr>4</nobr></td>
-								<td class="text-center"><nobr>10</nobr></td>
-								<td class="text-center"><nobr>个人赛</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">确认报名</span>
-									</button>
-								</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>

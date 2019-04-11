@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.sendDispatcher;
 import model.Project;
 import business.dao.ProjectDAO;
 import business.factory.DAOFactory;
@@ -37,7 +38,8 @@ public class projectRegistrantionServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/plan;charset=utf-8");
 		HttpSession session = request.getSession();
-		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
+		//int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
+		int usertype = 1;
 		
 		ProjectDAO pdao = DAOFactory.getProjectDAO();
 		List<Project> projectList = null;
@@ -48,6 +50,9 @@ public class projectRegistrantionServlet extends HttpServlet {
 			projectList = pdao.select();//组委会可以查看所有报名项目
 		}
 		request.setAttribute("projectList", projectList);
+		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
+		
+		
 	}
 
 	/**
