@@ -5,11 +5,17 @@ import business.dao.ClassesDAO;
 import business.dao.CollegeDAO;
 import business.dao.MajorDAO;
 import business.dao.ProjectDAO;
+import business.dao.ScoreClassesDAO;
+import business.dao.ScoreCollegeDAO;
+import business.dao.ScoreStudentDAO;
 import business.dao.UserDAO;
 import business.impl.ClassesDaoImpl;
 import business.impl.CollegeDaoImpl;
 import business.impl.MajorDaoImpl;
 import business.impl.ProjectDaoImpl;
+import business.impl.ScoreClassesDaoImpl;
+import business.impl.ScoreCollegeDaoImpl;
+import business.impl.ScoreStudentDaoImpl;
 import business.impl.UserDaoImpl;
 
 public class DAOFactory {
@@ -48,5 +54,26 @@ public class DAOFactory {
 	 */
 	public static ProjectDAO getProjectDAO(){
 		return new ProjectDaoImpl();
+	}
+	/**
+	 * 返回一个用于查看学院分数业务操作的ScoreCollegeDAO对象
+	 * @return
+	 */
+	public static ScoreCollegeDAO getScoreCollegeDAO(){
+		return new ScoreCollegeDaoImpl();
+	}
+	/**
+	 * 返回一个用于查看班级分数业务操作的ScoreCollegeDAO对象
+	 * @return
+	 */
+	public static ScoreClassesDAO getScoreClassesDAO(){
+		return new ScoreClassesDaoImpl();
+	}
+	/**
+	 * 返回一个用于查看学生分数业务操作的ScoreCollegeDAO对象
+	 * @return
+	 */
+	public static ScoreStudentDAO getScoreStudentDAO(){
+		return new ScoreStudentDaoImpl();
 	}
 }
