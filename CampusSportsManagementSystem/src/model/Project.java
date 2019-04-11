@@ -93,7 +93,6 @@ public class Project {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */
@@ -123,7 +122,7 @@ public class Project {
 		List<Project> list = new ArrayList<Project>();
 		if(rs != null){
 			try{
-				while(rs.next()){
+				do{
 					Project project = new Project();
 					project.setProid((rs.getInt("proid")));
 					project.setProname((rs.getString("proname")));
@@ -132,7 +131,7 @@ public class Project {
 					project.setScenelimit((rs.getInt("scenelimit")));
 					project.setTotallimit((rs.getInt("totallimit")));
 					list.add(project);
-				}
+				}while(rs.next());
 			}catch(Exception e){
 				e.printStackTrace();
 			}
