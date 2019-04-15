@@ -63,26 +63,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach items="scenelist" var="list" varStatus="status">
 							<tr>
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>10000M</nobr></td>
-								<td class="text-center"><nobr>10000m第一场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>田径场</nobr></td>
-								<td class="text-center"><nobr>2016级计科</nobr></td>
-								<td class="text-center"><nobr>信息工程学院</nobr></td>
+								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
+								<td class="text-center"><nobr>${list.proname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrname }</nobr></td>
+								<td class="text-center"><nobr>${list.starttime }</nobr></td>
+								<td class="text-center"><nobr>${list.endtime }</nobr></td>
+								<td class="text-center"><nobr>${list.addr }</nobr></td>
+								<td class="text-center"><nobr>${list.classname }</nobr></td>
+								<td class="text-center"><nobr>${list.collegename }</nobr></td>
 							</tr>
-							<tr>
-								<td class="text-center"><nobr>2</nobr></td>
-								<td class="text-center"><nobr>跳远</nobr></td>
-								<td class="text-center"><nobr>第二场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>沙坑</nobr></td>
-								<td class="text-center"><nobr>2016级计科</nobr></td>
-								<td class="text-center"><nobr>信息工程学院</nobr></td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

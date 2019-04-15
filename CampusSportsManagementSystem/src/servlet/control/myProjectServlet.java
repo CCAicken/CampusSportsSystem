@@ -55,22 +55,20 @@ public class myProjectServlet extends HttpServlet {
 		
 		Student stu = null;
 		Teacher tea = null;
-		String userid = "94001";
-		// int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
-		int usertype = 1;
+		String userid=null;
+		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
 
-		//SceneDAO sdao = DAOFactory.getSceneDAO();
+		SceneDAO sdao = DAOFactory.getSceneDAO();
 
 		List<Scene> list = null;
-
-//		if (usertype == 1) {
-//			stu = (Student) session.getAttribute("loginuser");
-//			userid = stu.getUserid();
-//		} else {
-//			tea = (Teacher) session.getAttribute("loginuser");
-//			userid = tea.getUserid();
-//		}
-		//list = sdao.seleScenes(userid);
+		if (usertype == 1) {
+			stu = (Student) session.getAttribute("loginuser");
+			userid = stu.getUserid();
+		} else {
+			tea = (Teacher) session.getAttribute("loginuser");
+			userid = tea.getUserid();
+		}
+		list = sdao.seleScenes(userid);
 		request.setAttribute("scenelist", list);
 		out.print(list.size());
 		sendDispatcher.sendUrl("myProject.jsp", request, response);
