@@ -38,18 +38,18 @@
                         <tr>
                             <td class="centerLable">学院：</td>
                             <td></td>
-                            <td id="college">${loginuser.collegename }</td>
+                            <td id="college">${loginuser.classes.major.college.collegename }</td>
                         </tr>
                         
                         <tr>
                             <td class="centerLable">专业：</td>
                             <td></td>
-                            <td id="profession">${loginuser.majorname }</td>
+                            <td id="profession">${loginuser.classes.major.majorname }</td>
                         </tr>
                         <tr>
                             <td class="centerLable">班级：</td>
                             <td></td>
-                            <td id="profession">${loginuser.classname }</td>
+                            <td id="profession">${loginuser.classes.classname }</td>
                         </tr>
                         
                         <tr>

@@ -32,14 +32,14 @@ public class ChangePwdServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int usertype = (Integer)session.getAttribute("usertype");
 		String op = request.getParameter("op");
-		if(op == "change"){
+		if(op.equals("change")){
 			String userid = request.getParameter("userid");
 			String oldpwd = request.getParameter("oldpwd");
 			String newpwd = request.getParameter("newpwd");
 			UserDAO udao = new UserDaoImpl();
 			if(usertype == RoleType.Student){
 				Student student = (Student)session.getAttribute("loginuser");
-				if(oldpwd != student.getPwd() || !oldpwd.equals(student.getPwd())){
+				if(!oldpwd.equals(student.getPwd())){
 					out.print("原密码不正确");
 				}else{
 					if(udao.updateStuPwd(userid, newpwd)){

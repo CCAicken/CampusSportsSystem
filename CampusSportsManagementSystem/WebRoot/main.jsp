@@ -34,7 +34,7 @@
                         </a>
                         <div class="dropdown pull-right">
                             <button class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
-                                <b>你好，admin&nbsp</b>
+                                <b>你好，${loginuser.username }&nbsp</b>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -53,7 +53,7 @@
                                 </li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="javascript:logout();">
+                                    <a role="menuitem" tabindex="-1" href="logout.do">
                                         <i class="glyphicon glyphicon-off"></i>
                                         <span>退出登录</span>
                                     </a>
