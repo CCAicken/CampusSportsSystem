@@ -39,17 +39,17 @@ public class SceneDaoImpl implements SceneDAO {
 		Object[] para = {userid};
 		List<Scene> list = null;
 		ResultSet rs = bdao.select(sql,para);
-		if(rs!=null){
-			list = Scene.toList(rs);
-			return list;
-		}
-		else{
-			return null;
-		}
+		list = Scene.toList(rs);
+		return list;
 	}
-	public static void main(String[] args){
-		SceneDAO sDao = new SceneDaoImpl();
-		List<Scene> list = sDao.seleScenes();
-		System.out.print(list.size());
-	}
+//	public static void main(String[] args){
+//		SceneDAO sDao = new SceneDaoImpl();
+//		List<Scene> list = sDao.seleScenes("94001");
+//		System.out.print(list.size());
+////		if(list!=null){
+////			for(Scene scene:list){
+////				System.out.print(scene.getSceneid());
+////			}
+////		}
+//	}
 }
