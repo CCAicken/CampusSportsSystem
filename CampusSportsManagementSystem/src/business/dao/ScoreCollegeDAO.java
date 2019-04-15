@@ -20,8 +20,9 @@ public interface ScoreCollegeDAO {
 	/**
 	 * 查询所有学院成绩
 	 * @return List<ScoreCollege>数据集
+	 * string action 动作
 	 */
-	public List<ScoreCollege> getAllCollegeScore();
+	public List<ScoreCollege> getAllCollegeScore(String asction,String opretion);
 	
 	/**
 	 * 查询所有学院成绩(分页)

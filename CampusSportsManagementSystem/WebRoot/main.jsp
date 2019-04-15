@@ -121,7 +121,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="collegechievement.jsp" class="sidebarclick">
+                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
                                         <span>学院成绩</span>
                                     </a>
                                 </li>

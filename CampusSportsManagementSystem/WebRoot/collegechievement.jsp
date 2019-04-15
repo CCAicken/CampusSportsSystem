@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<%@ include file="importhead.jsp"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -46,8 +49,10 @@
 							<select class="selectpicker selectcollegeId" data-width="auto"
 								id="selectcollegeId">
 								<option value="0">-查询所有分院-</option>
-							</select>
-							<input type="text" class="form-control" placeholder="请输入查询条件"
+								<c:forEach items="${collegelist}" var="collegeobj">
+									<option value="${collegeobj.collegeid}">${collegeobj.collegename}</option>
+								</c:forEach>
+							</select> <input type="text" class="form-control" placeholder="请输入查询条件"
 								id="inputsearch" value="" /> <span class="input-group-btn">
 								<button class="btn btn-info" type="button" id="btn-search"
 									style="height:34px">
@@ -58,7 +63,7 @@
 					</div>
 				</div>
 				<div class="">
-					<table class="table table-bordered table-hover">
+					<table class="table table-bordered table-hover" id="scoretable">
 						<thead>
 							<th class="text-center"><input type="checkbox"
 								class="js-checkbox-all" /></th>
@@ -67,20 +72,21 @@
 							<th class="text-center"><nobr>分数</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox" /></td>
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>信息工程学院</nobr></td>
-								<td class="text-center"><nobr>88</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
-									</button>
-								</td>
-							</tr>
-
+						<tbody id="scoretable_tbody">
+							<c:forEach items="${scorecollege }" var="obj" varStatus="xh">
+								<tr>
+									<td class="text-center"><input type="checkbox" /></td>
+									<td class="text-center"><nobr>${xh.index+1}</nobr></td>
+									<td class="text-center"><nobr>${obj.collegename }</nobr></td>
+									<td class="text-center"><nobr>${obj.scorenumber }</nobr></td>
+									<td class="text-center">
+										<button class="btn btn-default btn-sm btn-warning details"
+											style="height:28px" value="${obj.collegeid}" id="">
+											<span class="glyphicon glyphicon-search">查看详情</span>
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -105,6 +111,66 @@
 <script src="js/stuLIst.js"></script>
 <script src="js/xcConfirm.js"></script>
 <script>
+	//查询点击事件
+	$("#search").click(function() {
+		var opretion = $("#inputsearch").val();
+		alert(opretion);
+		$.ajax({
+			type : 'get',
+			url : "collegechievement.do",
+			data : {
+				opretion : opretion,
+				action : 'search',
+			},
+			dataType : "json",
+			success : function(data) {
+				//alert(records.collegeid);
+				alert(data.records[0].scorenumber);
+				setContent(data.records);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				/*弹出jqXHR对象的信息*/
+				alert(jqXHR.responseText);
+				alert(jqXHR.status);
+				alert(jqXHR.readyState);
+				alert(jqXHR.statusText);
+				/*弹出其他两个参数的信息*/
+				alert(textStatus);
+				alert(errorThrown);
+			}
+		});
+	})
+	$(".details").click(function() {
+		alert($(this).val());
+	});
+	$("#selectcollegeId").change(function() {
+		var collegeId = $("#selectcollegeId").find("option:selected").val();
+		//alert(collegeId);
+		$.ajax({
+			type : 'get',
+			url : "collegechievement.do",
+			data : {
+				opretion : collegeId,
+				action : 'search',
+			},
+			dataType : "json",
+			success : function(data) {
+				//alert(records.collegeid);
+				alert(data.records[0].scorenumber);
+				setContent(data.records);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				/*弹出jqXHR对象的信息*/
+				alert(jqXHR.responseText);
+				alert(jqXHR.status);
+				alert(jqXHR.readyState);
+				alert(jqXHR.statusText);
+				/*弹出其他两个参数的信息*/
+				alert(textStatus);
+				alert(errorThrown);
+			}
+		});
+	})
 	$(".paging").pagination({
 		pageCount : 10, //$("#intPageCount").val(), //总页数
 		jump : true,
@@ -117,7 +183,7 @@
 		callback : function(api) {
 			$.ajax({
 				type : 'Post',
-				url : 'salesTaskStatistics.aspx',
+				url : "collegechievement.do",
 				data : {
 					page : api.getCurrent(), //页码
 					op : "paging"
@@ -131,5 +197,39 @@
 			});
 		}
 	});
+
+	function setContent(contents) {//将json数据解析并输出到页面上
+		var size = contents.length;
+		var p = document.getElementById("scoretable").parentNode;//先将之前的删除
+		$("#scoretable_tbody").remove();
+		//p.removeChild(document.getElementById("scoretable_tbody"));
+		var c = document.createElement("tbody");
+		c.setAttribute("id", "scoretable_tbody");
+		p.appendChild(c);
+		for (var i = 0; i < size; i++) {
+			var nextNode = contents[i].collegename;//代表的是json格式数据的第i个元素的id
+			var nextNode2 = contents[i].scorenumber;//第i个元素的姓名
+			var tr = document.createElement("tr");
+			var td0 = document.createElement("td");
+			td0.setAttribute("class", "text-center");
+			var td1 = document.createElement("td");
+			var text0 = document.createTextNode(i + 1);
+			td1.setAttribute("class", "text-center");
+			var text = document.createTextNode(nextNode);
+			var td2 = document.createElement("td");
+			var text2 = document.createTextNode(nextNode2);
+
+			td0.appendChild(text0);
+			tr.append(td0);
+
+			td1.appendChild(text);
+			tr.appendChild(td1);
+
+			td2.appendChild(text2);
+			tr.append(td2);
+
+			document.getElementById("scoretable_tbody").appendChild(tr);
+		}
+	}
 </script>
 </html>
