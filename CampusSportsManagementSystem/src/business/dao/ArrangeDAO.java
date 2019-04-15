@@ -1,6 +1,9 @@
 package business.dao;
 
+import java.util.List;
+
 import model.Arrange;
+import model.College;
 
 /**
  * 比赛场次安排接口类
@@ -21,4 +24,10 @@ public interface ArrangeDAO {
 	 * @return 操作结果，true为成功，false为失败
 	 */
 	public boolean delete(int arrangeid);
+	
+	/**
+	 * 获取所有场次安排列表
+	 * @return 场次安排列表
+	 */
+	public List<Arrange> select();
 }

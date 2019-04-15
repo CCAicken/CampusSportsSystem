@@ -1,7 +1,6 @@
 package business.factory;
 
-import model.Match;
-import model.Project;
+import business.dao.ArrangeDAO;
 import business.dao.ClassesDAO;
 import business.dao.CollegeDAO;
 import business.dao.MajorDAO;
@@ -12,6 +11,7 @@ import business.dao.ScoreClassesDAO;
 import business.dao.ScoreCollegeDAO;
 import business.dao.ScoreStudentDAO;
 import business.dao.UserDAO;
+import business.impl.ArrangeDaoImpl;
 import business.impl.ClassesDaoImpl;
 import business.impl.CollegeDaoImpl;
 import business.impl.MajorDaoImpl;
@@ -88,5 +88,9 @@ public class DAOFactory {
 	
 	public static SceneDAO getSceneDAO(){
 		return new SceneDaoImpl();
+	}
+	
+	public static ArrangeDAO getArrangeDAO(){
+		return new ArrangeDaoImpl();
 	}
 }

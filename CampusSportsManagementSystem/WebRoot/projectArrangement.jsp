@@ -3,14 +3,13 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>比赛安排管理</title>
-    
+    <title>比赛项目安排</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -54,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 								<th class="text-center"><nobr>序号</nobr></th>
 								<th class="text-center"><nobr>项目名称</nobr></th>
-								<th class="text-center"><nobr>场次安排</nobr></th>
+								<th class="text-center"><nobr>场次名称</nobr></th>
 								<th class="text-center"><nobr>开始时间</nobr></th>
 								<th class="text-center"><nobr>结束时间</nobr></th>
 								<th class="text-center"><nobr>比赛地点</nobr></th>
@@ -63,14 +62,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${arrList }" var="obj" varStatus="status">
 							<tr>
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>10000M</nobr></td>
-								<td class="text-center"><nobr>10000m第一场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>田径场</nobr></td>
+								<td class="text-center"><nobr>${status.index }</nobr></td>
+								<td class="text-center"><nobr>${obj.project.proname }</nobr></td>
+								<td class="text-center"><nobr>${obj.arrname }</nobr></td>
+								<td class="text-center"><nobr>${obj.starttime }</nobr></td>
+								<td class="text-center"><nobr>${obj.endtime }</nobr></td>
+								<td class="text-center"><nobr>${obj.addr }</nobr></td>
+								<c:if test="${obj.leveltype==1 }">
+								<td class="text-center"><nobr>预赛</nobr></td>
+								</c:if>
+								<c:if test="${obj.leveltype==2 }">
 								<td class="text-center"><nobr>决赛</nobr></td>
+								</c:if>
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning"
 										style="height:28px">
@@ -78,21 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</button>
 								</td>
 							</tr>
-							<tr>
-								<td class="text-center"><nobr>2</nobr></td>
-								<td class="text-center"><nobr>跳远</nobr></td>
-								<td class="text-center"><nobr>第二场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>沙坑</nobr></td>
-								<td class="text-center"><nobr>2016级计科</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">编辑</span>
-									</button>
-								</td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
