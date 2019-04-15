@@ -47,8 +47,8 @@ public class projectRegistrantionServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Student stu = null;
 		Teacher tea = null;
-		//int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
-		int usertype = 1;
+		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
+		//int usertype = 1;
 		int userid;
 		
 		ProjectDAO pdao = DAOFactory.getProjectDAO();
