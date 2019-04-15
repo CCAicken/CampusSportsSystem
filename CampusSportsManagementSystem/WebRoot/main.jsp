@@ -73,7 +73,7 @@
                     <ul class="nav nav-list nav-stacked">
                         <!-- 学生 -->
                         <li role="presentation">
-                            <a href="#setting" class="collapsed" data-toggle="collapse">
+                            <a href="sporttime.jsp" class="sidebarclick" data-toggle="collapse">
                                 <i class="iconfont icon-set"></i>
                                 <span>校运会时间</span>
                             </a>

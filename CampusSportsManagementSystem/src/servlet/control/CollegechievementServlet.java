@@ -66,7 +66,7 @@ public class CollegechievementServlet extends HttpServlet {
 		List<College> collegelist = cdao.select();
 		if (action.equals("search")) {
 			PrintWriter out=response.getWriter();
-			if(collegelist!=null){
+			if(scorecollege!=null){
 				response.setCharacterEncoding("UTF-8"); 
 				request.setCharacterEncoding("UTF-8");
 		        response.setContentType("text/html;charset=utf-8");
