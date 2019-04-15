@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>场次信息管理</title>
+    <title>比賽安排查看</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">
-			<h2>场次信息管理</h2>
+			<h2>比賽安排查看</h2>
 		</div>
 		<div class="panel-body" id="panelbody">
 			<div class="container-fluid big-box">
@@ -60,45 +60,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th class="text-center"><nobr>比赛地点</nobr></th>
 								<th class="text-center"><nobr>比赛级别</nobr></th>
 								<th class="text-center"><nobr>比赛状态</nobr></th>
-								<th class="text-center"><nobr>远动员</nobr></th>
-								<th class="text-center"><nobr>操作</nobr></th>
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="scenelist" var="list" varStatus="status">
 							<tr>
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>10000M</nobr></td>
-								<td class="text-center"><nobr>10000m第一场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>田径场</nobr></td>
-								<td class="text-center"><nobr>决赛</nobr></td>
-								<td class="text-center"><nobr>为比赛</nobr></td>
-								<td class="text-center"><nobr>ss</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">编辑</span>
-									</button>
-								</td>
+								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
+								<td class="text-center"><nobr>${list.proname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrname }</nobr></td>
+								<td class="text-center"><nobr>${list.starttime }</nobr></td>
+								<td class="text-center"><nobr>${list.endtime }</nobr></td>
+								<td class="text-center"><nobr>${list.addr }</nobr></td>
+								<c:if test="${list.levletype==1 }">
+								<td class="text-center"><nobr>預賽</nobr></td>
+								</c:if>
+								<c:if test="${list.levletype==2 }">
+								<td class="text-center"><nobr>決賽</nobr></td>
+								</c:if>
+								<c:if test="${list.state==0 }">
+								<td class="text-center"><nobr>未比赛</nobr></td>
+								</c:if>
+								<c:if test="${list.state==1 }">
+								<td class="text-center"><nobr>比赛中</nobr></td>
+								</c:if>
+								<c:if test="${list.state==2 }">
+								<td class="text-center"><nobr>比赛完成</nobr></td>
+								</c:if>
 							</tr>
-							<tr>
-								<td class="text-center"><nobr>2</nobr></td>
-								<td class="text-center"><nobr>跳远</nobr></td>
-								<td class="text-center"><nobr>第二场</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 10:21</nobr></td>
-								<td class="text-center"><nobr>2018-9-10 11:00</nobr></td>
-								<td class="text-center"><nobr>沙坑</nobr></td>
-								<td class="text-center"><nobr>2016级计科</nobr></td>
-								<td class="text-center"><nobr>为比赛</nobr></td>
-								<td class="text-center"><nobr>ss</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">编辑</span>
-									</button>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

@@ -22,8 +22,15 @@ public class SceneDaoImpl implements SceneDAO {
 
 	@Override
 	public List<Scene> seleScenes() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_Scene";
+		ResultSet rs = bdao.select(sql);
+		if(rs!=null){
+			List<Scene> list = Scene.toList(rs);
+			return list;
+		}
+		else{
+			return null;
+		}
 	}
 
 	@Override
@@ -40,9 +47,9 @@ public class SceneDaoImpl implements SceneDAO {
 			return null;
 		}
 	}
-//	public static void main(String[] args){
-//		SceneDAO sDao = new SceneDaoImpl();
-//		List<Scene> list = sDao.seleScenes("1001");
-//			System.out.print(list.size());
-//	}
+	public static void main(String[] args){
+		SceneDAO sDao = new SceneDaoImpl();
+		List<Scene> list = sDao.seleScenes();
+		System.out.print(list.size());
+	}
 }
