@@ -1,21 +1,25 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<%@ include file="importhead.jsp"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>学生个人成绩查看页面</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
+<head>
+<base href="<%=basePath%>">
+
+<title>学生个人成绩查看页面</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/ml.css" />
 <link rel="stylesheet" href="css/lgd.css" />
@@ -42,26 +46,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="input-group" id="inputgroups">
 							<select class="selectpicker selectcollegeId" data-width="auto"
 								id="selectcollegeId">
-								<option value="0">-查询所有分院-</option>
+								<option value="0" selected="selected">-查询所有分院-</option>
+								<c:forEach items="${collegelist}" var="collegeobj">
+									<option value="${collegeobj.collegeid}">${collegeobj.collegename}</option>
+								</c:forEach>
 							</select> &nbsp <select class="selectpicker" id="chooseStuPro">
 
 								<option value="0" selected="selected">-查询全部专业-</option>
 
-								<option value="0">-查询全部专业-</option>
+								<c:forEach items="${majorlist}" var="majorobj">
+									<option value="${majorobj.majorid}">${majorobj.majorname}</option>
+								</c:forEach>
 
-							</select>&nbsp <select class="selectpicker" data-live-search="true" id="chooseStuPro">
+							</select>&nbsp <select class="selectpicker" data-live-search="true"
+								id="chooseStuPro">
 
 								<option value="0" selected="selected">-查询全部班级-</option>
+								<c:forEach items="${classlist}" var="classobj">
+									<option value="${classobj.classid}">${classobj.classname}</option>
+								</c:forEach>
 
-								<option value="1">-查询-</option>
-								<option value="2">-查询全部专业-</option>
-								<option value="3">-假的班级-</option>
-								<option value="4">-计算机科学而与技术-</option>
-								
 
 							</select> <input type="text" class="form-control" placeholder="请输入查询条件"
 								id="inputsearch" value="" /> <span class="input-group-btn">
-								<button class="btn btn-info" type="button" id="btn-search" style="height:34px">
+								<button class="btn btn-info" type="button" id="btn-search"
+									style="height:34px">
 									<span class="glyphicon glyphicon-search" id="search">查询</span>
 								</button>
 							</span>
@@ -72,8 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="">
 					<table class="table table-bordered table-hover">
 						<thead>
-							<th class="text-center"><input type="checkbox"
-								class="js-checkbox-all" /></th>
+							<!--<th class="text-center"><input type="checkbox"
+								class="js-checkbox-all" /></th> -->
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>姓名</nobr></th>
 							<th class="text-center"><nobr>学号</nobr></th>
@@ -84,23 +93,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox" /></td>
-								<td class="text-center"><nobr>1</nobr></td>
-							<td class="text-center"><nobr>LGD</nobr></td>
-							<td class="text-center"><nobr>16612500027</nobr></td>
-								<td class="text-center"><nobr>信息工程学院</nobr></td>
-									<td class="text-center"><nobr>计算机科学与技术</nobr></td>
-										<td class="text-center"><nobr>计算机科学与技术1班</nobr></td>
-								<td class="text-center"><nobr>88</nobr></td>
+						<c:forEach items="${scorestudent }" var="obj" varStatus="hx">
+						<tr>
+								<!-- <td class="text-center"><input type="checkbox" /></td> -->
+								<td class="text-center"><nobr>${hx.index+1 }</nobr></td>
+								<td class="text-center"><nobr>${obj.username }</nobr></td>
+								<td class="text-center"><nobr>${obj.userid }</nobr></td>
+								<td class="text-center"><nobr>${obj.collegename }</nobr></td>
+								<td class="text-center"><nobr>${obj.majorname }</nobr></td>
+								<td class="text-center"><nobr>${obj.classname }</nobr></td>
+								<td class="text-center"><nobr>${obj.scorenumber }</nobr></td>
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px">
+										style="height:28px" values="${obj. userid}">
 										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
 									</button>
 								</td>
 							</tr>
-
+						</c:forEach>
+							
+<!-- test -->
 						</tbody>
 					</table>
 				</div>
@@ -112,6 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="m-style paging"></div>
 			</div>
 		</div>
+	</div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -60,7 +60,7 @@ public class MajorDaoImpl implements MajorDAO {
 
 	@Override
 	public List<Major> select() {
-		String sql = "select * from t_major";
+		String sql = "select * from V_Major";
 		ResultSet rs = bdao.select(sql);
 		List<Major> list = null;
 		try {

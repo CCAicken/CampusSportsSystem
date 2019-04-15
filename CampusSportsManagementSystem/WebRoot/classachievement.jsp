@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<%@ include file="importhead.jsp"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -45,16 +47,20 @@
 						<div class="input-group" id="inputgroups">
 							<select class="selectpicker selectcollegeId" data-width="auto"
 								id="selectcollegeId">
-								<option value="0">-查询所有分院-</option>
+								<option selected="selected" value="0">-查询所有分院-</option>
+								<c:forEach items="${collegelist}" var="collegeobj">
+									<option value="${collegeobj.collegeid}">${collegeobj.collegename}</option>
+								</c:forEach>
 							</select> &nbsp <select class="selectpicker" id="chooseStuPro">
 
 								<option value="0" selected="selected">-查询全部专业-</option>
-
-								<option value="0">-查询全部专业-</option>
-
+								<c:forEach items="${majorlist}" var="majorobj">
+									<option value="${majorobj.majorid}">${majorobj.majorname}</option>
+								</c:forEach>
 							</select> <input type="text" class="form-control" placeholder="请输入查询条件"
 								id="inputsearch" value="" /> <span class="input-group-btn">
-								<button class="btn btn-info" type="button" id="btn-search" style="height:34px">
+								<button class="btn btn-info" type="button" id="btn-search"
+									style="height:34px">
 									<span class="glyphicon glyphicon-search" id="search">查询</span>
 								</button>
 							</span>
@@ -64,8 +70,8 @@
 				<div class="">
 					<table class="table table-bordered table-hover">
 						<thead>
-							<th class="text-center"><input type="checkbox"
-								class="js-checkbox-all" /></th>
+							<!-- <th class="text-center"><input type="checkbox"
+								class="js-checkbox-all" /></th> -->
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
 							<th class="text-center"><nobr>专业名称</nobr></th>
@@ -74,19 +80,23 @@
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox" /></td>
-								<td class="text-center"><nobr>1</nobr></td>
-								<td class="text-center"><nobr>信息工程学院</nobr></td>
-								<td class="text-center"><nobr>计算机科学与技术</nobr></td>
-								<td class="text-center"><nobr>计算机科学与技术一班</nobr></td>
-								<td class="text-center"><nobr>88</nobr></td>
-								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning" style="height:28px">
-										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
-									</button>
-								</td>
-							</tr>
+							<c:forEach items="${scoreclass}" var="obj" varStatus="xh">
+								<tr>
+									<!--<td class="text-center"><input type="checkbox" /></td> -->
+									<td class="text-center"><nobr>${xh.index+1 }</nobr></td>
+									<td class="text-center"><nobr>${obj.collegename }</nobr></td>
+									<td class="text-center"><nobr>${obj.majorname }</nobr></td>
+									<td class="text-center"><nobr>${obj.classname }</nobr></td>
+									<td class="text-center"><nobr>88</nobr></td>
+									<td class="text-center">
+										<button class="btn btn-default btn-sm btn-warning"
+											style="height:28px" value="${obj.classid }">
+											<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
+
 
 						</tbody>
 					</table>

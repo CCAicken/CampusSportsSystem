@@ -60,7 +60,7 @@ public class ClassesDaoImpl implements ClassesDAO {
 
 	@Override
 	public List<Classes> select() {
-		String sql = "select * from t_class";
+		String sql = "select * from V_Class";
 		ResultSet rs = bdao.select(sql);
 		List<Classes> list = null;
 		try {

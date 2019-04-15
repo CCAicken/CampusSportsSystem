@@ -111,12 +111,12 @@
                             </a>
                             <ul class="collapse nav nav-list" id="datasetting">
                                 <li role="presentation">
-                                    <a href="allpersonalachievement.jsp" class="sidebarclick">
+                                    <a href="allpersonalachievement.do" class="sidebarclick">
                                         <span>个人成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="classachievement.jsp" class="sidebarclick">
+                                    <a href="classachievement.do" class="sidebarclick">
                                         <span>班级成绩</span>
                                     </a>
                                 </li>
