@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -66,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="scenelist" var="list" varStatus="status">
+							<c:forEach items="${scenelist }" var="list" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
 								<td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>

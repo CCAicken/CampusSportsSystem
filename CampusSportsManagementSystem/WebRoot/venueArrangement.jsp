@@ -1,9 +1,9 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -63,27 +63,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="scenelist" var="list" varStatus="status">
+						<c:forEach items="${scenelist }" var="list" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
-								<td class="text-center"><nobr>${list.proname }</nobr></td>
-								<td class="text-center"><nobr>${list.arrname }</nobr></td>
-								<td class="text-center"><nobr>${list.starttime }</nobr></td>
-								<td class="text-center"><nobr>${list.endtime }</nobr></td>
-								<td class="text-center"><nobr>${list.addr }</nobr></td>
-								<c:if test="${list.levletype==1 }">
+								<!--  --><td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.arrname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.starttime }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.endtime }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.addr }</nobr></td>
+								<c:if test="${list.arrange.levletype==1 }">
 								<td class="text-center"><nobr>預賽</nobr></td>
 								</c:if>
-								<c:if test="${list.levletype==2 }">
+								<c:if test="${list.arrange.levletype==2 }">
 								<td class="text-center"><nobr>決賽</nobr></td>
 								</c:if>
-								<c:if test="${list.state==0 }">
+								<c:if test="${list.arrange.state==0 }">
 								<td class="text-center"><nobr>未比赛</nobr></td>
 								</c:if>
-								<c:if test="${list.state==1 }">
+								<c:if test="${list.arrange.state==1 }">
 								<td class="text-center"><nobr>比赛中</nobr></td>
 								</c:if>
-								<c:if test="${list.state==2 }">
+								<c:if test="${list.arrange.state==2 }">
 								<td class="text-center"><nobr>比赛完成</nobr></td>
 								</c:if>
 							</tr>

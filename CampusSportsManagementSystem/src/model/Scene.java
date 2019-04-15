@@ -179,7 +179,7 @@ public class Scene {
 					arrange.setProject(project);
 					scene.setArrange(arrange);
 					Match match = new Match();
-					match.setMatchid((rs.getInt("matchid")));
+					match.setMatchid(rs.getInt("matchid"));
 					Project project2 = new Project();
 					project2.setProid(rs.getInt("proid"));
 					project2.setProname(rs.getString("proname"));

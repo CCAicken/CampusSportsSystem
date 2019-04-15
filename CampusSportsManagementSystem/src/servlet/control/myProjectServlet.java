@@ -72,8 +72,6 @@ public class myProjectServlet extends HttpServlet {
 		for (Scene scene : list) {
 			System.out.println(scene.getMatch().getProject().getProname());
 			System.out.println(scene.getArrange().getProject().getProname());
-			
-			//arrange
 		}
 		request.setAttribute("scenelist", list);
 		out.print(list.size());

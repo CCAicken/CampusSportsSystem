@@ -106,6 +106,7 @@ public class Project {
 				this.collegelimit = rs.getInt("collegelimit");
 				this.scenelimit = rs.getInt("scenelimit");
 				this.totallimit = rs.getInt("totallimit");
+				this.currentnum = rs.getInt("currentment");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -122,16 +123,17 @@ public class Project {
 		List<Project> list = new ArrayList<Project>();
 		if(rs != null){
 			try{
-				do{
+				while(rs.next()){
 					Project project = new Project();
-					project.setProid((rs.getInt("proid")));
-					project.setProname((rs.getString("proname")));
-					project.setProtype((rs.getInt("protype")));
-					project.setCollegelimit((rs.getInt("collegelimit")));
-					project.setScenelimit((rs.getInt("scenelimit")));
-					project.setTotallimit((rs.getInt("totallimit")));
+					project.setProid(rs.getInt("proid"));
+					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
+					project.setCollegelimit(rs.getInt("collegelimit"));
+					project.setScenelimit(rs.getInt("scenelimit"));
+					project.setTotallimit(rs.getInt("totallimit"));
+					project.setCurrentnum(rs.getInt("currentnum"));
 					list.add(project);
-				}while(rs.next());
+				};
 			}catch(Exception e){
 				e.printStackTrace();
 			}

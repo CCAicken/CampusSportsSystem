@@ -44,7 +44,7 @@ public class SceneDaoImpl implements SceneDAO {
 	}
 	public static void main(String[] args){
 		SceneDAO sDao = new SceneDaoImpl();
-		List<Scene> list = sDao.seleScenes();
+		List<Scene> list = sDao.seleScenes("1001");
 		System.out.print(list.size());
 		if(list!=null){
 			for(Scene scene:list){
