@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.properties.RoleType;
+
 /**
  * 比赛报名实体类
  * @author Administrator
@@ -13,18 +15,23 @@ public class Match {
 
 	private int matchid;
 	private Project project;
-	private Student user;
+	private Student student;
+	private Teacher teacher;
+	private int roleid;
 	
 	public Match() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Match(int matchid, Project project, Student user) {
+	
+	public Match(int matchid, Project project, Student student,
+			Teacher teacher, int roleid) {
 		super();
 		this.matchid = matchid;
 		this.project = project;
-		this.user = user;
+		this.student = student;
+		this.teacher = teacher;
+		this.roleid = roleid;
 	}
 
 	public int getMatchid() {
@@ -35,22 +42,38 @@ public class Match {
 		this.matchid = matchid;
 	}
 
-	public Project getproject() {
+	public Project getProject() {
 		return project;
 	}
 
-	public void setproject(Project project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 
-	public Student getUser() {
-		return user;
+	public Student getStudent() {
+		return student;
 	}
 
-	public void setUser(Student user) {
-		this.user = user;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
-	
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public int getRoleid() {
+		return roleid;
+	}
+
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+
 	/**
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
@@ -60,10 +83,56 @@ public class Match {
 		try{
 			if(rs != null && rs.next()){//必须一一对应
 				this.matchid = rs.getInt("matchid");
-				Project project = new Project(rs);
+				Project project = new Project();
+				project.setProid(rs.getInt("proid"));
+				project.setProname(rs.getString("proname"));
+				project.setProtype(rs.getInt("protype"));
+				project.setCollegelimit(rs.getInt("collegelimit"));
+				project.setScenelimit(rs.getInt("scenelimit"));
+				project.setTotallimit(rs.getInt("totallimit"));
 				this.project = project;
-				Student user = new Student(rs);
-				this.user = user;
+				this.roleid = rs.getInt("roleid");
+				if(rs.getInt("roleid")==RoleType.Student){
+					Student student = new Student();
+					student.setUserid(rs.getString("userid"));
+					student.setUsername(rs.getString("username"));
+					student.setPwd(rs.getString("pwd"));
+					student.setAgend(rs.getString("agend"));
+					student.setMobile(rs.getString("mobile"));
+					Classes classes = new Classes();
+					classes.setClassid(rs.getInt("classid"));
+					classes.setClassname(rs.getString("classname"));
+					Major major = new Major();
+					major.setMajorid(rs.getInt("majorid"));
+					major.setMajorname(rs.getString("majorname"));
+					College college = new College();
+					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
+					major.setCollege(college);
+					classes.setMajor(major);
+					student.setClasses(classes);
+					Role role = new Role();
+					role.setRoleid(rs.getInt("roleid"));
+					role.setRolename(rs.getString("rolename"));
+					student.setRole(role);
+					this.student = student;
+				}else{
+					Teacher teacher = new Teacher();
+					teacher.setUserid(rs.getString("userid"));
+					teacher.setUsername(rs.getString("username"));
+					teacher.setPwd(rs.getString("pwd"));
+					teacher.setAgend(rs.getString("agend"));
+					teacher.setMobile(rs.getString("mobile"));
+					College college = new College();
+					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
+					teacher.setCollege(college);
+					Role role = new Role();
+					role.setRoleid(rs.getInt("roleid"));
+					role.setRolename(rs.getString("rolename"));
+					teacher.setRole(role);
+					this.teacher = teacher;
+				}
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -85,10 +154,54 @@ public class Match {
 					match.setMatchid((rs.getInt("matchid")));
 					Project project = new Project();
 					project.setProid(rs.getInt("proid"));
-					match.setproject(project);
-					Student user = new Student();
-					user.setUserid(rs.getString("userid"));
-					match.setUser(user);;
+					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
+					project.setCollegelimit(rs.getInt("collegelimit"));
+					project.setScenelimit(rs.getInt("scenelimit"));
+					project.setTotallimit(rs.getInt("totallimit"));
+					match.setProject(project);
+					match.setRoleid(rs.getInt("roleid"));
+					if(rs.getInt("roleid")==RoleType.Student){
+						Student student = new Student();
+						student.setUserid(rs.getString("userid"));
+						student.setUsername(rs.getString("username"));
+						student.setPwd(rs.getString("pwd"));
+						student.setAgend(rs.getString("agend"));
+						student.setMobile(rs.getString("mobile"));
+						Classes classes = new Classes();
+						classes.setClassid(rs.getInt("classid"));
+						classes.setClassname(rs.getString("classname"));
+						Major major = new Major();
+						major.setMajorid(rs.getInt("majorid"));
+						major.setMajorname(rs.getString("majorname"));
+						College college = new College();
+						college.setCollegeid(rs.getInt("collegeid"));
+						college.setCollegename(rs.getString("collegename"));
+						major.setCollege(college);
+						classes.setMajor(major);
+						student.setClasses(classes);
+						Role role = new Role();
+						role.setRoleid(rs.getInt("roleid"));
+						role.setRolename(rs.getString("rolename"));
+						student.setRole(role);
+						match.setStudent(student);
+					}else{
+						Teacher teacher = new Teacher();
+						teacher.setUserid(rs.getString("userid"));
+						teacher.setUsername(rs.getString("username"));
+						teacher.setPwd(rs.getString("pwd"));
+						teacher.setAgend(rs.getString("agend"));
+						teacher.setMobile(rs.getString("mobile"));
+						College college = new College();
+						college.setCollegeid(rs.getInt("collegeid"));
+						college.setCollegename(rs.getString("collegename"));
+						teacher.setCollege(college);
+						Role role = new Role();
+						role.setRoleid(rs.getInt("roleid"));
+						role.setRolename(rs.getString("rolename"));
+						teacher.setRole(role);
+						match.setTeacher(teacher);
+					}
 					list.add(match);
 				}while(rs.next());
 			}catch(Exception e){

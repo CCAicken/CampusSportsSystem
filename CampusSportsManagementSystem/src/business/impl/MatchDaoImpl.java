@@ -18,14 +18,15 @@ public class MatchDaoImpl implements MatchDAO {
 
 	@Override
 	public boolean insert(Match match) {
-		String proName = "up_AddMatch(?,?)";
-		Object[] param = {match.getproject().getProid(),match.getUser().getUserid()};
-		int row = (Integer)bdao.executeProduce(proName, param);
-		if(row>0){
-			return true;
-		}else{
-			return false;
-		}
+//		String proName = "up_AddMatch(?,?)";
+//		Object[] param = {match.getProject().getProid(),match.getUser().getUserid()};
+//		int row = (Integer)bdao.executeProduce(proName, param);
+//		if(row>0){
+//			return true;
+//		}else{
+//			return false;
+//		}
+		return true;
 	}
 
 	@Override

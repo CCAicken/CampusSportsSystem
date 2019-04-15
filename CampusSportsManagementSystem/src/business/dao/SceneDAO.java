@@ -16,4 +16,15 @@ public interface SceneDAO {
 	 * @return 操作结果，true为成功，false为失败
 	 */
 	public boolean insert(Scene scene);
+	/**
+	 * 獲取所有場次信息
+	 * @return
+	 */
+	public List<Scene> seleScenes();
+	/**
+	 * 根據賬號獲取對應的場次信息
+	 * @param userid 用戶id
+	 * @return
+	 */
+	public List<Scene> seleScenes(String userid);
 }

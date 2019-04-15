@@ -56,7 +56,13 @@ public class Classes {
 			if(rs != null && rs.next()){//必须一一对应
 				this.classid = rs.getInt("classid");
 				this.classname = rs.getString("classname");
-				Major major = new Major(rs);
+				Major major = new Major();
+				major.setMajorid(rs.getInt("majorid"));
+				major.setMajorname(rs.getString("majorname"));
+				College college = new College();
+				college.setCollegeid(rs.getInt("collegeid"));
+				college.setCollegename(rs.getString("collegename"));
+				major.setCollege(college);
 				this.major = major;
 			}
 		}catch(Exception e){
@@ -80,6 +86,11 @@ public class Classes {
 					classes.setClassname((rs.getString("classname")));
 					Major major = new Major();
 					major.setMajorid(rs.getInt("majorid"));
+					major.setMajorname(rs.getString("majorname"));
+					College college = new College();
+					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
+					major.setCollege(college);
 					classes.setMajor(major);
 					list.add(classes);
 				}while(rs.next());

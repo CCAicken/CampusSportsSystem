@@ -39,7 +39,6 @@ public class College {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
 	 */

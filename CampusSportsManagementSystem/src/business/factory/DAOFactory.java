@@ -1,10 +1,13 @@
 package business.factory;
 
+import model.Match;
 import model.Project;
 import business.dao.ClassesDAO;
 import business.dao.CollegeDAO;
 import business.dao.MajorDAO;
+import business.dao.MatchDAO;
 import business.dao.ProjectDAO;
+import business.dao.SceneDAO;
 import business.dao.ScoreClassesDAO;
 import business.dao.ScoreCollegeDAO;
 import business.dao.ScoreStudentDAO;
@@ -12,7 +15,9 @@ import business.dao.UserDAO;
 import business.impl.ClassesDaoImpl;
 import business.impl.CollegeDaoImpl;
 import business.impl.MajorDaoImpl;
+import business.impl.MatchDaoImpl;
 import business.impl.ProjectDaoImpl;
+import business.impl.SceneDaoImpl;
 import business.impl.ScoreClassesDaoImpl;
 import business.impl.ScoreCollegeDaoImpl;
 import business.impl.ScoreStudentDaoImpl;
@@ -75,5 +80,13 @@ public class DAOFactory {
 	 */
 	public static ScoreStudentDAO getScoreStudentDAO(){
 		return new ScoreStudentDaoImpl();
+	}
+	
+	public static MatchDAO getMatchDAO(){
+		return new MatchDaoImpl();
+	}
+	
+	public static SceneDAO getSceneDAO(){
+		return new SceneDaoImpl();
 	}
 }

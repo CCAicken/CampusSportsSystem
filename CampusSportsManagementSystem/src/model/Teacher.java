@@ -3,6 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import common.properties.RoleType;
 /**
  * 用户实体类
@@ -92,9 +93,13 @@ public class Teacher {
 				this.pwd = rs.getString("pwd");
 				this.agend = rs.getString("agend");
 				this.mobile = rs.getString("mobile");
-				Role role = new Role(rs);
+				Role role = new Role();
+				role.setRoleid(rs.getInt("roleid"));
+				role.setRolename(rs.getString("rolename"));
 				this.role = role;
-				College college = new College(rs);
+				College college = new College();
+				college.setCollegeid(rs.getInt("collegeid"));
+				college.setCollegename(rs.getString("collegename"));
 				this.college = college;
 			}
 		}catch(Exception e){
@@ -121,9 +126,11 @@ public class Teacher {
 					user.setMobile(rs.getString("mobile"));
 					Role role = new Role();
 					role.setRoleid(rs.getInt("roleid"));
+					role.setRolename(rs.getString("rolename"));
 					user.setRole(role);
 					College college = new College();
 					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
 					user.setCollege(college);
 					list.add(user);
 				}while(rs.next());

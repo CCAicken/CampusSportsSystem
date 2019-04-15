@@ -116,7 +116,13 @@ public class Arrange {
 				this.endtime = rs.getString("endtime");
 				this.leveltype = rs.getInt("leveltype");
 				this.state = rs.getInt("state");
-				Project project = new Project(rs);
+				Project project = new Project();
+				project.setProid(rs.getInt("proid"));
+				project.setProname(rs.getString("proname"));
+				project.setProtype(rs.getInt("protype"));
+				project.setCollegelimit(rs.getInt("collegelimit"));
+				project.setScenelimit(rs.getInt("scenelimit"));
+				project.setTotallimit(rs.getInt("totallimit"));
 				this.project = project;
 			}
 		}catch(Exception e){
@@ -139,7 +145,12 @@ public class Arrange {
 					arrange.setArrid((rs.getInt("arrid")));
 					arrange.setArrname((rs.getString("arrname")));
 					Project project = new Project();
-					project.setProid(rs.getInt("project"));
+					project.setProid(rs.getInt("proid"));
+					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
+					project.setCollegelimit(rs.getInt("collegelimit"));
+					project.setScenelimit(rs.getInt("scenelimit"));
+					project.setTotallimit(rs.getInt("totallimit"));
 					arrange.setProject(project);
 					arrange.setAddr((rs.getString("addr")));
 					arrange.setLeveltype((rs.getInt("leveltype")));

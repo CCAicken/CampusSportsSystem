@@ -3,6 +3,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
 import common.properties.ProjectType;
 import common.properties.RoleType;
 
@@ -63,7 +64,57 @@ public class Score {
 			if(rs != null && rs.next()){//必须一一对应
 				this.scoreid = rs.getInt("scoreid");
 				this.scorenumber = rs.getDouble("scorenumber");
-				Match match = new Match(rs);
+				Match match = new Match();
+				match.setMatchid(rs.getInt("matchid"));
+				Project project = new Project();
+				project.setProid(rs.getInt("proid"));
+				project.setProname(rs.getString("proname"));
+				project.setProtype(rs.getInt("protype"));
+				project.setCollegelimit(rs.getInt("collegelimit"));
+				project.setScenelimit(rs.getInt("scenelimit"));
+				project.setTotallimit(rs.getInt("totallimit"));
+				match.setProject(project);
+				if(rs.getInt("roleid")==RoleType.Student){
+					Student student = new Student();
+					student.setUserid(rs.getString("userid"));
+					student.setUsername(rs.getString("username"));
+					student.setPwd(rs.getString("pwd"));
+					student.setAgend(rs.getString("agend"));
+					student.setMobile(rs.getString("mobile"));
+					Classes classes = new Classes();
+					classes.setClassid(rs.getInt("classid"));
+					classes.setClassname(rs.getString("classname"));
+					Major major = new Major();
+					major.setMajorid(rs.getInt("majorid"));
+					major.setMajorname(rs.getString("majorname"));
+					College college = new College();
+					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
+					major.setCollege(college);
+					classes.setMajor(major);
+					student.setClasses(classes);
+					Role role = new Role();
+					role.setRoleid(rs.getInt("roleid"));
+					role.setRolename(rs.getString("rolename"));
+					student.setRole(role);
+					match.setStudent(student);
+				}else{
+					Teacher teacher = new Teacher();
+					teacher.setUserid(rs.getString("userid"));
+					teacher.setUsername(rs.getString("username"));
+					teacher.setPwd(rs.getString("pwd"));
+					teacher.setAgend(rs.getString("agend"));
+					teacher.setMobile(rs.getString("mobile"));
+					College college = new College();
+					college.setCollegeid(rs.getInt("collegeid"));
+					college.setCollegename(rs.getString("collegename"));
+					teacher.setCollege(college);
+					Role role = new Role();
+					role.setRoleid(rs.getInt("roleid"));
+					role.setRolename(rs.getString("rolename"));
+					teacher.setRole(role);
+					match.setTeacher(teacher);
+				}
 				this.match = match;
 				
 			}
@@ -87,7 +138,57 @@ public class Score {
 					score.setScoreid(rs.getInt("scoreid"));
 					score.setScorenumber(rs.getDouble("scorenumber"));
 					Match match = new Match();
-					match.setMatchid(rs.getInt("matchid"));
+					match.setMatchid((rs.getInt("matchid")));
+					Project project = new Project();
+					project.setProid(rs.getInt("proid"));
+					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
+					project.setCollegelimit(rs.getInt("collegelimit"));
+					project.setScenelimit(rs.getInt("scenelimit"));
+					project.setTotallimit(rs.getInt("totallimit"));
+					match.setProject(project);
+					match.setRoleid(rs.getInt("roleid"));
+					if(rs.getInt("roleid")==RoleType.Student){
+						Student student = new Student();
+						student.setUserid(rs.getString("userid"));
+						student.setUsername(rs.getString("username"));
+						student.setPwd(rs.getString("pwd"));
+						student.setAgend(rs.getString("agend"));
+						student.setMobile(rs.getString("mobile"));
+						Classes classes = new Classes();
+						classes.setClassid(rs.getInt("classid"));
+						classes.setClassname(rs.getString("classname"));
+						Major major = new Major();
+						major.setMajorid(rs.getInt("majorid"));
+						major.setMajorname(rs.getString("majorname"));
+						College college = new College();
+						college.setCollegeid(rs.getInt("collegeid"));
+						college.setCollegename(rs.getString("collegename"));
+						major.setCollege(college);
+						classes.setMajor(major);
+						student.setClasses(classes);
+						Role role = new Role();
+						role.setRoleid(rs.getInt("roleid"));
+						role.setRolename(rs.getString("rolename"));
+						student.setRole(role);
+						match.setStudent(student);
+					}else{
+						Teacher teacher = new Teacher();
+						teacher.setUserid(rs.getString("userid"));
+						teacher.setUsername(rs.getString("username"));
+						teacher.setPwd(rs.getString("pwd"));
+						teacher.setAgend(rs.getString("agend"));
+						teacher.setMobile(rs.getString("mobile"));
+						College college = new College();
+						college.setCollegeid(rs.getInt("collegeid"));
+						college.setCollegename(rs.getString("collegename"));
+						teacher.setCollege(college);
+						Role role = new Role();
+						role.setRoleid(rs.getInt("roleid"));
+						role.setRolename(rs.getString("rolename"));
+						teacher.setRole(role);
+						match.setTeacher(teacher);
+					}
 					score.setMatch(match);;
 					list.add(score);
 				}while(rs.next());
