@@ -1,8 +1,11 @@
 package business.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Score;
+import model.Student;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
 import business.dao.ScoreDAO;
@@ -42,8 +45,19 @@ public class ScoreDaoImpl implements ScoreDAO {
 
 	@Override
 	public List<Score> getByUser(String userid) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from V_StudentScore where userid=?";
+		Object[] param = {userid};
+		ResultSet rs = bdao.select(sql, param);
+		List<Score> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				list = Score.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
 	}
 
 }

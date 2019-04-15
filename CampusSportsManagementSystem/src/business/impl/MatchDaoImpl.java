@@ -1,9 +1,13 @@
 package business.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.Init;
 
+import common.properties.RoleType;
+import model.College;
 import model.Match;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
@@ -18,15 +22,24 @@ public class MatchDaoImpl implements MatchDAO {
 
 	@Override
 	public boolean insert(Match match) {
-		String proName = "up_AddMatch(?,?)";
-		String userid = null;
-		//if()
-		Object[] param = {match.getProject().getProid(),match.getTeacher().getUserid()};
-		int row = (Integer)bdao.executeProduce(proName, param);
-		if(row>0){
-			return true;
+		if(match.getRoleid() == RoleType.Student){
+			String proName = "up_AddMatch(?,?)";
+			Object[] param = {match.getProject().getProid(),match.getStudent().getUserid()};
+			int row = (Integer)bdao.executeProduce(proName, param);
+			if(row>0){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
-			return false;
+			String proName = "up_AddMatch(?,?)";
+			Object[] param = {match.getProject().getProid(),match.getTeacher().getUserid()};
+			int row = (Integer)bdao.executeProduce(proName, param);
+			if(row>0){
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 
@@ -34,6 +47,24 @@ public class MatchDaoImpl implements MatchDAO {
 	public List<Match> selectByUser(String userid) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean isSignUp(String userid, int proid) {
+		String sql = "select * from t_match where userid=? and proid=?";
+		Object[] param = {userid,proid};
+		ResultSet rs = bdao.select(sql, param);
+		College college = null;
+		try {
+			if(rs!=null&&rs.next()){
+				return true;
+			}else{
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return true;
+		}
 	}
 
 }

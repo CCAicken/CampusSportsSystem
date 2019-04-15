@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import common.properties.RoleType;
+
 import util.sendDispatcher;
 import model.Match;
 import model.Project;
@@ -71,30 +74,50 @@ public class projectRegistrantionServlet extends HttpServlet {
 		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
 		
 		String op = request.getParameter("op");
-		String proid = request.getParameter("proid");
 		if(op.equals("add")){
-			Project project = new Project();
-			project.setProid(Integer.parseInt(proid));
-			Match match = new Match();
-			match.setProject(project);
-			if(stu!=null){
-				match.setStudent(stu);
-			}
-			else{
-				match.setTeacher(tea);
-			}
-			boolean result = pdao.insert(project);
-			if(result){
-				out.print("成功");
-			}else{
-				out.print("失敗");
+			String proid = request.getParameter("proid");
+			if(proid!=null&&!proid.equals("")){
+				Project project = new Project();
+				project.setProid(Integer.parseInt(proid));
+				Student student = null;
+				Teacher teacher = null;
+				Match match = new Match();
+				match.setProject(project);
+				if(usertype == RoleType.Student){
+					student = (Student)session.getAttribute("loginuser");
+					boolean issignup = mdao.isSignUp(student.getUserid(), Integer.parseInt(proid));
+					if(issignup){
+						out.print("已报过，请选择其他项目报名");
+					}else{
+						match.setStudent(student);
+						match.setRoleid(usertype);
+						boolean flag = mdao.insert(match);
+						if(flag){
+							out.print("报名成功");
+						}else{
+							out.print("报名失败");
+						}
+					}
+				}else{
+					teacher = (Teacher)session.getAttribute("loginuser");
+					boolean issignup = mdao.isSignUp(teacher.getUserid(), Integer.parseInt(proid));
+					if(issignup){
+						out.print("已报过，请选择其他项目报名");
+					}else{
+						match.setTeacher(teacher);
+						match.setRoleid(usertype);
+						boolean flag = mdao.insert(match);
+						if(flag){
+							out.print("报名成功");
+						}else{
+							out.print("报名失败");
+						}
+					}
+				}
 			}
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

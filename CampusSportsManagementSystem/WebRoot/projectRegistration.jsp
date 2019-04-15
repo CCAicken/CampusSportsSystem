@@ -43,10 +43,10 @@
 					</div>
 				</div>
 				<div class="">
-					<table class="table table-bordered table-hover">
+					<table class="table table-bordered table-hover" id="table">
 						<thead>
 							<!--  <th class="text-center"><input type="checkbox" class="js-checkbox-all" /></th>-->
-							<th class="text-center"><nobr>序號</nobr></th>
+							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>项目名称</nobr></th>
 							<th class="text-center"><nobr>当前报名人数</nobr></th>
 							<th class="text-center"><nobr>人数限制</nobr></th>
@@ -73,9 +73,11 @@
 								<td class="text-center"><nobr>教师团体赛<br></td>
 								</c:if>
 								<td class="text-center">
+									<input type="hidden" value="${proList.proid }" />
 									<button class="btn btn-default btn-sm btn-warning sure"
-										style="height:28px">
-										<span class="glyphicon glyphicon-search">确认报名</span>
+										style="height:28px" id="btnSubmit">
+<!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
+										<span>确认报名</span>
 									</button>
 								</td>
 							</tr>
@@ -103,50 +105,33 @@
 <script src="js/jquery.pagination.js"></script>
 <script src="js/stuLIst.js"></script>
 <script src="js/xcConfirm.js"></script>
+<script src="js/projectRegistration.js"></script>
 <script>
-	$(".paging").pagination({
-		pageCount : 10, //$("#intPageCount").val(), //总页数
-		jump : true,
-		mode : 'fixed', //固定页码数量
-		coping : true,
-		homePage : '首页',
-		endPage : '尾页',
-		prevContent : '上页',
-		nextContent : '下页',
-		callback : function(api) {
-			$.ajax({
-				type : 'Post',
-				url : 'salesTaskStatistics.aspx',
-				data : {
-					page : api.getCurrent(), //页码
-					op : "paging"
-				},
-				dataType : 'text',
-				success : function(data) {
-					$("#table tr:not(:first)").remove(); //清空table处首行
-					$("#table").append(data); //加载table
-					$("#intPageCount").remove();
-				}
-			});
-		}
-	});
-
-	
-	$(".sure").click(function() {
-		 var proid = $(this).parents("tr").find("td").eq(0).text().trim();
-		 alert(proid);
-		$.ajax({
-			url : "projectregistrantionservlet.do",
-			type : "POST",
-			dataType : "text",
-			data : {
-				proid:proid,
-				op : "add"
-			},
-			success : function(result) {
-				alert(result);
-			}
-		})
-	})
+// 	$(".paging").pagination({
+// 		pageCount : 10, //$("#intPageCount").val(), //总页数
+// 		jump : true,
+// 		mode : 'fixed', //固定页码数量
+// 		coping : true,
+// 		homePage : '首页',
+// 		endPage : '尾页',
+// 		prevContent : '上页',
+// 		nextContent : '下页',
+// 		callback : function(api) {
+// 			$.ajax({
+// 				type : 'Post',
+// 				url : 'salesTaskStatistics.aspx',
+// 				data : {
+// 					page : api.getCurrent(), //页码
+// 					op : "paging"
+// 				},
+// 				dataType : 'text',
+// 				success : function(data) {
+// 					$("#table tr:not(:first)").remove(); //清空table处首行
+// 					$("#table").append(data); //加载table
+// 					$("#intPageCount").remove();
+// 				}
+// 			});
+// 		}
+// 	});
 </script>
 </html>

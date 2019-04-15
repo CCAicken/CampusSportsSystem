@@ -18,6 +18,14 @@ public interface MatchDAO {
 	public boolean insert(Match match);
 	
 	/**
+	 * 判断是否报过改比赛
+	 * @param userid 用户id
+	 * @param proid 项目id
+	 * @return 操作结果，true为已报过，false为未报过
+	 */
+	public boolean isSignUp(String userid,int proid);
+	
+	/**
 	 * 根据用户id查询报名对象列表
 	 * @param userid 用户id
 	 * @return 报名对象列表

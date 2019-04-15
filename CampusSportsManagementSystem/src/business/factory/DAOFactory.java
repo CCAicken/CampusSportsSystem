@@ -9,6 +9,7 @@ import business.dao.ProjectDAO;
 import business.dao.SceneDAO;
 import business.dao.ScoreClassesDAO;
 import business.dao.ScoreCollegeDAO;
+import business.dao.ScoreDAO;
 import business.dao.ScoreStudentDAO;
 import business.dao.UserDAO;
 import business.impl.ArrangeDaoImpl;
@@ -20,6 +21,7 @@ import business.impl.ProjectDaoImpl;
 import business.impl.SceneDaoImpl;
 import business.impl.ScoreClassesDaoImpl;
 import business.impl.ScoreCollegeDaoImpl;
+import business.impl.ScoreDaoImpl;
 import business.impl.ScoreStudentDaoImpl;
 import business.impl.UserDaoImpl;
 
@@ -92,5 +94,9 @@ public class DAOFactory {
 	
 	public static ArrangeDAO getArrangeDAO(){
 		return new ArrangeDaoImpl();
+	}
+	
+	public static ScoreDAO getScoreDAO(){
+		return new ScoreDaoImpl();
 	}
 }
