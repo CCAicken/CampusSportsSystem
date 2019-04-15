@@ -92,12 +92,12 @@
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
-                                    <a href="venueArrangement.jsp" class="sidebarclick">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
                                         <span>比赛时间安排</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="mediiumQuality">
-                                    <a href="myProject.jsp" class="sidebarclick">
+                                    <a href="myProjectServlet.do" class="sidebarclick">
                                         <span>查看我的项目</span>
                                     </a>
                                 </li>
@@ -133,7 +133,7 @@
             <!-- 右侧内容区 -->
             <div class="page-right-content col-sm-10 col-md-10 col-lg-11" id="content">
                 <article class="">
-                    <iframe id="iframe" style="margin-top: 20px;" frameborder="0" scrolling="auto" src="login.html" width="100%"></iframe>
+                    <iframe id="iframe" style="margin-top: 20px;" frameborder="0" scrolling="auto" src="sporttime.jsp" width="100%"></iframe>
                 </article>
             </div>
         </div>
