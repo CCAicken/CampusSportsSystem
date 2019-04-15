@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -58,7 +58,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th class="text-center"><nobr>开始时间</nobr></th>
 								<th class="text-center"><nobr>结束时间</nobr></th>
 								<th class="text-center"><nobr>比赛地点</nobr></th>
+								<c:if test="${usertype == 1 }">
 								<th class="text-center"><nobr>班级</nobr></th>
+								<th class="text-center"><nobr>專業</nobr></th>
+								</c:if>
 								<th class="text-center"><nobr>学院</nobr></th>
 							</tr>
 						</thead>
@@ -66,13 +69,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:forEach items="scenelist" var="list" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
-								<td class="text-center"><nobr>${list.proname }</nobr></td>
-								<td class="text-center"><nobr>${list.arrname }</nobr></td>
-								<td class="text-center"><nobr>${list.starttime }</nobr></td>
-								<td class="text-center"><nobr>${list.endtime }</nobr></td>
-								<td class="text-center"><nobr>${list.addr }</nobr></td>
-								<td class="text-center"><nobr>${list.classname }</nobr></td>
-								<td class="text-center"><nobr>${list.collegename }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.arrname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.starttime }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.endtime }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.addr }</nobr></td>
+								<c:if test="${list.roleid == 1 }">
+								<td class="text-center"><nobr>${list.match.student.classes.classname }</nobr></td>
+								<td class="text-center"><nobr>${list.match.student.classes.major.majorname }</nobr></td>
+								<td class="text-center"><nobr>${list.match.student.classes.major.college.collegename }</nobr></td>
+								</c:if>
+								<c:if test="${list.roleid == 2 }">
+								<td class="text-center"><nobr>${list.match.teacher.college.collegename }</nobr></td>
+								</c:if>
 							</tr>
 							</c:forEach>
 						</tbody>

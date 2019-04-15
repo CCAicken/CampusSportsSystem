@@ -13,6 +13,7 @@ import common.properties.RoleType;
  */
 public class Scene {
 	private int sceneid;
+	private int roleid;
 	private Arrange arrange;
 	private Match match;
 	
@@ -21,11 +22,12 @@ public class Scene {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Scene(int sceneid, Arrange arrange, Match match) {
+	public Scene(int sceneid, Arrange arrange, Match match,int roleid) {
 		super();
 		this.sceneid = sceneid;
 		this.arrange = arrange;
 		this.match = match;
+		this.roleid = roleid;
 	}
 
 	public int getSceneid() {
@@ -51,7 +53,15 @@ public class Scene {
 	public void setMatch(Match match) {
 		this.match = match;
 	}
-	
+
+	public int getRoleid() {
+		return roleid;
+	}
+
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+
 	/**
 	 * 初始化ResultSet中的第一条数据
 	 * @param rs ResultSet结果集
@@ -131,6 +141,7 @@ public class Scene {
 					match.setTeacher(teacher);
 				}
 				this.match = match;
+				this.roleid = rs.getInt("roleid");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -220,6 +231,7 @@ public class Scene {
 						match.setTeacher(teacher);
 					}
 					scene.setMatch(match);
+					scene.setRoleid(rs.getInt("roleid"));
 					list.add(scene);
 				};
 			}catch(Exception e){

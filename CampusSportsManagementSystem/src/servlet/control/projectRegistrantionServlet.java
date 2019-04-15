@@ -66,6 +66,7 @@ public class projectRegistrantionServlet extends HttpServlet {
 		else{
 			projectList = pdao.select();//组委会可以查看所有报名项目
 		}
+		out.print(projectList.size());
 		request.setAttribute("projectList", projectList);
 		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
 		
