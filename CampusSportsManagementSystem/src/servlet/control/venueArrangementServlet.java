@@ -64,6 +64,7 @@ public class venueArrangementServlet extends HttpServlet {
 		List<Scene> list = sdao.seleScenes();
 		request.setAttribute("scenelist", list);
 		for(Scene scene:list){
+			System.out.println(scene.getSceneid());
 			System.out.println(scene.getArrange().getProject().getProname());
 			System.out.println(scene.getArrange().getArrname());
 		}
