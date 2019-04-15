@@ -63,6 +63,10 @@ public class venueArrangementServlet extends HttpServlet {
 		SceneDAO sdao = DAOFactory.getSceneDAO();
 		List<Scene> list = sdao.seleScenes();
 		request.setAttribute("scenelist", list);
+		for(Scene scene:list){
+			System.out.println(scene.getArrange().getProject().getProname());
+			System.out.println(scene.getArrange().getArrname());
+		}
 		sendDispatcher.sendUrl("venueArrangement.jsp", request, response);
 	}
 

@@ -88,10 +88,10 @@ public class ProjectDaoImpl implements ProjectDAO {
 		return list;
 	}
 	
-//	public static void main(String[] args){
-//		ProjectDAO dao = new ProjectDaoImpl();
-//		List<Project> list = dao.selectByType(1);
-//		System.out.println(list.size());
-//	}
+	public static void main(String[] args){
+		ProjectDAO dao = new ProjectDaoImpl();
+		List<Project> list = dao.selectByType(1);
+		System.out.println(list.size());
+	}
 
 }
