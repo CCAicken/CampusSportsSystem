@@ -42,14 +42,14 @@ public class SceneDaoImpl implements SceneDAO {
 		list = Scene.toList(rs);
 		return list;
 	}
-//	public static void main(String[] args){
-//		SceneDAO sDao = new SceneDaoImpl();
-//		List<Scene> list = sDao.seleScenes();
-//		System.out.print(list.size());
-////		if(list!=null){
-////			for(Scene scene:list){
-////				System.out.print(scene.getSceneid());
-////			}
-////		}
-//	}
+	public static void main(String[] args){
+		SceneDAO sDao = new SceneDaoImpl();
+		List<Scene> list = sDao.seleScenes();
+		System.out.print(list.size());
+		if(list!=null){
+			for(Scene scene:list){
+				System.out.println(scene.getArrange().getProject().getProname());
+			}
+		}
+	}
 }

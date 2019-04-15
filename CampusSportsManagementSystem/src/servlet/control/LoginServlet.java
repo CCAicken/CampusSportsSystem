@@ -57,8 +57,9 @@ public class LoginServlet extends HttpServlet {
 					Teacher user = udao.loginTea(userid, pwd);
 					if(user!=null&&!user.getUserid().equals("")){
 						session.setAttribute("loginuser", user);
-						session.setAttribute("usertype", RoleType.Teacher);
+						session.setAttribute("usertype", RoleType.Student);
 						out.print("µÇÂ¼³É¹¦");
+						//sendDispatcher.sendUrl("main.jsp", request, response);
 					}else{
 						out.print("µÇÂ¼Ê§°Ü");
 					}

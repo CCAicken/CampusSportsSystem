@@ -69,6 +69,12 @@ public class myProjectServlet extends HttpServlet {
 			userid = tea.getUserid();
 		}
 		list = sdao.seleScenes(userid);
+		for (Scene scene : list) {
+			System.out.println(scene.getMatch().getProject().getProname());
+			System.out.println(scene.getArrange().getProject().getProname());
+			
+			//arrange
+		}
 		request.setAttribute("scenelist", list);
 		out.print(list.size());
 		sendDispatcher.sendUrl("myProject.jsp", request, response);

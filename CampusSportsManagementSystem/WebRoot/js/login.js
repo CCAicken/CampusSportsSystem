@@ -28,11 +28,11 @@ $(document).ready(function () {
                 dataType: 'text',
                 success: function (succ) {
                 	if(succ == "登录成功"){
-                		window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
-	                        onOk: function (v) {
-	                            window.location.href="main.jsp";
-	                        }
-	                    });
+                        window.location.href="main.jsp";
+//                		window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+//	                        onOk: function (v) {
+//	                        }
+//	                    });
                 	}else{
 	                    window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error, {
 	                        onOk: function (v) {
