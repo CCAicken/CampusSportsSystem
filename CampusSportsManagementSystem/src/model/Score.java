@@ -101,17 +101,17 @@ public class Score {
 				}else{
 					Teacher teacher = new Teacher();
 					teacher.setUserid(rs.getString("userid"));
-					teacher.setUsername(rs.getString("username"));
-					teacher.setPwd(rs.getString("pwd"));
-					teacher.setAgend(rs.getString("agend"));
-					teacher.setMobile(rs.getString("mobile"));
+					teacher.setUsername(rs.getString("teausername"));
+					teacher.setPwd(rs.getString("teapwd"));
+					teacher.setAgend(rs.getString("teaagend"));
+					teacher.setMobile(rs.getString("teamobile"));
 					College college = new College();
-					college.setCollegeid(rs.getInt("collegeid"));
-					college.setCollegename(rs.getString("collegename"));
+					college.setCollegeid(rs.getInt("teacollegeid"));
+					college.setCollegename(rs.getString("teacollegename"));
 					teacher.setCollege(college);
 					Role role = new Role();
-					role.setRoleid(rs.getInt("roleid"));
-					role.setRolename(rs.getString("rolename"));
+					role.setRoleid(rs.getInt("tearoleid"));
+					role.setRolename(rs.getString("tearolename"));
 					teacher.setRole(role);
 					match.setTeacher(teacher);
 				}

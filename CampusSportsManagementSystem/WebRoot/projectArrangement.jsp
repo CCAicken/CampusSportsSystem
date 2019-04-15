@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">
-			<h2>比赛安排管理</h2>
+			<h2>比赛项目安排</h2>
 		</div>
 		<div class="panel-body" id="panelbody">
 			<div class="container-fluid big-box">
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tbody>
 						<c:forEach items="${arrList }" var="obj" varStatus="status">
 							<tr>
-								<td class="text-center"><nobr>${status.index }</nobr></td>
+								<td class="text-center"><nobr>${status.index +1 }</nobr></td>
 								<td class="text-center"><nobr>${obj.project.proname }</nobr></td>
 								<td class="text-center"><nobr>${obj.arrname }</nobr></td>
 								<td class="text-center"><nobr>${obj.starttime }</nobr></td>
