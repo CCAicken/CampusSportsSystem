@@ -65,8 +65,8 @@
 				<div class="">
 					<table class="table table-bordered table-hover" id="scoretable">
 						<thead>
-							<th class="text-center"><input type="checkbox"
-								class="js-checkbox-all" /></th>
+							<!--<th class="text-center"><input type="checkbox"
+								class="js-checkbox-all" /></th>-->
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
 							<th class="text-center"><nobr>分数</nobr></th>
@@ -75,7 +75,7 @@
 						<tbody id="scoretable_tbody">
 							<c:forEach items="${scorecollege }" var="obj" varStatus="xh">
 								<tr>
-									<td class="text-center"><input type="checkbox" /></td>
+									<!-- <td class="text-center"><input type="checkbox" /></td> -->
 									<td class="text-center"><nobr>${xh.index+1}</nobr></td>
 									<td class="text-center"><nobr>${obj.collegename }</nobr></td>
 									<td class="text-center"><nobr>${obj.scorenumber }</nobr></td>
@@ -140,9 +140,11 @@
 			}
 		});
 	})
-	$(".details").click(function() {
-		alert($(this).val());
-	});
+	
+	  $("#scoretable").delegate('.details', //为符合条件的现有标签和未来标签都绑定事件
+                 'click', function () {
+                     alert($(this).val());
+             });
 	$("#selectcollegeId").change(function() {
 		var collegeId = $("#selectcollegeId").find("option:selected").val();
 		//alert(collegeId);
@@ -156,7 +158,7 @@
 			dataType : "json",
 			success : function(data) {
 				//alert(records.collegeid);
-				alert(data.records[0].scorenumber);
+				//alert(data.records[0].scorenumber);
 				setContent(data.records);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -200,36 +202,64 @@
 
 	function setContent(contents) {//将json数据解析并输出到页面上
 		var size = contents.length;
-		var p = document.getElementById("scoretable").parentNode;//先将之前的删除
+		//var p = document.getElementById("scoretable").parentNode;//先将之前的删除
 		$("#scoretable_tbody").remove();
 		//p.removeChild(document.getElementById("scoretable_tbody"));
-		var c = document.createElement("tbody");
-		c.setAttribute("id", "scoretable_tbody");
-		p.appendChild(c);
+		var tbody = document.createElement("tbody");
+		tbody.setAttribute("id", "scoretable_tbody");
 		for (var i = 0; i < size; i++) {
 			var nextNode = contents[i].collegename;//代表的是json格式数据的第i个元素的id
 			var nextNode2 = contents[i].scorenumber;//第i个元素的姓名
+			var nextNode3 = contents[i].collegeid;
+			//<td class="text-center"><input type="checkbox" /></td>
+
 			var tr = document.createElement("tr");
+			
 			var td0 = document.createElement("td");
 			td0.setAttribute("class", "text-center");
-			var td1 = document.createElement("td");
 			var text0 = document.createTextNode(i + 1);
-			td1.setAttribute("class", "text-center");
-			var text = document.createTextNode(nextNode);
-			var td2 = document.createElement("td");
-			var text2 = document.createTextNode(nextNode2);
 
+			var td1 = document.createElement("td");
+			td1.setAttribute("class", "text-center");
+			var text1 = document.createTextNode(nextNode);
+
+			var td2 = document.createElement("td");
+			td2.setAttribute("class", "text-center");
+			var text2 = document.createTextNode(nextNode2);
+			
+			var td3 = document.createElement("td");
+			td3.setAttribute("class", "text-center");
+			var button = document.createElement("button");
+			button.setAttribute("class","btn btn-default btn-sm btn-warning details");
+			button.setAttribute("style","height:28px");
+			button.setAttribute("value",nextNode3);
+			var span = document.createElement("span");
+			span.setAttribute("class","glyphicon glyphicon-search");
+			var textsearch=document.createTextNode("查看详情");
+			
+			
+			//<button class="btn btn-default btn-sm btn-warning details"
+										//	style="height:28px" value="${obj.collegeid}" id="">
+										//	<span class="glyphicon glyphicon-search">查看详情</span>
+										//</button>
 			td0.appendChild(text0);
 			tr.append(td0);
 
-			td1.appendChild(text);
+			td1.appendChild(text1);
 			tr.appendChild(td1);
 
 			td2.appendChild(text2);
 			tr.append(td2);
+			
+			span.appendChild(textsearch);
+			button.appendChild(span);
+			td3.appendChild(button);
+			tr.append(td3);
+			
 
-			document.getElementById("scoretable_tbody").appendChild(tr);
+			tbody.appendChild(tr);
 		}
+		document.getElementById("scoretable").appendChild(tbody);
 	}
 </script>
 </html>

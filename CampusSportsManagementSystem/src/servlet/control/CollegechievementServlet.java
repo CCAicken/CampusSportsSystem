@@ -72,7 +72,6 @@ public class CollegechievementServlet extends HttpServlet {
 		        response.setContentType("text/html;charset=utf-8");
 				String main=ConvertJsonUtils.ConvertListToPageJson(scorecollege);
 				out.print(main);
-				System.out.println(main+"000000000000000000000000000000000000");
 				out.flush();
 				out.close();
 			}

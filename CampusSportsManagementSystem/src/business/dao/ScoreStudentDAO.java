@@ -18,7 +18,7 @@ public interface ScoreStudentDAO {
 	 */
 	public ScoreStudent getByClassid(int userid);
 	/**
-	 * 查询所有学院成绩
+	 * 查询所有学生成绩
 	 * @return List<ScoreStudent>数据集
 	 */
 	public List<ScoreStudent> getAllScoreStudent();
