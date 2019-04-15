@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import util.sendDispatcher;
+import model.Match;
 import model.Project;
 import model.Student;
 import model.Teacher;
@@ -19,6 +19,7 @@ import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
 import business.dao.MatchDAO;
 import business.dao.ProjectDAO;
+import business.dao.UserDAO;
 import business.factory.DAOFactory;
 
 /**
@@ -41,14 +42,17 @@ public class projectRegistrantionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/plan;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
 		Student stu = null;
 		Teacher tea = null;
 		//int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
 		int usertype = 1;
+		int userid;
 		
 		ProjectDAO pdao = DAOFactory.getProjectDAO();
+		MatchDAO mdao = DAOFactory.getMatchDAO();
 		
 		List<Project> projectList = null;
 		if(usertype==1 || usertype==2){
@@ -64,22 +68,26 @@ public class projectRegistrantionServlet extends HttpServlet {
 		}
 		request.setAttribute("projectList", projectList);
 		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
-
+		
 		String op = request.getParameter("op");
-		if(op=="add"){
-			int proid;
-			int userid;
-			String pid = request.getParameter("proid");
-			if(pid!=null&&!pid.equals("")){
-				proid = Integer.parseInt(pid);
-			}
-			if(usertype==1){
-				userid = Integer.parseInt(stu.getUserid());
+		String proid = request.getParameter("proid");
+		if(op.equals("add")){
+			Project project = new Project();
+			project.setProid(Integer.parseInt(proid));
+			Match match = new Match();
+			match.setProject(project);
+			if(stu!=null){
+				match.setStudent(stu);
 			}
 			else{
-				userid = Integer.parseInt(tea.getUserid());
+				match.setTeacher(tea);
 			}
-			
+			boolean result = pdao.insert(project);
+			if(result){
+				out.print("成功");
+			}else{
+				out.print("失敗");
+			}
 		}
 	}
 

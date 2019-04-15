@@ -46,7 +46,7 @@
 					<table class="table table-bordered table-hover">
 						<thead>
 							<!--  <th class="text-center"><input type="checkbox" class="js-checkbox-all" /></th>-->
-							<th class="text-center"><nobr>项目编号</nobr></th>
+							<th class="text-center"><nobr>序號</nobr></th>
 							<th class="text-center"><nobr>项目名称</nobr></th>
 							<th class="text-center"><nobr>当前报名人数</nobr></th>
 							<th class="text-center"><nobr>人数限制</nobr></th>
@@ -54,9 +54,9 @@
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
-						<c:forEach items="${projectList }" var="proList">
+						<c:forEach items="${projectList }" var="proList" varStatus="status">
 							<tr>
-								<td class="text-center"><nobr>${proList.proid}</nobr></td>
+								<td class="text-center"><nobr>${status.index+1}</nobr></td>
 								<td class="text-center"><nobr>${proList.proname }</nobr></td>
 								<td class="text-center"><nobr>${proList.currentnum }</nobr></td>
 								<td class="text-center"><nobr>${proList.scenelimit }</nobr></td>
