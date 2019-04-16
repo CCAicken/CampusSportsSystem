@@ -121,6 +121,7 @@
 			data : {
 				opretion : opretion,
 				action : 'search',
+				type:'search'
 			},
 			dataType : "json",
 			success : function(data) {

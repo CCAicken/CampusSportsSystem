@@ -49,33 +49,54 @@ public class CollegechievementServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		response.setCharacterEncoding("UTF-8"); 
+
+		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
-		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+
 		ScoreCollegeDAO scdao = DAOFactory.getScoreCollegeDAO();
 		CollegeDAO cdao = DAOFactory.getCollegeDAO();
 
-		String action=request.getParameter("action");
-		String opretion=request.getParameter("opretion");
-		List<ScoreCollege> scorecollege;
-		// 获取学院成绩
-		scorecollege = scdao.getAllCollegeScore(action,opretion);
-		// 获取所有学院
-		List<College> collegelist = cdao.select();
-		if (action.equals("search")) {
-			PrintWriter out=response.getWriter();
-			if(scorecollege!=null){
-				response.setCharacterEncoding("UTF-8"); 
+		String action = request.getParameter("action");
+		String opretion = request.getParameter("opretion");
+		String type = request.getParameter("type");
+		
+		List<ScoreCollege> scorecollege=null;
+		
+		if (action.equals("search") && (type == null || type.equals(""))) {
+System.out.println("所有");
+//获取学院成绩
+			scorecollege = scdao.getAllCollegeScore(action, opretion);
+			if (scorecollege != null) {
+				response.setCharacterEncoding("UTF-8");
 				request.setCharacterEncoding("UTF-8");
-		        response.setContentType("text/html;charset=utf-8");
-				String main=ConvertJsonUtils.ConvertListToPageJson(scorecollege);
+				response.setContentType("text/html;charset=utf-8");
+				String main = ConvertJsonUtils
+						.ConvertListToPageJson(scorecollege);
 				out.print(main);
 				out.flush();
 				out.close();
+				return;
 			}
+		} else if (action.equals("search") && type.equals("search")) {
+			System.out.println("查询");
+			System.out.println(opretion);
+			response.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=utf-8");
+			scorecollege =	scdao.getSearchCollege(opretion);
+			String main = ConvertJsonUtils.ConvertListToPageJson(scorecollege);
+			out.print(main);
+			out.flush();
+			out.close();
+			return;
 		} else {
+			// 获取学院成绩
+			scorecollege = scdao.getAllCollegeScore(action, opretion);
+			// 获取所有学院
+			List<College> collegelist = cdao.select();
+			System.out.println("初始加载");
 			request.setAttribute("collegelist", collegelist);
 			request.setAttribute("scorecollege", scorecollege);
 			sendDispatcher.sendUrl("collegechievement.jsp", request, response);

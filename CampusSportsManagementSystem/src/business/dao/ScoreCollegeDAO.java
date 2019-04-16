@@ -29,4 +29,10 @@ public interface ScoreCollegeDAO {
 	 * @return List<ScoreCollege>数据集
 	 */
 	public List<ScoreCollege> getAllCollegeScoreBypage(ScoreCollege scorecollege);
+	/**
+	 * 查询学院成绩
+	 * @param opretion 条件
+	 * @return
+	 */
+	public List<ScoreCollege> getSearchCollege(String opretion);
 }

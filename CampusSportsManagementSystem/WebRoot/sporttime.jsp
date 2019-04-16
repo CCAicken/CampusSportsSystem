@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body>
  	<div id="img">
- 		 <img id="images" alt="" src="images/login.jpg" >
+ 		 <img id="images" alt="" src="images/main.jpg">
  		 <div class='text-reflect-base'>2019.4.15-4.20</div>
 <div class='text-reflect'>校 园 运 动 会</div>
  	</div>
