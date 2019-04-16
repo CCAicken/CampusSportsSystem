@@ -1,6 +1,6 @@
 $(this).ready(function(){
 	$("#table").delegate(".sure", "click", function () {
-		 var proid = $(this).prev().val().trim();
+		 var proid = $(this).parent().prev().text().trim();
 		$.ajax({
 			url : "projectregistrantionservlet.do",
 			type : "POST",

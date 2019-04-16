@@ -97,8 +97,8 @@ Student stu = null;
 								<c:if test="${proList.protype==4 }">
 								<td class="text-center"><nobr>教师团体赛<br></td>
 								</c:if>
+								<td style="display:none">${proList.proid }</td>
 								<td class="text-center">
-									<input type="hidden" value="${proList.proid }" />
 									<button class="btn btn-default btn-sm btn-warning sure"
 										style="height:28px" id="btnSubmit">
 <!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
