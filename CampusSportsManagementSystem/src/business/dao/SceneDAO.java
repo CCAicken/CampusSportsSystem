@@ -2,6 +2,7 @@ package business.dao;
 
 import java.util.List;
 
+import model.Project;
 import model.Scene;
 
 /**
@@ -27,4 +28,11 @@ public interface SceneDAO {
 	 * @return
 	 */
 	public List<Scene> seleScenes(String userid);
+	
+	/**
+	 * 根據賬號獲取未安排的報名項目
+	 * @param userid 用戶id
+	 * @return
+	 */
+	public List<Project> seleOtherScenes(String userid);
 }

@@ -55,10 +55,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<tr>
 								<th class="text-center"><nobr>序号</nobr></th>
 								<th class="text-center"><nobr>项目名称</nobr></th>
-								<th class="text-center"><nobr>场次安排</nobr></th>
-								<th class="text-center"><nobr>开始时间</nobr></th>
-								<th class="text-center"><nobr>结束时间</nobr></th>
-								<th class="text-center"><nobr>比赛地点</nobr></th>
+								<th class="text-center"><nobr>姓名</nobr></th>
+								<th class="text-center"><nobr>性別</nobr></th>
 								<c:if test="${usertype == 1 }">
 								<th class="text-center"><nobr>班级</nobr></th>
 								<th class="text-center"><nobr>專業</nobr></th>
@@ -83,24 +81,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<c:if test="${list.roleid == 2 }">
 								<td class="text-center"><nobr>${list.match.teacher.college.collegename }</nobr></td>
 								</c:if>
-							</tr>
-							</c:forEach>
-							<c:forEach items="${proList }" var="pro" varStatus="status">
-							<tr>
-								<td class="text-center"><nobr>${listSize+status.index+1 }</nobr></td>
-								<td class="text-center"><nobr>${pro.proname }</nobr></td>
-								<td class="text-center"><nobr>未安排</nobr></td>
-								<td class="text-center"><nobr>未安排</nobr></td>
-								<td class="text-center"><nobr>未安排</nobr></td>
-								<td class="text-center"><nobr>未安排</nobr></td>
-								<c:if test="${usertype == 1 }">
-								<td class="text-center"><nobr>${loginuser.classes.classname }</nobr></td>
-								<td class="text-center"><nobr>${loginuser.classes.major.majorname }</nobr></td>
-								<td class="text-center"><nobr>${loginuser.classes.major.college.collegename }</nobr></td>
-								</c:if>
-								<c:if test="${usertype == 2 }">
-								<td class="text-center"><nobr>${lloginuser.college.collegename }</nobr></td>
-								</c:if>
+								<td class="text-center">
+									<button class="btn btn-default btn-sm btn-warning sure"
+										style="height:28px" id="btnSubmit">
+<!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
+										<span>查看詳情</span>
+									</button>
+								</td>
 							</tr>
 							</c:forEach>
 						</tbody>
