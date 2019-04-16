@@ -109,16 +109,14 @@ public class UserDaoImpl implements UserDAO {
 	public Student getStudent(String userid) {
 		String sql = "select * from V_Student where userid=?";
 		Object[] param = {userid};
-		ResultSet rs = bdao.select(sql, param);
-		Student user = null;
-		try {
-			if(rs!=null&&rs.next()){
-				user = new Student(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			return user;
+		ResultSet rs = bdao.select(sql,param);
+		
+		Student student = new Student(rs);
+		bdao.close();
+		if(student.getUserid()==null || student.getUserid().equals("")){
+			return null;
+		}else{
+			return student;
 		}
 	}
 

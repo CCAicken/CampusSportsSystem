@@ -51,7 +51,7 @@
                         <c:if test="${op.equals('class') }">
 	                        <tr style="background-color:#ccc;">
 	                            <td class="viewScoreStudentinfo">班级：</td>
-	                            <td class="viewScoreStudentinfo">${classes.classesname }</td>
+	                            <td class="viewScoreStudentinfo">${classes.classname }</td>
 	                        </tr>
                         </c:if>
                         <tr>

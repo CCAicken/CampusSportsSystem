@@ -2,6 +2,7 @@ package business.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Classes;
@@ -71,44 +72,48 @@ public class ScoreDaoImpl implements ScoreDAO {
 		ResultSet rs = bdao.select(sql, param);
 		List<Score> list = null;
 		try {
-			if(rs!=null&&rs.next()){
-				Score score = new Score();
-				score.setScorenumber(rs.getDouble("score"));
-				Match match = new Match();
-				Project project = new Project();
-				project.setProname(rs.getString("proname"));
-				match.setProject(project);
-				score.setMatch(match);
-				list.add(score);
+			if(rs!=null && rs.next()){
+				do{
+					Score score = new Score();
+					score.setScorenumber(rs.getDouble("score"));
+					Match match = new Match();
+					Project project = new Project();
+					project.setProname(rs.getString("proname"));
+					match.setProject(project);
+					score.setMatch(match);
+					list.add(score);
+				}while(rs.next());
+				return list;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			return list;
 		}
+		return list;
 	}
 	@Override
 	public List<Score> getByClass(int classid) {
 		String sql = "select proid,proname,classid,classname,AVG(scorenumber) as score from V_StudentScore where classid=? group by proid,classid,proname,classname";
 		Object[] param = {classid};
 		ResultSet rs = bdao.select(sql, param);
-		List<Score> list = null;
+		List<Score> list = new ArrayList<Score>();
 		try {
 			if(rs!=null&&rs.next()){
-				Score score = new Score();
-				score.setScorenumber(rs.getDouble("score"));
-				Match match = new Match();
-				Project project = new Project();
-				project.setProname(rs.getString("proname"));
-				match.setProject(project);
-				score.setMatch(match);
-				list.add(score);
+				do{
+					Score score = new Score();
+					score.setScorenumber(rs.getDouble("score"));
+					Match match = new Match();
+					Project project = new Project();
+					project.setProname(rs.getString("proname"));
+					match.setProject(project);
+					score.setMatch(match);
+					list.add(score);
+				}while(rs.next());
+				return list;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			return list;
 		}
+		return list;
 	}
 
 }

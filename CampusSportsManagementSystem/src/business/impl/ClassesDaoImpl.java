@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Classes;
+import model.College;
 import model.Major;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
@@ -43,17 +44,14 @@ public class ClassesDaoImpl implements ClassesDAO {
 
 	@Override
 	public Classes selectByid(int classid) {
-		String sql = "select * from t_class where classid=?";
+		String sql = "select * from v_student where classid=?";
 		Object[] param = {classid};
 		ResultSet rs = bdao.select(sql, param);
 		Classes classes = null;
-		try {
-			if(rs!=null&&rs.next()){
-				classes = new Classes(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
+		classes = new Classes(rs);
+		if(classes==null || classes.getClassid()==0){
+			return null;
+		}else{
 			return classes;
 		}
 	}

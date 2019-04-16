@@ -47,13 +47,11 @@ public class CollegeDaoImpl implements CollegeDAO {
 		Object[] param = {collegeid};
 		ResultSet rs = bdao.select(sql, param);
 		College college = null;
-		try {
-			if(rs!=null&&rs.next()){
-				college = new College(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
+		
+		college = new College(rs);
+		if(college==null || college.getCollegeid()==0){
+			return null;
+		}else{
 			return college;
 		}
 	}

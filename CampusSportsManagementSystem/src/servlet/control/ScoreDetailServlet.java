@@ -40,19 +40,19 @@ public class ScoreDetailServlet extends HttpServlet {
 			request.setAttribute("user", student);
 			List<Score> userScore = sdao.getByUser(id);
 			request.setAttribute("scoreList", userScore);
-			sendDispatcher.sendUrl("allpersonalachievement.jsp", request, response);
+			sendDispatcher.sendUrl("scoreDetail.jsp", request, response);
 		}else if(op.equals("college")){
 			College college = DAOFactory.getCollegeDAO().selectByid(Integer.parseInt(id));
 			request.setAttribute("college", college);
 			List<Score> collegeScore = sdao.getByCollege(Integer.parseInt(id));
 			request.setAttribute("scoreList", collegeScore);
-			sendDispatcher.sendUrl("classachievement.jsp", request, response);
+			sendDispatcher.sendUrl("scoreDetail.jsp", request, response);
 		}else if(op.equals("class")){
 			Classes classes = DAOFactory.getClassesDAO().selectByid(Integer.parseInt(id));
 			request.setAttribute("classes", classes);
 			List<Score> classScore = sdao.getByClass(Integer.parseInt(id));
 			request.setAttribute("scoreList", classScore);
-			sendDispatcher.sendUrl("collegechievement.jsp", request, response);
+			sendDispatcher.sendUrl("scoreDetail.jsp", request, response);
 		}
 	}
 
