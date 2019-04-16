@@ -89,10 +89,12 @@
 									<td class="text-center"><nobr>${obj.classname }</nobr></td>
 									<td class="text-center"><nobr>88</nobr></td>
 									<td class="text-center">
-										<button class="btn btn-default btn-sm btn-warning"
-											style="height:28px" value="${obj.classid }">
-											<span class="glyphicon glyphicon-search" id="search">查看详情</span>
-										</button>
+										<a href="scoredetail.do?op=class&id=${obj.classid }">
+											<button class="btn btn-default btn-sm btn-warning"
+												style="height:28px" value="${obj.classid }">
+												<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+											</button>
+										</a>
 									</td>
 								</tr>
 							</c:forEach>

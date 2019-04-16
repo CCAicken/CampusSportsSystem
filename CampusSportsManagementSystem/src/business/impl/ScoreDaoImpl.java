@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Classes;
+import model.Match;
+import model.Project;
 import model.Score;
 import model.Student;
 import business.basic.BaseDao;
@@ -52,6 +55,54 @@ public class ScoreDaoImpl implements ScoreDAO {
 		try {
 			if(rs!=null&&rs.next()){
 				list = Score.toList(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
+	}
+	@Override
+	public List<Score> getByCollege(int collegeid) {
+		String sqString = "SELECT collegeid,collegename,proid,proname,protype,AVG(scorenumber) as score FROM ";
+		String whereString = " where collegeid=? group by collegeid,collegename,proname,proid,protype";
+		String sql = sqString+"V_TeacherScore"+whereString+" UNION "+sqString+"V_StudentScore"+whereString;
+		Object[] param = {collegeid,collegeid};
+		ResultSet rs = bdao.select(sql, param);
+		List<Score> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				Score score = new Score();
+				score.setScorenumber(rs.getDouble("score"));
+				Match match = new Match();
+				Project project = new Project();
+				project.setProname(rs.getString("proname"));
+				match.setProject(project);
+				score.setMatch(match);
+				list.add(score);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return list;
+		}
+	}
+	@Override
+	public List<Score> getByClass(int classid) {
+		String sql = "select proid,proname,classid,classname,AVG(scorenumber) as score from V_StudentScore where classid=? group by proid,classid,proname,classname";
+		Object[] param = {classid};
+		ResultSet rs = bdao.select(sql, param);
+		List<Score> list = null;
+		try {
+			if(rs!=null&&rs.next()){
+				Score score = new Score();
+				score.setScorenumber(rs.getDouble("score"));
+				Match match = new Match();
+				Project project = new Project();
+				project.setProname(rs.getString("proname"));
+				match.setProject(project);
+				score.setMatch(match);
+				list.add(score);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

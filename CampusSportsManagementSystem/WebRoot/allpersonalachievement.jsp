@@ -104,10 +104,12 @@
 								<td class="text-center"><nobr>${obj.classname }</nobr></td>
 								<td class="text-center"><nobr>${obj.scorenumber }</nobr></td>
 								<td class="text-center">
-									<button class="btn btn-default btn-sm btn-warning"
-										style="height:28px" values="${obj. userid}">
-										<span class="glyphicon glyphicon-search" id="search">查看详情</span>
-									</button>
+									<a href="scoredetail.do?op=user&id=${obj. userid}">
+										<button class="btn btn-default btn-sm btn-warning"
+											style="height:28px" values="${obj. userid}">
+											<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+										</button>
+									</a>
 								</td>
 							</tr>
 						</c:forEach>

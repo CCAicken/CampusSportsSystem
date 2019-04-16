@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.sendDispatcher;
 import business.dao.SceneDAO;
 import business.dao.ScoreDAO;
 import business.factory.DAOFactory;
+import model.Classes;
+import model.College;
 import model.Score;
 import model.Student;
 import model.Teacher;
@@ -27,13 +30,29 @@ public class ScoreDetailServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String op = (String)request.getAttribute("op");
+		ScoreDAO sdao = DAOFactory.getScoreDAO();
+		String op = request.getParameter("op");
+		if(op == null || op.equals("")) return;
+		request.setAttribute("op", op);
+		String id = request.getParameter("id");
 		if(op.equals("user")){
-			ScoreDAO sdao = DAOFactory.getScoreDAO();
-			int roleid = (Integer)request.getAttribute("roleid");
-			String userid = (String)request.getAttribute("userid");
-			List<Score> scoreList = sdao.getByUser(userid);
-			request.setAttribute("scoreList", scoreList);
+			Student student = DAOFactory.getUserDAO().getStudent(id);
+			request.setAttribute("user", student);
+			List<Score> userScore = sdao.getByUser(id);
+			request.setAttribute("scoreList", userScore);
+			sendDispatcher.sendUrl("allpersonalachievement.jsp", request, response);
+		}else if(op.equals("college")){
+			College college = DAOFactory.getCollegeDAO().selectByid(Integer.parseInt(id));
+			request.setAttribute("college", college);
+			List<Score> collegeScore = sdao.getByCollege(Integer.parseInt(id));
+			request.setAttribute("scoreList", collegeScore);
+			sendDispatcher.sendUrl("classachievement.jsp", request, response);
+		}else if(op.equals("class")){
+			Classes classes = DAOFactory.getClassesDAO().selectByid(Integer.parseInt(id));
+			request.setAttribute("classes", classes);
+			List<Score> classScore = sdao.getByClass(Integer.parseInt(id));
+			request.setAttribute("scoreList", classScore);
+			sendDispatcher.sendUrl("collegechievement.jsp", request, response);
 		}
 	}
 

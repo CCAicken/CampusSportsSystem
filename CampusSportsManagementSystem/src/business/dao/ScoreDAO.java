@@ -28,4 +28,18 @@ public interface ScoreDAO {
 	 * @return 用户成绩列表
 	 */
 	public List<Score> getByUser(String userid);
+
+	/**
+	 * 查询用户的详细成绩列表
+	 * @param collegeid 学院id
+	 * @return 学院成绩列表
+	 */
+	public List<Score> getByCollege(int collegeid);
+	
+	/**
+	 * 查询用户的详细成绩列表
+	 * @param classid 班级id
+	 * @return 班级成绩列表
+	 */
+	public List<Score> getByClass(int classid);
 }

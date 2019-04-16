@@ -36,22 +36,36 @@
             <div class="table-score">
                 <table class="table table-bordered table-scoreTable">
                     <thead>
-                        <tr style="background-color:#ccc;">
-                            <td class="viewScoreStudentinfo">账号：${user.userid }</td>
-                            <td class="viewScoreStudentinfo">姓名：${user.username }</td>
-                        </tr>
+	                    <c:if test="${op.equals('user') }">
+	                        <tr style="background-color:#ccc;">
+	                            <td class="viewScoreStudentinfo">账号：${user.userid }</td>
+	                            <td class="viewScoreStudentinfo">姓名：${user.username }</td>
+	                        </tr>
+                        </c:if>
+                        <c:if test="${op.equals('college') }">
+	                        <tr style="background-color:#ccc;">
+	                            <td class="viewScoreStudentinfo">学院：</td>
+	                            <td class="viewScoreStudentinfo">${college.collegename }</td>
+	                        </tr>
+                        </c:if>
+                        <c:if test="${op.equals('class') }">
+	                        <tr style="background-color:#ccc;">
+	                            <td class="viewScoreStudentinfo">班级：</td>
+	                            <td class="viewScoreStudentinfo">${classes.classesname }</td>
+	                        </tr>
+                        </c:if>
                         <tr>
                             <td class="viewScoreStudentinfo">项目名称</td>
                             <td class="viewScoreStudentinfo">得分</td>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${scoreList }" var="obj">
-                        <tr>
-                            <td>${obj.project.proname }</td>
-                            <td>${obj.scorenumber }</td>
-                        </tr>
-                    </c:forEach>
+	                    <c:forEach items="${scoreList }" var="obj">
+	                        <tr>
+	                            <td>${obj.match.project.proname }</td>
+	                            <td>${obj.scorenumber }</td>
+	                        </tr>
+	                    </c:forEach>
                     </tbody>
                 </table>
             </div>
