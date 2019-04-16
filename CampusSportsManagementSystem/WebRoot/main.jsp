@@ -87,7 +87,7 @@
                             </a>
                             <ul class="collapse nav nav-list" id="reportStu">
                                 <li role="presentation" id="openReport">
-                                    <a href="projectregistrantionservlet.do" class="sidebarclick">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
                                         <span>比赛项目查看</span>
                                     </a>
                                 </li>

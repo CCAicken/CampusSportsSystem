@@ -59,11 +59,11 @@ public class MatchDaoImpl implements MatchDAO {
 			if(rs!=null&&rs.next()){
 				return true;
 			}else{
-				return true;
+				return false;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return true;
+			return false;
 		}
 	}
 

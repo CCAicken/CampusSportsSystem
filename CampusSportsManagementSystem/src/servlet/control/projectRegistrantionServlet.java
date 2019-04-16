@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import common.properties.RoleType;
+import com.alibaba.fastjson.JSON;
 
+import common.properties.RoleType;
+import util.ResponseJSON;
 import util.sendDispatcher;
 import model.Match;
 import model.Project;
@@ -46,36 +48,18 @@ public class projectRegistrantionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("application/json");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
-		Student stu = null;
-		Teacher tea = null;
-		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
-		//int usertype = 1;
-		int userid;
-		
-		ProjectDAO pdao = DAOFactory.getProjectDAO();
+
 		MatchDAO mdao = DAOFactory.getMatchDAO();
-		
-		List<Project> projectList = null;
-		if(usertype==1 || usertype==2){
-			projectList = pdao.selectByType(usertype);//教师和学生只能查看自己能报名的项目
-			if(usertype==1){
-				stu = (Student)session.getAttribute("loginuser");
-			}else{
-				tea = (Teacher)session.getAttribute("loginuser");
-			}
-		}
-		else{
-			projectList = pdao.select();//组委会可以查看所有报名项目
-		}
-		out.print(projectList.size());
-		request.setAttribute("projectList", projectList);
-		sendDispatcher.sendUrl("projectRegistration.jsp", request, response);
-		
+
+		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
 		String op = request.getParameter("op");
+		if(op==null ||op.equals("")) return;
 		if(op.equals("add")){
 			String proid = request.getParameter("proid");
+			System.out.println(proid);
 			if(proid!=null&&!proid.equals("")){
 				Project project = new Project();
 				project.setProid(Integer.parseInt(proid));
@@ -87,30 +71,50 @@ public class projectRegistrantionServlet extends HttpServlet {
 					student = (Student)session.getAttribute("loginuser");
 					boolean issignup = mdao.isSignUp(student.getUserid(), Integer.parseInt(proid));
 					if(issignup){
-						out.print("已报过，请选择其他项目报名");
+						ResponseJSON resj = new ResponseJSON();
+						resj.flag = ResponseJSON.FLAG_FAIL;
+						resj.msg ="已报过，请选择其他项目报名";		
+						out.write(JSON.toJSONString(resj));
 					}else{
 						match.setStudent(student);
 						match.setRoleid(usertype);
 						boolean flag = mdao.insert(match);
 						if(flag){
-							out.print("报名成功");
+							
+							ResponseJSON resj = new ResponseJSON();
+							resj.flag = ResponseJSON.FLAG_SUCC;
+							resj.msg ="报名成功";
+									
+							out.write(JSON.toJSONString(resj));
 						}else{
-							out.print("报名失败");
+							ResponseJSON resj = new ResponseJSON();
+							resj.flag = ResponseJSON.FLAG_FAIL;
+							resj.msg ="报名失败";
+							out.write(JSON.toJSONString(resj));
 						}
 					}
 				}else{
 					teacher = (Teacher)session.getAttribute("loginuser");
 					boolean issignup = mdao.isSignUp(teacher.getUserid(), Integer.parseInt(proid));
 					if(issignup){
-						out.print("已报过，请选择其他项目报名");
+						ResponseJSON resj = new ResponseJSON();
+						resj.flag = ResponseJSON.FLAG_FAIL;
+						resj.msg ="已报过，请选择其他项目报名";		
+						out.write(JSON.toJSONString(resj));
 					}else{
 						match.setTeacher(teacher);
 						match.setRoleid(usertype);
 						boolean flag = mdao.insert(match);
 						if(flag){
-							out.print("报名成功");
+							ResponseJSON resj = new ResponseJSON();
+							resj.flag = ResponseJSON.FLAG_SUCC;
+							resj.msg ="报名成功";
+							out.write(JSON.toJSONString(resj));
 						}else{
-							out.print("报名失败");
+							ResponseJSON resj = new ResponseJSON();
+							resj.flag = ResponseJSON.FLAG_FAIL;
+							resj.msg ="报名失败";
+							out.write(JSON.toJSONString(resj));
 						}
 					}
 				}

@@ -1,3 +1,7 @@
+<%@page import="business.factory.DAOFactory"%>
+<%@page import="business.dao.*"%>
+<%@page import="model.*"%>
+<%@page import="model.Student"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -24,7 +28,28 @@
 <link rel="stylesheet" href="css/pagination.css" />
 
 </head>
-
+<%
+Student stu = null;
+		Teacher tea = null;
+		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
+		int userid;
+		
+		ProjectDAO pdao = DAOFactory.getProjectDAO();
+		
+		List<Project> projectList = null;
+		if(usertype==1 || usertype==2){
+			projectList = pdao.selectByType(usertype);//教师和学生只能查看自己能报名的项目
+			if(usertype==1){
+				stu = (Student)session.getAttribute("loginuser");
+			}else{
+				tea = (Teacher)session.getAttribute("loginuser");
+			}
+		}
+		else{
+			projectList = pdao.select();//组委会可以查看所有报名项目
+		}
+		request.setAttribute("projectList", projectList);
+ %>
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">

@@ -4,20 +4,20 @@ $(this).ready(function(){
 		$.ajax({
 			url : "projectregistrantionservlet.do",
 			type : "POST",
-			dataType : "text",
+			dataType : "json",
 			data : {
 				proid:proid,
 				op : "add"
 			},
 			success: function (succ) {
-	        	if(succ == "报名成功"){
-	        		window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.success, {
+	        	if(succ.flag == 10001){
+	        		window.wxc.xcConfirm(succ.msg, window.wxc.xcConfirm.typeEnum.success, {
 		                onOk: function (v) {
 		                	window.location.reload();
 		                }
 		            });
 	        	}else{
-		            window.wxc.xcConfirm(succ, window.wxc.xcConfirm.typeEnum.error);
+		            window.wxc.xcConfirm(succ.msg, window.wxc.xcConfirm.typeEnum.error);
 	        	}
 	        }
 		})
