@@ -20,10 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
     <link rel="stylesheet" href="css/sportTime.css" />
   </head>
-  
   <body>
  	<div id="img">
  		 <img id="images" alt="" src="images/login.jpg" >
+ 		 <div class='text-reflect-base'>2019.4.15-4.20</div>
+<div class='text-reflect'>校 园 运 动 会</div>
  	</div>
   </body>
 </html>
