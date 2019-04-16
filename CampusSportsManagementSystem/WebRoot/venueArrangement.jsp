@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="javax.xml.bind.ParseConversionEvent"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Scene"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -63,10 +67,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${scenelist }" var="list" varStatus="status">
+						<%
+							List<Scene> lists = (List<Scene>) request.getAttribute("scenelist");
+							for(Scene scene:lists){
+								int i=1;
+						 %>
+						 	<tr>
+								<td class="text-center"><nobr></nobr><%=i %></td>
+								<td class="text-center"><nobr></nobr><%=scene.getArrange().getProject().getProname() %></td>
+								<td class="text-center"><nobr></nobr><%=scene.getArrange().getArrname() %></td>
+								<td class="text-center"><nobr></nobr><%=scene.getArrange().getStarttime() %></td>
+								<td class="text-center"><nobr></nobr><%=scene.getArrange().getEndtime() %></td>
+								<td class="text-center"><nobr></nobr><%=scene.getArrange().getAddr() %></td>
+								<%if(scene.getArrange().getLeveltype()==1){ %>
+								<td class="text-center"><nobr></nobr>預賽</td>
+								<%} %>
+								<%if(scene.getArrange().getLeveltype()==2){ %>
+								<td class="text-center"><nobr></nobr>決賽</td>
+								<%} %>
+								<%if(scene.getArrange().getState()==0){ %>
+								<td class="text-center"><nobr></nobr>未比賽</td>
+								<%} %>
+								<%if(scene.getArrange().getState()==1){ %>
+								<td class="text-center"><nobr></nobr>比賽中</td>
+								<%} %>
+								<%if(scene.getArrange().getState()==2){ %>
+								<td class="text-center"><nobr></nobr>比賽完成</td>
+								<%} %>
+							</tr>
+						 <%
+						 	i++;
+						 } %>
+							<!--  <c:forEach items="${scenelist }" var="list" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
-								<!--  --><td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>
+								<td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>
 								<td class="text-center"><nobr>${list.arrange.arrname }</nobr></td>
 								<td class="text-center"><nobr>${list.arrange.starttime }</nobr></td>
 								<td class="text-center"><nobr>${list.arrange.endtime }</nobr></td>
@@ -87,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td class="text-center"><nobr>比赛完成</nobr></td>
 								</c:if>
 							</tr>
-							</c:forEach>
+							</c:forEach> -->
 						</tbody>
 					</table>
 				</div>
