@@ -93,5 +93,4 @@ public class ProjectDaoImpl implements ProjectDAO {
 		List<Project> list = dao.selectByType(1);
 		System.out.println(list.size());
 	}
-
 }

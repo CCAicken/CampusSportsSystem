@@ -1,3 +1,26 @@
+function pagination(pageCount) {
+            $('.paging').pagination({
+                mode: 'fixed',
+                pageCount: pageCount,
+                coping: true,
+                homePage: '首页',
+                endPage: '末页',
+                prevContent: '上页',
+                nextContent: '下页',
+                jump: true,
+                callback: function (api) {
+                    var data = {
+                        page: api.getCurrent()
+                    };
+                    $.getJSON(
+                        data,
+                        function (json) {
+
+                        });
+                }
+            });
+        };
+
 $(this).ready(function(){
 	$("#table").delegate(".sure", "click", function () {
 		 var proid = $(this).parent().prev().text().trim();

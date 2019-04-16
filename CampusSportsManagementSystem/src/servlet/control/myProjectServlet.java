@@ -69,10 +69,10 @@ public class myProjectServlet extends HttpServlet {
 			userid = tea.getUserid();
 		}
 		list = sdao.seleScenes(userid);
-		for (Scene scene : list) {
-			System.out.println(scene.getMatch().getProject().getProname());
-			System.out.println(scene.getArrange().getProject().getProname());
-		}
+//		for (Scene scene : list) {
+//			System.out.println(scene.getMatch().getProject().getProname());
+//			System.out.println(scene.getArrange().getProject().getProname());
+//		}
 		List<Project> proList = sdao.seleOtherScenes(userid);
 		request.setAttribute("scenelist", list);
 		request.setAttribute("proList", proList);
