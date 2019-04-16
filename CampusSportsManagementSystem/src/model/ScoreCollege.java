@@ -25,7 +25,30 @@ public class ScoreCollege {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 将拥有多条记录的ResultSet对象按照分页要求转换为List<VForumTitle>               
+	 * @param rs Result结果集
+	 * @param pageSize 每页的记录数
+	 * @return
+	 */
+	static public List<ScoreCollege> toList(ResultSet rs,int pageSize){
+		List<ScoreCollege> list = new ArrayList<ScoreCollege>(); //长度为0的空的动态数组
+		int count = 0;
+		try {
+			do{
+				if(rs==null) break;
+				ScoreCollege obj = new ScoreCollege();
+				obj.collegeid = rs.getInt("collegeid");
+				obj.collegename = rs.getString("collegename");
+				obj.scorenumber = rs.getDouble("scorenumber");
+				count++;
+				list.add(obj); //将创建好的obj对象添加到list数组中保存
+			}while(rs.next() && count <pageSize);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list; //将数组返回
+	}
 	/**
 	 * ResultSet结果集转List
 	 * @param rs ResultSet结果集

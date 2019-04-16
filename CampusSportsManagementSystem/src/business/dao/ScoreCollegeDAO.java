@@ -1,5 +1,6 @@
 package business.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import model.Score;
@@ -25,14 +26,16 @@ public interface ScoreCollegeDAO {
 	public List<ScoreCollege> getAllCollegeScore(String asction,String opretion);
 	
 	/**
-	 * 查询所有学院成绩(分页)
+	 * 根据学院名称查询学院成绩(分页)
+	 * @collegename 学院名称
 	 * @return List<ScoreCollege>数据集
 	 */
-	public List<ScoreCollege> getAllCollegeScoreBypage(ScoreCollege scorecollege);
+	public List<ScoreCollege> getAllCollegeScoreBypage(String collegename);
 	/**
 	 * 查询学院成绩
 	 * @param opretion 条件
 	 * @return
 	 */
 	public List<ScoreCollege> getSearchCollege(String opretion);
+	
 }
