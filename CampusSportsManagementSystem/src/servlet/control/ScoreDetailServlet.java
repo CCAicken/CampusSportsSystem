@@ -35,6 +35,7 @@ public class ScoreDetailServlet extends HttpServlet {
 		if(op == null || op.equals("")) return;
 		request.setAttribute("op", op);
 		String id = request.getParameter("id");
+		if(id == null || id.equals("")) return;
 		if(op.equals("user")){
 			Student student = DAOFactory.getUserDAO().getStudent(id);
 			request.setAttribute("user", student);

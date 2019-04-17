@@ -70,7 +70,7 @@ public class ScoreDaoImpl implements ScoreDAO {
 		String sql = sqString+"V_TeacherScore"+whereString+" UNION "+sqString+"V_StudentScore"+whereString;
 		Object[] param = {collegeid,collegeid};
 		ResultSet rs = bdao.select(sql, param);
-		List<Score> list = null;
+		List<Score> list = new ArrayList<Score>();
 		try {
 			if(rs!=null && rs.next()){
 				do{
@@ -79,6 +79,7 @@ public class ScoreDaoImpl implements ScoreDAO {
 					Match match = new Match();
 					Project project = new Project();
 					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
 					match.setProject(project);
 					score.setMatch(match);
 					list.add(score);
@@ -92,7 +93,7 @@ public class ScoreDaoImpl implements ScoreDAO {
 	}
 	@Override
 	public List<Score> getByClass(int classid) {
-		String sql = "select proid,proname,classid,classname,AVG(scorenumber) as score from V_StudentScore where classid=? group by proid,classid,proname,classname";
+		String sql = "select proid,proname,protype,classid,classname,AVG(scorenumber) as score from V_StudentScore where classid=? group by proid,classid,proname,classname,protype";
 		Object[] param = {classid};
 		ResultSet rs = bdao.select(sql, param);
 		List<Score> list = new ArrayList<Score>();
@@ -104,6 +105,7 @@ public class ScoreDaoImpl implements ScoreDAO {
 					Match match = new Match();
 					Project project = new Project();
 					project.setProname(rs.getString("proname"));
+					project.setProtype(rs.getInt("protype"));
 					match.setProject(project);
 					score.setMatch(match);
 					list.add(score);
