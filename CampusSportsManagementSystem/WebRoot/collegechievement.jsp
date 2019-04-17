@@ -98,6 +98,7 @@
 				<div class="m-style paging"></div>
 			</div>
 		</div>
+		<input type="hidden" id="pageAmount" value="${pageAmount }"/>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -177,7 +178,7 @@
 		});
 	})
 	$(".paging").pagination({
-		pageCount : 10, //$("#intPageCount").val(), //总页数
+		pageCount : $("#pageAmount").val(), //$("#intPageCount").val(), //总页数
 		jump : true,
 		mode : 'fixed', //固定页码数量
 		coping : true,
@@ -191,13 +192,11 @@
 				url : "collegechievement.do",
 				data : {
 					page : api.getCurrent(), //页码
-					op : "paging"
+					type : "paging"
 				},
-				dataType : 'text',
+				dataType : 'json',
 				success : function(data) {
-					$("#table tr:not(:first)").remove(); //清空table处首行
-					$("#table").append(data); //加载table
-					$("#intPageCount").remove();
+					setContent(data.records);
 				}
 			});
 		}
