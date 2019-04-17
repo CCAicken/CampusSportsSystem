@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import util.ToolsUtil;
 import model.ScoreCollege;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
@@ -88,49 +89,46 @@ public class ScoreCollegeDaoImpl implements ScoreCollegeDAO {
 
 	}
 
-	/*
-	 * ：推荐，速度最快 判断是否为整数
-	 * 
-	 * @param str 传入的字符串
-	 * 
-	 * @return 是整数返回true,否则返回false
-	 */
 
-	public static boolean isInteger(String str) {
-		Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-		return pattern.matcher(str).matches();
-	}
-
+	@Override
 	public int getpageAmount(int pageSize) {
 		String sql = "select * from V_CollegeScore";
 		int amount = bdao.pageAmount(sql, pageSize);
 		return amount;
 	}
-	public int getpageAmountbysearch(String opraton,int pageSize) {
-		String sql = "select * from V_CollegeScore where collegename=?";
-		Object[] param={opraton};
-		int amount = bdao.pageAmount(sql, param,pageSize);
+
+	@Override
+	public int getpageAmountbysearch(String opraton, int pageSize) {
+		String sql=""; 
+		if (ToolsUtil.isInteger(opraton)) {
+			sql="select * from V_CollegeScore where collegeid=?";
+		} else {
+			sql= "select * from V_CollegeScore where collegename=?";
+		}
+		Object[] param = {opraton };
+		int amount = bdao.pageAmount(sql, param, pageSize);
 		return amount;
 	}
+
 	@Override
-	public List<ScoreCollege> getAllCollegeScoreBypage(String opretion) {
+	public List<ScoreCollege> getAllCollegeScoreBypage(String opretion,int pageSize,int currpage) {
 		String sql = "";
 		List<ScoreCollege> list = null;
-		if (isInteger(opretion)) {
+		if (ToolsUtil.isInteger(opretion)) {
 			if (opretion.equals("0")) {
 				sql = "select * from V_CollegeScore";
-				ResultSet rs = bdao.selectByPage(sql, 20, 1);
+				ResultSet rs = bdao.selectByPage(sql, pageSize, currpage);
 				if (rs != null) {
-					list = ScoreCollege.toList(rs, 20);
+					list = ScoreCollege.toList(rs, pageSize);
 				}
 				bdao.close();
 				return list;
 			} else {
 				sql = "select * from V_CollegeScore where collegeid=?";
 				Object[] param = { opretion };
-				ResultSet rs = bdao.selectByPage(sql, param, 20, 1);
+				ResultSet rs = bdao.selectByPage(sql, param, pageSize, currpage);
 				if (rs != null) {
-					list = ScoreCollege.toList(rs, 20);
+					list = ScoreCollege.toList(rs, pageSize);
 				}
 				bdao.close();
 				return list;
@@ -139,9 +137,9 @@ public class ScoreCollegeDaoImpl implements ScoreCollegeDAO {
 		} else {
 			sql = "select * from V_CollegeScore where collegename=?";
 			Object[] param = { opretion };
-			ResultSet rs = bdao.selectByPage(sql, param, 20, 1);
+			ResultSet rs = bdao.selectByPage(sql, param, pageSize, currpage);
 			if (rs != null) {
-				list = ScoreCollege.toList(rs, 20);
+				list = ScoreCollege.toList(rs, pageSize);
 			}
 			bdao.close();
 			return list;
