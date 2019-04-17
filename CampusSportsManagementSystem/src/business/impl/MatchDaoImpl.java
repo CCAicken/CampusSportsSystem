@@ -66,5 +66,4 @@ public class MatchDaoImpl implements MatchDAO {
 			return false;
 		}
 	}
-
 }

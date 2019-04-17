@@ -101,7 +101,6 @@ Student stu = null;
 								<td class="text-center">
 									<button class="btn btn-default btn-sm btn-warning sure"
 										style="height:28px" id="btnSubmit">
-<!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
 										<span>确认报名</span>
 									</button>
 								</td>

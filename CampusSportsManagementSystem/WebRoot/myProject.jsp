@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td class="text-center"><nobr>${list.match.student.classes.major.majorname }</nobr></td>
 								<td class="text-center"><nobr>${list.match.student.classes.major.college.collegename }</nobr></td>
 								</c:if>
-								<c:if test="${list.roleid == 2 }">
+								<c:if test="${list.roleid != 1 }">
 								<td class="text-center"><nobr>${list.match.teacher.college.collegename }</nobr></td>
 								</c:if>
 							</tr>
@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td class="text-center"><nobr>${loginuser.classes.major.college.collegename }</nobr></td>
 								</c:if>
 								<c:if test="${usertype == 2 }">
-								<td class="text-center"><nobr>${lloginuser.college.collegename }</nobr></td>
+								<td class="text-center"><nobr>${loginuser.college.collegename }</nobr></td>
 								</c:if>
 							</tr>
 							</c:forEach>

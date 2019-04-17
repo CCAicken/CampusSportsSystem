@@ -23,7 +23,9 @@ function pagination(pageCount) {
 
 $(this).ready(function(){
 	$("#table").delegate(".sure", "click", function () {
-		 var proid = $(this).parent().prev().text().trim();
+		var proid = $(this).parent().prev().text().trim();
+//		var currentnum = $(this).parent().prev().prev().prev().find("nobr").text().trim();
+//		alert(currentnum+proid);
 		$.ajax({
 			url : "projectregistrantionservlet.do",
 			type : "POST",

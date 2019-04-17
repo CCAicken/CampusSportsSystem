@@ -88,12 +88,12 @@
                             <ul class="collapse nav nav-list" id="reportStu">
                                 <li role="presentation" id="openReport">
                                     <a href="projectRegistration.jsp" class="sidebarclick">
-                                        <span>比赛项目查看</span>
+                                        <span>比赛项目报名</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
                                     <a href="venueArrangementServlet.do" class="sidebarclick">
-                                        <span>比赛时间安排</span>
+                                        <span>比赛安排查看</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="mediiumQuality">
@@ -106,7 +106,7 @@
                         <li role="presentation">
                             <a href="#datasetting" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-jifen"></i>
-                                <span>成绩管理</span>
+                                <span>成绩查看</span>
                                 <i class="iconfont icon-more" id="trans"></i>
                             </a>
                             <ul class="collapse nav nav-list" id="datasetting">
