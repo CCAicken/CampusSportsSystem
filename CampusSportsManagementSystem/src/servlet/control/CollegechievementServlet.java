@@ -16,8 +16,10 @@ import util.ConvertJsonUtils;
 import util.sendDispatcher;
 import model.College;
 import model.ScoreCollege;
+import business.basic.BaseDao;
 import business.dao.*;
 import business.factory.DAOFactory;
+import business.impl.CollegeDaoImpl;
 
 /**
  * 查看学院成绩的servlet类
@@ -57,21 +59,40 @@ public class CollegechievementServlet extends HttpServlet {
 
 		ScoreCollegeDAO scdao = DAOFactory.getScoreCollegeDAO();
 		CollegeDAO cdao = DAOFactory.getCollegeDAO();
-
 		String action = request.getParameter("action");
 		String opretion = request.getParameter("opretion");
 		String type = request.getParameter("type");
-		
-		List<ScoreCollege> scorecollege=null;
-		
-		if (action.equals("search") && (type == null || type.equals(""))) {
-System.out.println("所有");
-//获取学院成绩
-			scorecollege = scdao.getAllCollegeScore(action, opretion);
+		List<ScoreCollege> scorecollege = null;
+		int pageSize = 2;
+		int pageAmount = 0;
+		int currPage = 1;
+		if (type != null && type.equals("paging")) {
+			currPage = Integer.parseInt(request.getParameter("page"));
+			scorecollege = scdao.getAllCollegeScoreBypage("0", pageSize,
+					currPage);
 			if (scorecollege != null) {
 				response.setCharacterEncoding("UTF-8");
 				request.setCharacterEncoding("UTF-8");
 				response.setContentType("text/html;charset=utf-8");
+				request.setAttribute("pageAmount", pageAmount);
+				String main = ConvertJsonUtils
+						.ConvertListToPageJson(scorecollege);
+				out.print(main);
+				out.flush();
+				out.close();
+				return;
+			}
+		} else if (action.equals("search") && (type == null || type.equals(""))) {
+			System.out.println("所有");
+			// 获取学院成绩
+			scorecollege = scdao.getAllCollegeScoreBypage(opretion, pageSize,
+					currPage);
+			pageAmount = scdao.getpageAmountbysearch(opretion, pageSize);
+			if (scorecollege != null) {
+				response.setCharacterEncoding("UTF-8");
+				request.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html;charset=utf-8");
+				request.setAttribute("pageAmount", pageAmount);
 				String main = ConvertJsonUtils
 						.ConvertListToPageJson(scorecollege);
 				out.print(main);
@@ -81,22 +102,32 @@ System.out.println("所有");
 			}
 		} else if (action.equals("search") && type.equals("search")) {
 			System.out.println("查询");
-			System.out.println(opretion);
+			if (opretion == null || opretion.equals("")) {
+				opretion = "0";
+			}
 			response.setCharacterEncoding("UTF-8");
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=utf-8");
-			scorecollege =	scdao.getSearchCollege(opretion);
+
+			pageAmount = scdao.getpageAmountbysearch(opretion, pageSize);
+			request.setAttribute("pageAmount", pageAmount);
+			scorecollege = scdao.getAllCollegeScoreBypage(opretion, pageSize,
+					currPage);
 			String main = ConvertJsonUtils.ConvertListToPageJson(scorecollege);
 			out.print(main);
 			out.flush();
 			out.close();
 			return;
 		} else {
+			// 获取分页总页数
+			pageAmount = scdao.getpageAmount(pageSize);
 			// 获取学院成绩
-			scorecollege = scdao.getAllCollegeScore(action, opretion);
+			scorecollege = scdao.getAllCollegeScoreBypage("0", pageSize,
+					currPage);
 			// 获取所有学院
 			List<College> collegelist = cdao.select();
 			System.out.println("初始加载");
+			request.setAttribute("pageAmount", pageAmount);
 			request.setAttribute("collegelist", collegelist);
 			request.setAttribute("scorecollege", scorecollege);
 			sendDispatcher.sendUrl("collegechievement.jsp", request, response);

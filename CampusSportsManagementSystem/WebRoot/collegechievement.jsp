@@ -98,6 +98,7 @@
 				<div class="m-style paging"></div>
 			</div>
 		</div>
+		<input type="hidden" id="pageAmount" value="${pageAmount }"/>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -114,7 +115,7 @@
 	//查询点击事件
 	$("#search").click(function() {
 		var opretion = $("#inputsearch").val();
-		alert(opretion);
+		//alert(opretion);
 		$.ajax({
 			type : 'get',
 			url : "collegechievement.do",
@@ -126,18 +127,19 @@
 			dataType : "json",
 			success : function(data) {
 				//alert(records.collegeid);
-				alert(data.records[0].scorenumber);
+				//alert(data.records[0].scorenumber);
 				setContent(data.records);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				/*弹出jqXHR对象的信息*/
+			window.wxc.xcConfirm(textStatus+"后台错误", window.wxc.xcConfirm.typeEnum.error)
+				/*弹出jqXHR对象的信息
 				alert(jqXHR.responseText);
 				alert(jqXHR.status);
 				alert(jqXHR.readyState);
 				alert(jqXHR.statusText);
-				/*弹出其他两个参数的信息*/
+				/*弹出其他两个参数的信息
 				alert(textStatus);
-				alert(errorThrown);
+				alert(errorThrown);*/
 			}
 		});
 	})
@@ -163,19 +165,20 @@
 				setContent(data.records);
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				/*弹出jqXHR对象的信息*/
+			window.wxc.xcConfirm(textStatus+"后台错误", window.wxc.xcConfirm.typeEnum.error)
+				/*弹出jqXHR对象的信息
 				alert(jqXHR.responseText);
 				alert(jqXHR.status);
 				alert(jqXHR.readyState);
 				alert(jqXHR.statusText);
-				/*弹出其他两个参数的信息*/
+				/*弹出其他两个参数的信息
 				alert(textStatus);
-				alert(errorThrown);
+				alert(errorThrown);*/
 			}
 		});
 	})
 	$(".paging").pagination({
-		pageCount : 10, //$("#intPageCount").val(), //总页数
+		pageCount : $("#pageAmount").val(), //$("#intPageCount").val(), //总页数
 		jump : true,
 		mode : 'fixed', //固定页码数量
 		coping : true,
@@ -189,13 +192,11 @@
 				url : "collegechievement.do",
 				data : {
 					page : api.getCurrent(), //页码
-					op : "paging"
+					type : "paging"
 				},
-				dataType : 'text',
+				dataType : 'json',
 				success : function(data) {
-					$("#table tr:not(:first)").remove(); //清空table处首行
-					$("#table").append(data); //加载table
-					$("#intPageCount").remove();
+					setContent(data.records);
 				}
 			});
 		}

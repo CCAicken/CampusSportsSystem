@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import util.ToolsUtil;
 import model.ScoreCollege;
 import business.basic.BaseDao;
 import business.basic.BaseDaoImpl;
@@ -35,9 +36,15 @@ public class ScoreCollegeDaoImpl implements ScoreCollegeDAO {
 		}
 
 	}
+
 	@Override
 	public List<ScoreCollege> getSearchCollege(String opretion) {
-		String sql = "SELECT collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from (select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_StudentScore where collegename='"+opretion+"' GROUP BY collegeid,collegename UNION ALL select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_TeacherScore where collegename='"+opretion+"' GROUP BY collegeid,collegename) as a where collegename='"+opretion+"' GROUP BY collegeid,collegename";
+		String sql = "SELECT collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from (select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_StudentScore where collegename='"
+				+ opretion
+				+ "' GROUP BY collegeid,collegename UNION ALL select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_TeacherScore where collegename='"
+				+ opretion
+				+ "' GROUP BY collegeid,collegename) as a where collegename='"
+				+ opretion + "' GROUP BY collegeid,collegename";
 		ResultSet rs = bdao.select(sql);
 		List<ScoreCollege> list = null;
 		try {
@@ -61,15 +68,9 @@ public class ScoreCollegeDaoImpl implements ScoreCollegeDAO {
 			String sql = "SELECT collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from (select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_StudentScore GROUP BY collegeid,collegename UNION ALL select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_TeacherScore GROUP BY collegeid,collegename) as a GROUP BY collegeid,collegename";
 			rs = bdao.select(sql);
 		} else {
-
-			if (isInteger(opretion)) {
-				String sql = "SELECT collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from (select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_StudentScore GROUP BY collegeid,collegename UNION ALL select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_TeacherScore GROUP BY collegeid,collegename) as a GROUP BY collegeid,collegename";
-				rs = bdao.select(sql);
-			} else {
-				String sql = "SELECT collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from (select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_StudentScore where collegename like'%?%'  GROUP BY collegeid,collegename UNION ALL select collegeid,collegename, ROUND(AVG(scorenumber), 2) as scorenumber from V_TeacherScore where collegename like'%?%' GROUP BY collegeid,collegename) as a where collegename like'%?%' GROUP BY collegeid,collegename";
-				Object[] param = { opretion, opretion, opretion };
-				rs = bdao.select(sql, param);
-			}
+			String sql = "select * from V_CollegeScore where collegeid=?";
+			Object[] param = { opretion };
+			rs = bdao.selectByPage(sql, param, 20, 1);
 		}
 
 		List<ScoreCollege> list = null;
@@ -88,23 +89,61 @@ public class ScoreCollegeDaoImpl implements ScoreCollegeDAO {
 
 	}
 
-	/*
-	 * ：推荐，速度最快 判断是否为整数
-	 * 
-	 * @param str 传入的字符串
-	 * 
-	 * @return 是整数返回true,否则返回false
-	 */
 
-	public static boolean isInteger(String str) {
-		Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-		return pattern.matcher(str).matches();
+	@Override
+	public int getpageAmount(int pageSize) {
+		String sql = "select * from V_CollegeScore";
+		int amount = bdao.pageAmount(sql, pageSize);
+		return amount;
 	}
 
 	@Override
-	public List<ScoreCollege> getAllCollegeScoreBypage(ScoreCollege scorecollege) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getpageAmountbysearch(String opraton, int pageSize) {
+		String sql=""; 
+		if (ToolsUtil.isInteger(opraton)) {
+			sql="select * from V_CollegeScore where collegeid=?";
+		} else {
+			sql= "select * from V_CollegeScore where collegename=?";
+		}
+		Object[] param = {opraton };
+		int amount = bdao.pageAmount(sql, param, pageSize);
+		return amount;
 	}
 
+	@Override
+	public List<ScoreCollege> getAllCollegeScoreBypage(String opretion,int pageSize,int currpage) {
+		String sql = "";
+		List<ScoreCollege> list = null;
+		if (ToolsUtil.isInteger(opretion)) {
+			if (opretion.equals("0")) {
+				sql = "select * from V_CollegeScore";
+				ResultSet rs = bdao.selectByPage(sql, pageSize, currpage);
+				if (rs != null) {
+					list = ScoreCollege.toList(rs, pageSize);
+				}
+				bdao.close();
+				return list;
+			} else {
+				sql = "select * from V_CollegeScore where collegeid=?";
+				Object[] param = { opretion };
+				ResultSet rs = bdao.selectByPage(sql, param, pageSize, currpage);
+				if (rs != null) {
+					list = ScoreCollege.toList(rs, pageSize);
+				}
+				bdao.close();
+				return list;
+			}
+
+		} else {
+			sql = "select * from V_CollegeScore where collegename=?";
+			Object[] param = { opretion };
+			ResultSet rs = bdao.selectByPage(sql, param, pageSize, currpage);
+			if (rs != null) {
+				list = ScoreCollege.toList(rs, pageSize);
+			}
+			bdao.close();
+			return list;
+		}
+
+	}
 }
