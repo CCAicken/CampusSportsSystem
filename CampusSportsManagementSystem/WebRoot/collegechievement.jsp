@@ -146,7 +146,8 @@
 	
 	  $("#scoretable").delegate('.details', //为符合条件的现有标签和未来标签都绑定事件
                  'click', function () {
-                     alert($(this).val());
+                     var id = $(this).val();
+                     window.location.href="scoredetail.do?op=college&id="+id;
              });
 	$("#selectcollegeId").change(function() {
 		var collegeId = $("#selectcollegeId").find("option:selected").val();
