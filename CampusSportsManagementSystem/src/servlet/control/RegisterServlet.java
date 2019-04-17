@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import util.sendDispatcher;
 import business.dao.ClassesDAO;
@@ -40,13 +41,14 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/plan;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 		//获取所有学院信息列表
 		CollegeDAO colldao = new CollegeDaoImpl();
 		List<College> collegelist = colldao.select();
 		if(collegelist==null||collegelist.size()<=0){
-			request.setAttribute("collegelist", new ArrayList<College>());
+			session.setAttribute("collegelist", new ArrayList<College>());
 		}else{
-			request.setAttribute("collegelist", collegelist);
+			session.setAttribute("collegelist", collegelist);
 		}
 		String op = request.getParameter("op");
 		if(op == null){
@@ -59,14 +61,14 @@ public class RegisterServlet extends HttpServlet {
 				List<Major> majorlist = mdao.selectByColl(Integer.parseInt(collegeid));
 				request.setAttribute("collegeid", collegeid);
 				if(majorlist==null||majorlist.size()<=0){
-					request.setAttribute("majorlist", new ArrayList<Major>());
+					session.setAttribute("majorlist", new ArrayList<Major>());
 				}else{
 					int row = majorlist.size();
-					request.setAttribute("majorlist", majorlist);
+					session.setAttribute("majorlist", majorlist);
 				}
 			}else{
-				request.setAttribute("majorlist", new ArrayList<Major>());
-				request.setAttribute("collegeid", null);
+				session.setAttribute("majorlist", new ArrayList<Major>());
+				session.setAttribute("collegeid", null);
 			}
 			sendDispatcher.sendUrl("register.jsp", request, response);
 		}else if(op.equals("major")){
@@ -77,13 +79,13 @@ public class RegisterServlet extends HttpServlet {
 				List<Classes> classlist = classdao.selectByMajor(Integer.parseInt(majorid));
 				request.setAttribute("majorid", majorid);
 				if(classlist==null||classlist.size()<=0){
-					request.setAttribute("classlist", new ArrayList<Classes>());
+					session.setAttribute("classlist", new ArrayList<Classes>());
 				}else{
-					request.setAttribute("classlist", classlist);
+					session.setAttribute("classlist", classlist);
 				}
 			}else{
-				request.setAttribute("classlist", new ArrayList<Classes>());
-				request.setAttribute("majorid", null);
+				session.setAttribute("classlist", new ArrayList<Classes>());
+				session.setAttribute("majorid", null);
 			}
 			sendDispatcher.sendUrl("register.jsp", request, response);
 		}
