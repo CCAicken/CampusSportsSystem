@@ -13,8 +13,8 @@ import java.sql.Statement;
 public class DBConnection {
 
 	private String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	//private String url = "jdbc:sqlserver://192.168.3.60:1433;DatabaseName=CSMS";
-	private String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CSMS";
+	private String url = "jdbc:sqlserver://192.168.3.60:1433;DatabaseName=CSMS";
+	//private String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CSMS";
 	private String user = "sa";
 	private String pwd = "123456";
 	/**
