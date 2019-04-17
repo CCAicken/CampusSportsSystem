@@ -1,5 +1,8 @@
 package business.factory;
 
+import business.basic.BaseDao;
+import business.basic.BaseDaoImpl;
+import business.basic.DBConnection;
 import business.dao.ArrangeDAO;
 import business.dao.ClassesDAO;
 import business.dao.CollegeDAO;
@@ -53,6 +56,10 @@ public class DAOFactory {
 	 */
 	public static UserDAO getUserDAO(){
 		return new UserDaoImpl();
+	}
+	
+	public static BaseDao getBaseDao(){
+		return new BaseDaoImpl();
 	}
 	
 	/**
