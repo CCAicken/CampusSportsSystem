@@ -2,6 +2,7 @@ package business.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Major;
@@ -79,7 +80,7 @@ public class MajorDaoImpl implements MajorDAO {
 		String sql = "select * from t_major where collegeid=?";
 		Object[] param = {collegeid};
 		ResultSet rs = bdao.select(sql, param);
-		List<Major> list = null;
+		List<Major> list = new ArrayList<Major>();
 		try {
 			if(rs!=null&&rs.next()){
 				list = Major.toList(rs);

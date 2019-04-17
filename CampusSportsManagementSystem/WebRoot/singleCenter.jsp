@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,12 +35,12 @@
                             <td></td>
                             <td id="gender">${loginuser.agend }</td>
                         </tr>
+                        <c:if test="${usertype==1 }">
                         <tr>
                             <td class="centerLable">学院：</td>
                             <td></td>
                             <td id="college">${loginuser.classes.major.college.collegename }</td>
                         </tr>
-                        
                         <tr>
                             <td class="centerLable">专业：</td>
                             <td></td>
@@ -51,7 +51,14 @@
                             <td></td>
                             <td id="profession">${loginuser.classes.classname }</td>
                         </tr>
-                        
+                        </c:if>
+                        <c:if test="${usertype!=1 }">
+	                        <tr>
+	                            <td class="centerLable">学院：</td>
+	                            <td></td>
+	                            <td id="college">${loginuser.college.collegename }</td>
+	                        </tr>
+                        </c:if>
                         <tr>
                             <td class="centerLable">联系电话：</td>
                             <td></td>
