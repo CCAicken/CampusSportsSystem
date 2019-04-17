@@ -62,7 +62,18 @@
                     <tbody>
 	                    <c:forEach items="${scoreList }" var="obj">
 	                        <tr>
-	                            <td>${obj.match.project.proname }</td>
+		                        <c:if test="${obj.match.project.protype==1 }">
+	                            	<td>${obj.match.project.proname }(学生个人赛)</td>
+	                            </c:if> 
+	                            <c:if test="${obj.match.project.protype==2 }">
+	                            	<td>${obj.match.project.proname }(学生团体赛)</td>
+	                            </c:if> 
+	                            <c:if test="${obj.match.project.protype==3 }">
+	                            	<td>${obj.match.project.proname }(教师个人赛)</td>
+	                            </c:if> 
+	                            <c:if test="${obj.match.project.protype==4 }">
+	                            	<td>${obj.match.project.proname }(教师团体赛)</td>
+	                            </c:if> 
 	                            <td>${obj.scorenumber }</td>
 	                        </tr>
 	                    </c:forEach>
