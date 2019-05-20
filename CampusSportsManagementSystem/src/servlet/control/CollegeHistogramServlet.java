@@ -40,9 +40,9 @@ public class CollegeHistogramServlet extends HttpServlet {
 		int i=0;
 		for(ScoreCollege score : collegeList){
 			scoreList[i][0] = score.getCollegename();
-			scoreList[i][1] = Double.toString(score.getScorenumber());
-			String color = getRandColor(200,255);
-			scoreList[i][2] = getRandColor(200,255);
+			scoreList[i][1] = String.valueOf(score.getScorenumber());
+			String color = String.valueOf(getRandColor(200,255));
+			scoreList[i][2] = String.valueOf(getRandColor(200,255));
 			i++;
 		}
 		ResponseJSON resj = new ResponseJSON();
