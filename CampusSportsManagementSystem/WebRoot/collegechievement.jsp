@@ -69,7 +69,7 @@
 								class="js-checkbox-all" /></th>-->
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
-							<th class="text-center"><nobr>分数</nobr></th>
+							<th class="text-center"><nobr>平均成绩</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody id="scoretable_tbody">
