@@ -38,12 +38,12 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" id="myCenter">
+                                <!-- <li role="presentation" id="myCenter">
                                     <a role="menuitem" tabindex="-1" class="sidebarclick" href="singleCenter.jsp">
                                         <b class="iconfont icon-smile"></b>
                                         <span>个人中心</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1" class="sidebarclick" href="changePwd.jsp">
@@ -71,48 +71,126 @@
             <div class="page-left-nav col-sm-2 col-md-2 col-lg-1 collapse in" id="nav-menu">
                 <nav role="navigation" class="row">
                     <ul class="nav nav-list nav-stacked">
-                        <!-- 学生 -->
                         <li role="presentation">
                             <a href="sporttime.jsp" class="sidebarclick" data-toggle="collapse">
                                 <i class="iconfont icon-set"></i>
-                                <span>校运会时间</span>
+                                <span>信息发布</span>
                             </a>
                         </li>
-
                         <li role="presentation">
-                            <a href="#reportStu" class="collapsed" data-toggle="collapse">
+                            <a href="#information" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-survey1"></i>
-                                <span>比赛报名</span>
+                                <span>基本信息</span>
                                 <i class="iconfont icon-more"></i>
                             </a>
-                            <ul class="collapse nav nav-list" id="reportStu">
+                            <ul class="collapse nav nav-list" id="information">
                                 <li role="presentation" id="openReport">
                                     <a href="projectRegistration.jsp" class="sidebarclick">
-                                        <span>比赛项目报名</span>
+                                        <span>学院管理</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
                                     <a href="venueArrangementServlet.do" class="sidebarclick">
-                                        <span>比赛安排查看</span>
+                                        <span>专业管理</span>
                                     </a>
                                 </li>
-                                <li role="presentation" id="mediiumQuality">
-                                    <a href="myProjectServlet.do" class="sidebarclick">
-                                        <span>查看我的项目</span>
+                                <li role="presentation" id="submitReport">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                        <span>班级管理</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" id="submitReport">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                        <span>学生管理</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li role="presentation">
-                            <a href="#datasetting" class="collapsed" data-toggle="collapse">
+                            <a href="sporttime.jsp" class="sidebarclick" data-toggle="collapse">
+                                <i class="iconfont icon-set"></i>
+                                <span>教职工管理</span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#matchtime" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>赛事管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="matchtime">
+                                <li role="presentation" id="openReport">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
+                                        <span>赛事管理</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" id="submitReport">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                        <span>赛项管理</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation">
+                            <a href="#matchitem" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>赛项安排</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="matchitem">
+                                <li role="presentation" id="openReport">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
+                                        <span>时间场地安排</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" id="submitReport">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                        <span>比赛人员安排</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li role="presentation">
+                            <a href="sporttime.jsp" class="sidebarclick" data-toggle="collapse">
+                                <i class="iconfont icon-set"></i>
+                                <span>校运会时间</span>
+                            </a>
+                        </li> -->
+
+                        <li role="presentation">
+                            <a href="#match" class="collapsed" data-toggle="collapse">
+                                <i class="iconfont icon-survey1"></i>
+                                <span>比赛管理</span>
+                                <i class="iconfont icon-more"></i>
+                            </a>
+                            <ul class="collapse nav nav-list" id="match">
+                                <li role="presentation" id="openReport">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
+                                        <span>比赛状态设置</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" id="submitReport">
+                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                        <span>比赛成绩录入</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation">
+                            <a href="#score" class="collapsed" data-toggle="collapse">
                                 <i class="iconfont icon-jifen"></i>
-                                <span>成绩查看</span>
+                                <span>成绩管理</span>
                                 <i class="iconfont icon-more" id="trans"></i>
                             </a>
-                            <ul class="collapse nav nav-list" id="datasetting">
+                            <ul class="collapse nav nav-list" id="score">
                                 <li role="presentation">
-                                    <a href="allpersonalachievement.do" class="sidebarclick">
-                                        <span>个人成绩</span>
+                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
+                                        <span>学院成绩</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
+                                        <span>专业成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -121,8 +199,8 @@
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
-                                        <span>学院成绩</span>
+                                    <a href="allpersonalachievement.do" class="sidebarclick">
+                                        <span>个人成绩</span>
                                     </a>
                                 </li>
                             </ul>
