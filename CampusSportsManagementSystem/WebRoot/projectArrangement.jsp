@@ -151,14 +151,18 @@
 								<tr>
 									<td id="regLable"><label class="control-label">开始时间:</label>
 									</td>
-									<td><input size="16" type="text" value="" readonly class="form_datetime" placeholder="请选择开始时间" /> <span
-										id="validateName"></span></td>
+									<td>
+									<input type="text" name="starttime" id="starttime" readOnly="true" value=""/>
+						            <img onClick="WdatePicker({el:$dp.$('starttime'),dateFmt:'yyyy-MM-dd HH:mm:ss'})" src="lib/My97DatePicker/skin/datePicker.gif" _fcksavedurl="lib/My97DatePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle"> 
+						            </td>
 								</tr>
 								<tr>
 									<td id="regLable"><label class="control-label">结束时间:</label>
 									</td>
-									<td><input size="16" type="text" value="" readonly class="form_datetime" placeholder="请选择结束时间" /> <span
-										id="validateName"></span></td>
+									<td>
+									<input type="text" name="endtime" id="endtime" readOnly="true" value=""/>
+						            <img onClick="WdatePicker({el:$dp.$('endtime'),dateFmt:'yyyy-MM-dd HH:mm:ss'})" src="lib/My97DatePicker/skin/datePicker.gif" _fcksavedurl="lib/My97DatePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle"> 
+						            </td>
 								</tr>
 								<tr>
 									<td id="regLable"><label class="control-label">比赛地点:</label>
@@ -190,6 +194,7 @@
 		</div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>   
 <script src="js/bootstrap.min.js"></script>
 <script src="js/icheck.min.js"></script>
 <script src="js/ml.js"></script>
