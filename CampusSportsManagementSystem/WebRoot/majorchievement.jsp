@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>学院成绩查看页面</title>
+<title>专业成绩查看页面</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -39,7 +39,7 @@
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">
-			<h2>学院成绩查看页面</h2>
+			<h2>专业成绩查看页面</h2>
 		</div>
 		<div class="panel-body" id="panelbody">
 			<div class="container-fluid big-box">
@@ -52,7 +52,15 @@
 								<c:forEach items="${collegelist}" var="collegeobj">
 									<option value="${collegeobj.collegeid}">${collegeobj.collegename}</option>
 								</c:forEach>
-							</select> <input type="text" class="form-control" placeholder="请输入查询条件"
+							</select>
+							<select class="selectpicker selectcollegeId" data-width="auto"
+								id="selectcollegeId">
+								<option value="0">-查询所有专业-</option>
+								<c:forEach items="${majorlist}" var="obj">
+									<option value="${obj.majorid}">${obj.majorname}</option>
+								</c:forEach>
+							</select>
+							 <input type="text" class="form-control" placeholder="请输入查询条件"
 								id="inputsearch" value="" /> <span class="input-group-btn">
 								<button class="btn btn-info" type="button" id="btn-search"
 									style="height:34px">
@@ -69,6 +77,7 @@
 								class="js-checkbox-all" /></th>-->
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>学院名称</nobr></th>
+							<th class="text-center"><nobr>专业名称</nobr></th>
 							<th class="text-center"><nobr>平均成绩</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
@@ -77,6 +86,7 @@
 								<!--<td class="text-center"><input type="checkbox" /></td> -->
 								<td class="text-center"><nobr>1</nobr></td>
 								<td class="text-center"><nobr>信息工程学院</nobr></td>
+								<td class="text-center"><nobr>计算机科学与技术</nobr></td>
 								<td class="text-center"><nobr>88</nobr></td>
 								<td class="text-center">
 									<a href="scoredetail.do?op=class&id=${obj.classid }">
@@ -91,6 +101,7 @@
 								<!--<td class="text-center"><input type="checkbox" /></td> -->
 								<td class="text-center"><nobr>2</nobr></td>
 								<td class="text-center"><nobr>建筑工程学院</nobr></td>
+								<td class="text-center"><nobr>工程造价</nobr></td>
 								<td class="text-center"><nobr>78</nobr></td>
 								<td class="text-center">
 									<a href="scoredetail.do?op=class&id=${obj.classid }">

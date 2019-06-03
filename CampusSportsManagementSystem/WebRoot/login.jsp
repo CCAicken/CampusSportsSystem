@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="radio">
+                <!-- <div class="radio">
                     <label>
                             <input type="radio" name="user" value="teacher" checked="" />
                             教师
@@ -57,7 +57,7 @@
                             <input type="radio" name="user" value="student" checked="checked" />
                             学生
                         </label>
-                </div>
+                </div> -->
                 <div id="btn">
                     <button type="button" class="btn btn-default col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-2 col-sm-push-2 col-md-push-2 col-lg-push-2" onclick="formReset()">重置</button>
                     <button type="button" class="btn btn-info col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-push-4 col-sm-push-4 col-md-push-4 col-lg-push-4" id="btnSubmit">
@@ -66,9 +66,9 @@
                 </div>
             </div>
         </div>
-        <div class="panel-heading text-right" id="heading">
+        <!-- <div class="panel-heading text-right" id="heading">
             <span><a href="register.do">注册>></a></span>
-        </div>
+        </div> -->
     </div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>

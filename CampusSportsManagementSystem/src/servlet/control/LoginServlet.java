@@ -37,33 +37,42 @@ public class LoginServlet extends HttpServlet {
 		if(op.equals("login")){
 			String userid = request.getParameter("userName");
 			String pwd = request.getParameter("pwd");
-			String usertype = request.getParameter("usertype");
+			//String usertype = request.getParameter("usertype");
 			String captcha = request.getParameter("captcha");
 			if(!captcha.toLowerCase().equals(sRand.toLowerCase())){
 				out.print("ÑéÖ¤Âë´íÎó");
 			}else{
 				UserDAO udao = DAOFactory.getUserDAO();
-				if(usertype.equals("student")){
-					Student user = udao.loginStu(userid, pwd);
-					if(user!=null&&!user.getUserid().equals("")){
-						session.setAttribute("loginuser", user);
-						session.setAttribute("usertype", RoleType.Student);
-						out.print("µÇÂ¼³É¹¦");
-						//sendDispatcher.sendUrl("main.jsp", request, response);
-					}else{
-						out.print("µÇÂ¼Ê§°Ü");
-					}
+				Teacher user = udao.loginTea(userid, pwd);
+				if(user!=null&&!user.getUserid().equals("")){
+					session.setAttribute("loginuser", user);
+					session.setAttribute("usertype", RoleType.Organization);
+					out.print("µÇÂ¼³É¹¦");
+					//sendDispatcher.sendUrl("main.jsp", request, response);
 				}else{
-					Teacher user = udao.loginTea(userid, pwd);
-					if(user!=null&&!user.getUserid().equals("")){
-						session.setAttribute("loginuser", user);
-						session.setAttribute("usertype", RoleType.Teacher);
-						out.print("µÇÂ¼³É¹¦");
-						//sendDispatcher.sendUrl("main.jsp", request, response);
-					}else{
-						out.print("µÇÂ¼Ê§°Ü");
-					}
+					out.print("µÇÂ¼Ê§°Ü");
 				}
+//				if(usertype.equals("student")){
+//					Student user = udao.loginStu(userid, pwd);
+//					if(user!=null&&!user.getUserid().equals("")){
+//						session.setAttribute("loginuser", user);
+//						session.setAttribute("usertype", RoleType.Student);
+//						out.print("µÇÂ¼³É¹¦");
+//						//sendDispatcher.sendUrl("main.jsp", request, response);
+//					}else{
+//						out.print("µÇÂ¼Ê§°Ü");
+//					}
+//				}else{
+//					Teacher user = udao.loginTea(userid, pwd);
+//					if(user!=null&&!user.getUserid().equals("")){
+//						session.setAttribute("loginuser", user);
+//						session.setAttribute("usertype", RoleType.Teacher);
+//						out.print("µÇÂ¼³É¹¦");
+//						//sendDispatcher.sendUrl("main.jsp", request, response);
+//					}else{
+//						out.print("µÇÂ¼Ê§°Ü");
+//					}
+//				}
 			}
 		}
 	}

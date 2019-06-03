@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>我的比赛项目</title>
+    <title>比赛项目</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
 		<div class="panel-head">
-			<h2>我的比赛项目</h2>
+			<h2>比赛项目</h2>
 		</div>
 		<div class="panel-body" id="panelbody">
 			<div class="container-fluid big-box">
@@ -59,12 +59,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th class="text-center"><nobr>性別</nobr></th>
 								<c:if test="${usertype == 1 }">
 								<th class="text-center"><nobr>班级</nobr></th>
-								<th class="text-center"><nobr>專業</nobr></th>
+								<th class="text-center"><nobr>专业</nobr></th>
 								</c:if>
 								<th class="text-center"><nobr>学院</nobr></th>
+								<th class="text-center"><nobr>操作</nobr></th>
 							</tr>
 						</thead>
 						<tbody>
+						<tr>
+								<td class="text-center"><nobr>1</nobr></td>
+								<td class="text-center"><nobr>4*100（女生组）</nobr></td>
+								<td class="text-center"><nobr>贾贾</nobr></td>
+								<td class="text-center"><nobr>女</nobr></td>
+								<c:if test="${list.roleid == 1 }">
+								<td class="text-center"><nobr>2016计算机科学与技术1班</nobr></td>
+								<td class="text-center"><nobr>计算机科学与技术</nobr></td>
+								</c:if>
+								<td class="text-center"><nobr>信息工程学院</nobr></td>
+								<td class="text-center">
+									<button class="btn btn-default btn-sm btn-warning sure">
+<!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
+										<span>编辑</span>
+									</button>
+									<button class="btn btn-default btn-sm btn-warning sure">
+<!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
+										<span>删除</span>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+						<%-- <tbody>
 							<c:forEach items="${scenelist }" var="list" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
@@ -85,12 +109,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<button class="btn btn-default btn-sm btn-warning sure"
 										style="height:28px" id="btnSubmit">
 <!-- 										<span class="glyphicon glyphicon-search">确认报名</span> -->
-										<span>查看詳情</span>
+										<span>查看详情</span>
 									</button>
 								</td>
 							</tr>
 							</c:forEach>
-						</tbody>
+						</tbody> --%>
 					</table>
 					
 				</div>

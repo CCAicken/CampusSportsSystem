@@ -29,7 +29,7 @@
 
 </head>
 <%
-Student stu = null;
+/* Student stu = null;
 		Teacher tea = null;
 		int usertype = (Integer)session.getAttribute("usertype");//获取用户类型
 		int userid;
@@ -48,7 +48,7 @@ Student stu = null;
 		else{
 			projectList = pdao.select();//组委会可以查看所有报名项目
 		}
-		request.setAttribute("projectList", projectList);
+		request.setAttribute("projectList", projectList); */
  %>
 <body>
 	<div class="panel panel-default" id="panel" style="margin-top: -20px">
@@ -64,6 +64,11 @@ Student stu = null;
 							<button class="btn btn-info" type="button" id="btn-search" style="height:34px">
 								<span class="glyphicon glyphicon-search" id="search">查询</span>
 							</button>
+							
+						<button class="btn btn-info" type="button" id="btn-search"
+							style="height:34px;margin-left:10px;" data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-add" id="search">添加</span>
+						</button>
 						</div>
 					</div>
 				</div>
@@ -74,11 +79,29 @@ Student stu = null;
 							<th class="text-center"><nobr>序号</nobr></th>
 							<th class="text-center"><nobr>项目名称</nobr></th>
 							<th class="text-center"><nobr>当前报名人数</nobr></th>
-							<th class="text-center"><nobr>人数限制</nobr></th>
+							<th class="text-center"><nobr>学院人数限制</nobr></th>
+							<th class="text-center"><nobr>总人数限制</nobr></th>
 							<th class="text-center"><nobr>项目类型</nobr></th>
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
+							<tr>
+								<td class="text-center"><nobr>1</nobr></td>
+								<td class="text-center"><nobr>4*100（女生）</nobr></td>
+								<td class="text-center"><nobr>4</nobr></td>
+								<td class="text-center"><nobr>12</nobr></td>
+								<td class="text-center"><nobr>48</nobr></td>
+								<td class="text-center"><nobr>学生个人赛<br></td>
+								<td style="display:none">${proList.proid }</td>
+								<td class="text-center">
+									<button class="btn btn-default btn-sm btn-warning sure"
+										style="height:28px" id="btnSubmit">
+										<span>删除</span>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+						<%-- <tbody>
 						<c:forEach items="${projectList }" var="proList" varStatus="status">
 							<tr>
 								<td class="text-center"><nobr>${status.index+1}</nobr></td>
@@ -106,7 +129,7 @@ Student stu = null;
 								</td>
 							</tr>
 						</c:forEach>
-						</tbody>
+						</tbody> --%>
 					</table>
 				</div>
 			</div>
@@ -116,6 +139,70 @@ Student stu = null;
 				id="datatables_paginate">
 				<div class="m-style paging"></div>
 			</div>
+		</div>
+		<!-- 添加模态框 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">添加场次信息</h4>
+					</div>
+					<div class="modal-body">
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<td id="regLable"><label class="control-label">项目名称:</label>
+									</td>
+									<td><select id="select" name="select"
+										class="selectpicker show-tick form-control">
+											<option value="">1000m长跑</option>
+											<option value="">100m短跑</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td id="regLable"><label class="control-label">当前报名人数:</label>
+									</td>
+									<td><input type="numbr" class="form-control input-sm input"
+										id="username" name="username" placeholder="请输入场次名称" /> <span
+										id="validateName"></span></td>
+								</tr>
+								<tr>
+									<td id="regLable"><label class="control-label">学院人数限制:</label>
+									</td>
+									<td><input type="number" class="form-control input-sm input"
+										id="username" name="username" placeholder="请选择开始时间" /> <span
+										id="validateName"></span></td>
+								</tr>
+								<tr>
+									<td id="regLable"><label class="control-label">总人数限制:</label>
+									</td>
+									<td><input type="number" class="form-control input-sm input"
+										id="username" name="username" placeholder="请选择结束时间" /> <span
+										id="validateName"></span></td>
+								</tr>
+								<tr>
+									<td id="regLable"><label class="control-label">比赛级别:</label>
+									</td>
+									<td><select id="select" name="select"
+										class="selectpicker show-tick form-control">
+											<option value="">预赛</option>
+											<option value="">决赛</option>
+									</select></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
 		</div>
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>

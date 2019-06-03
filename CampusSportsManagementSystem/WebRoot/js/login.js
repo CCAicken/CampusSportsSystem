@@ -7,7 +7,7 @@ $(document).ready(function () {
 		var userName = $("#userName").val();
 		var pwd = $("#pwd").val();
 		var captcha = $("#captcha").val();
-		var usertype = $('input:radio:checked').val();
+		//var usertype = $('input:radio:checked').val();
 		if(userName == ""){
 			window.wxc.xcConfirm("用户名不能为空", window.wxc.xcConfirm.typeEnum.error)
 		}else if(pwd == ""){
@@ -21,7 +21,7 @@ $(document).ready(function () {
                 data: {
                 	userName: userName,
                 	pwd: pwd,
-                	usertype: usertype,
+                	//usertype: usertype,
                 	captcha:captcha,
                     op: "login"
                 },

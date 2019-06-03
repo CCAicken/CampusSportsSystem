@@ -63,6 +63,10 @@
 									style="height:34px">
 									<span class="glyphicon glyphicon-search" id="search">查询</span>
 								</button>
+								<button class="btn btn-info" type="button" id="btn-search"
+									style="height:34px">
+									<span class="glyphicon glyphicon-search" id="search">导出</span>
+								</button>
 							</span>
 						</div>
 					</div>
@@ -80,6 +84,40 @@
 							<th class="text-center"><nobr>操作</nobr></th>
 						</thead>
 						<tbody>
+							<tr>
+								<!--<td class="text-center"><input type="checkbox" /></td> -->
+								<td class="text-center"><nobr>1</nobr></td>
+								<td class="text-center"><nobr>信息工程学院</nobr></td>
+								<td class="text-center"><nobr>计算机科学与技术</nobr></td>
+								<td class="text-center"><nobr>2016级计算机科学与技术1班</nobr></td>
+								<td class="text-center"><nobr>88</nobr></td>
+								<td class="text-center">
+									<a href="scoredetail.do?op=class&id=${obj.classid }">
+										<button class="btn btn-default btn-sm btn-warning"
+											style="height:28px" value="${obj.classid }">
+											<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+										</button>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<!--<td class="text-center"><input type="checkbox" /></td> -->
+								<td class="text-center"><nobr>2</nobr></td>
+								<td class="text-center"><nobr>信息工程学院</nobr></td>
+								<td class="text-center"><nobr>物联网工程</nobr></td>
+								<td class="text-center"><nobr>2016级物联网工程1班</nobr></td>
+								<td class="text-center"><nobr>78</nobr></td>
+								<td class="text-center">
+									<a href="scoredetail.do?op=class&id=${obj.classid }">
+										<button class="btn btn-default btn-sm btn-warning"
+											style="height:28px" value="${obj.classid }">
+											<span class="glyphicon glyphicon-search" id="search">查看详情</span>
+										</button>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+						<%-- <tbody>
 							<c:forEach items="${scoreclass}" var="obj" varStatus="xh">
 								<tr>
 									<!--<td class="text-center"><input type="checkbox" /></td> -->
@@ -98,9 +136,7 @@
 									</td>
 								</tr>
 							</c:forEach>
-
-
-						</tbody>
+						</tbody> --%>
 					</table>
 				</div>
 			</div>

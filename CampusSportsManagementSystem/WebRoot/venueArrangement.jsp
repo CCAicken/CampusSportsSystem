@@ -57,6 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<thead>
 							<tr>
 								<th class="text-center"><nobr>序号</nobr></th>
+								<th class="text-center"><nobr>学号/工号</nobr></th>
+								<th class="text-center"><nobr>参赛者</nobr></th>
+								<th class="text-center"><nobr>性别</nobr></th>
 								<th class="text-center"><nobr>项目名称</nobr></th>
 								<th class="text-center"><nobr>场次名称</nobr></th>
 								<th class="text-center"><nobr>开始时间</nobr></th>
@@ -64,9 +67,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<th class="text-center"><nobr>比赛地点</nobr></th>
 								<th class="text-center"><nobr>比赛级别</nobr></th>
 								<th class="text-center"><nobr>比赛状态</nobr></th>
+								<th class="text-center"><nobr>操作</nobr></th>
 							</tr>
 						</thead>
 						<tbody>
+						 	<tr>
+								<td class="text-center"><nobr></nobr>1</td>
+								<td class="text-center"><nobr></nobr>16520400013</td>
+								<td class="text-center"><nobr></nobr>贾贾</td>
+								<td class="text-center"><nobr></nobr>女</td>
+								<td class="text-center"><nobr></nobr>100m短跑</td>
+								<td class="text-center"><nobr></nobr>100m短跑校内第一场</td>
+								<td class="text-center"><nobr></nobr>2019-05-29 14:00:00</td>
+								<td class="text-center"><nobr></nobr>2019-05-29 14:15:00</td>
+								<td class="text-center"><nobr></nobr>田径场跑道主席台前</td>
+								<td class="text-center"><nobr></nobr>预赛</td>
+								<td class="text-center"><nobr>未比赛</nobr></td>
+								<td class="text-center">
+								<button class="btn btn-default btn-sm btn-warning sure">
+									<span class="glyphicon glyphicon-search">开始</span>
+								</button>
+								</td>
+							</tr>
+						 	<tr>
+								<td class="text-center"><nobr></nobr>2</td>
+								<td class="text-center"><nobr></nobr>16520400014</td>
+								<td class="text-center"><nobr></nobr>贾三</td>
+								<td class="text-center"><nobr></nobr>男</td>
+								<td class="text-center"><nobr></nobr>跳高</td>
+								<td class="text-center"><nobr></nobr>跳高校内第一场</td>
+								<td class="text-center"><nobr></nobr>2019-05-29 14:00:00</td>
+								<td class="text-center"><nobr></nobr>2019-05-29 14:15:00</td>
+								<td class="text-center"><nobr></nobr>田径场跳高地</td>
+								<td class="text-center"><nobr></nobr>预赛</td>
+								<td class="text-center"><nobr>比赛中</nobr></td>
+								<td class="text-center">
+								<button class="btn btn-default btn-sm btn-warning sure">
+									<span class="glyphicon glyphicon-search">录入成绩</span>
+								</button>
+								</td>
+							</tr>
+						</tbody>
+						<%-- <tbody>
 						<%
 							List<Scene> lists = (List<Scene>) request.getAttribute("scenelist");
 							for(Scene scene:lists){
@@ -98,32 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 <%
 						 	i++;
 						 } %>
-							<!--  <c:forEach items="${scenelist }" var="list" varStatus="status">
-							<tr>
-								<td class="text-center"><nobr>${status.index+1 }</nobr></td>
-								<td class="text-center"><nobr>${list.arrange.project.proname }</nobr></td>
-								<td class="text-center"><nobr>${list.arrange.arrname }</nobr></td>
-								<td class="text-center"><nobr>${list.arrange.starttime }</nobr></td>
-								<td class="text-center"><nobr>${list.arrange.endtime }</nobr></td>
-								<td class="text-center"><nobr>${list.arrange.addr }</nobr></td>
-								<c:if test="${list.arrange.levletype==1 }">
-								<td class="text-center"><nobr>預賽</nobr></td>
-								</c:if>
-								<c:if test="${list.arrange.levletype==2 }">
-								<td class="text-center"><nobr>決賽</nobr></td>
-								</c:if>
-								<c:if test="${list.arrange.state==0 }">
-								<td class="text-center"><nobr>未比赛</nobr></td>
-								</c:if>
-								<c:if test="${list.arrange.state==1 }">
-								<td class="text-center"><nobr>比赛中</nobr></td>
-								</c:if>
-								<c:if test="${list.arrange.state==2 }">
-								<td class="text-center"><nobr>比赛完成</nobr></td>
-								</c:if>
-							</tr>
-							</c:forEach> -->
-						</tbody>
+						</tbody> --%>
 					</table>
 				</div>
 			</div>

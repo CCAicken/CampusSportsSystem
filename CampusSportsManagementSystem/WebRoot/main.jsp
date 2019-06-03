@@ -34,7 +34,7 @@
                         </a>
                         <div class="dropdown pull-right">
                             <button class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
-                                <b>你好，${loginuser.username }&nbsp</b>
+                                <b>你好，admin&nbsp</b>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -125,7 +125,7 @@
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
-                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                    <a href="projectRegistration.jsp" class="sidebarclick">
                                         <span>赛项管理</span>
                                     </a>
                                 </li>
@@ -139,7 +139,12 @@
                             </a>
                             <ul class="collapse nav nav-list" id="matchitem">
                                 <li role="presentation" id="openReport">
-                                    <a href="projectRegistration.jsp" class="sidebarclick">
+                                    <a href="Project.jsp" class="sidebarclick">
+                                        <span>查看报名情况</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" id="openReport">
+                                    <a href="projectArrangement.jsp" class="sidebarclick">
                                         <span>时间场地安排</span>
                                     </a>
                                 </li>
@@ -165,12 +170,12 @@
                             </a>
                             <ul class="collapse nav nav-list" id="match">
                                 <li role="presentation" id="openReport">
-                                    <a href="projectRegistration.jsp" class="sidebarclick">
+                                    <a href="venueArrangement.jsp" class="sidebarclick">
                                         <span>比赛状态设置</span>
                                     </a>
                                 </li>
                                 <li role="presentation" id="submitReport">
-                                    <a href="venueArrangementServlet.do" class="sidebarclick">
+                                    <a href="venueArrangement.jsp" class="sidebarclick">
                                         <span>比赛成绩录入</span>
                                     </a>
                                 </li>
@@ -184,22 +189,22 @@
                             </a>
                             <ul class="collapse nav nav-list" id="score">
                                 <li role="presentation">
-                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
+                                    <a href="collegechievement.jsp" class="sidebarclick">
                                         <span>学院成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="collegechievement.do?action=all&opretion=all" class="sidebarclick">
+                                    <a href="majorchievement.jsp" class="sidebarclick">
                                         <span>专业成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="classachievement.do" class="sidebarclick">
+                                    <a href="classachievement.jsp" class="sidebarclick">
                                         <span>班级成绩</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="allpersonalachievement.do" class="sidebarclick">
+                                    <a href="allpersonalachievement.jsp" class="sidebarclick">
                                         <span>个人成绩</span>
                                     </a>
                                 </li>
