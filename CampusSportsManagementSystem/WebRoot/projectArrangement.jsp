@@ -228,7 +228,7 @@
 			});
 		}
 	});
-	$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+	$(".form_datetime").datetimepicker({locale: 'zh-cn',viewMode: 'days',format: 'YYYY/MM/DD'});
 	$(".form_datetime").datetimepicker().on('changeDate', function(ev){
 	var that = this;
 	    if (ev.date.valueOf() < date-start-display.valueOf()){
